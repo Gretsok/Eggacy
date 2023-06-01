@@ -238,7 +238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3263920680999559400}
   m_Layer: 0
-  m_Name: P_Player_Egg
+  m_Name: P_Egg_Champion_Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
