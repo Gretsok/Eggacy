@@ -7,10 +7,16 @@ namespace Eggacy.Gameplay.Character.EggChampion
 {
     public class EggChampionCharacter : NetworkBehaviour
     {
+        private Vector3 _directionToMove = default;
         public override void FixedUpdateNetwork()
         {
             base.FixedUpdateNetwork();
 
+        }
+
+        public void SetDirectionToMove(Vector3 directionToMove)
+        {
+            _directionToMove = directionToMove;
         }
 
         #region Rally Behaviour
