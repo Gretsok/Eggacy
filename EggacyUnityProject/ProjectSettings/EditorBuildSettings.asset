@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Eggacy/MainMenu/MainMenu.unity
+    guid: d5c79b38d7b68214784e4c61a6081ead
+  - enabled: 1
+    path: Assets/Eggacy/Gameplay/LevelFlow/LevelFlow_Test.unity
+    guid: 355b071ce83f1d74288ecdf2413b8d45
   m_configObjects: {}
