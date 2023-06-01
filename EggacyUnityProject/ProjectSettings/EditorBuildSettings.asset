@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Eggacy/MainMenu/MainMenu.unity
+    guid: d5c79b38d7b68214784e4c61a6081ead
+  - enabled: 1
+    path: Assets/Eggacy/Maps/LD_Test.unity
+    guid: a6613670d6399b140a45135f9af1f2eb
   m_configObjects: {}
