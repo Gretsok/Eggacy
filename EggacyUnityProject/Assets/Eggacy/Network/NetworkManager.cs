@@ -19,6 +19,12 @@ namespace Eggacy.Network
 
         private Dictionary<PlayerRef, EggChampionCharacter> _characters = new Dictionary<PlayerRef, EggChampionCharacter>();
         private Dictionary<PlayerRef, EggChampionPlayerController> _playerControllers = new Dictionary<PlayerRef, EggChampionPlayerController>();
+        private EggChampionPlayerController _localPlayerController = null;
+
+        public void SetLocalPlayerController(EggChampionPlayerController localPlayerController)
+        {
+            _localPlayerController = localPlayerController;
+        }
 
         public void OnConnectedToServer(NetworkRunner runner)
         {
@@ -46,9 +52,9 @@ namespace Eggacy.Network
 
         public void OnInput(NetworkRunner runner, NetworkInput input)
         {
-            if(_playerControllers.ContainsKey(runner.LocalPlayer))
+            if(_localPlayerController)
             {
-                input.Set(_playerControllers[runner.LocalPlayer].networkedInput);
+                input.Set(_localPlayerController.networkedInput);
             }
             else
             {
@@ -74,7 +80,6 @@ namespace Eggacy.Network
             _playerControllers.Add(player, networkedPlayerController);
 
             networkedPlayerController.SetCharacter(networkedCharacter);
-            networkedPlayerController.Initialize();
         }
 
         public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)

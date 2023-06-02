@@ -1,3 +1,4 @@
+using Cinemachine.Utility;
 using Fusion;
 using UnityEngine;
 
@@ -13,15 +14,17 @@ namespace Eggacy.Gameplay.Character.EggChampion
         private float _movementSpeed = 5f;
         [SerializeField]
         private float _movementSmoothness = 8f;
-        private Vector3 _directionToMove = default;
-        private Vector3 _orientation = default;
+        private Vector3 _directionToMove { get; set; }
+        [Networked]
+        private Vector3 _orientation { get; set; }
 
         [Networked]
         private Vector3 _currentPlannedVelocity { get; set; }
         public override void FixedUpdateNetwork()
         {
             base.FixedUpdateNetwork();
-            transform.forward = _orientation;
+            if(!_orientation.AlmostZero())
+                _rigidbody.Rigidbody.rotation = Quaternion.LookRotation(_orientation, Vector3.up);
 
             float gravity = _rigidbody.Rigidbody.velocity.y;
             _currentPlannedVelocity = Vector3.Lerp(_currentPlannedVelocity, _directionToMove * _movementSpeed, Runner.DeltaTime * _movementSmoothness);
@@ -34,6 +37,12 @@ namespace Eggacy.Gameplay.Character.EggChampion
         }
 
         public void SetOrientation(Vector3 orientation)
+        {
+            Rpc_HandleOrientationSetUp(orientation);
+        }
+
+        [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority, Channel = RpcChannel.Unreliable)]
+        public void Rpc_HandleOrientationSetUp(Vector3 orientation)
         {
             _orientation = orientation;
         }

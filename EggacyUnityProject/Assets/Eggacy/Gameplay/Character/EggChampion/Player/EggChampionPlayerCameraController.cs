@@ -1,4 +1,3 @@
-using Cinemachine;
 using UnityEngine;
 
 namespace Eggacy.Gameplay.Character.EggChampion.Player
@@ -37,6 +36,9 @@ namespace Eggacy.Gameplay.Character.EggChampion.Player
 
         private void FixedUpdate()
         {
+            if (!gameObject.activeSelf) return;
+            if(!_positionTarget || !_rootPivot) return;
+
             _cameraHorizontalPivot.Rotate(Vector3.up * _rotationInput.x * Time.fixedDeltaTime * _cameraSensitivity.x);
 
             var eulerAngles = _cameraVerticalPivot.localEulerAngles;
