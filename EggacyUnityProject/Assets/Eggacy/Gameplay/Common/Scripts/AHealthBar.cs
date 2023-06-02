@@ -7,6 +7,8 @@ namespace Eggacy
     public abstract class AHealthBar : MonoBehaviour
     {
         [SerializeField]
+        protected Image m_healthBarContainer;
+        [SerializeField]
         protected Slider m_healthSlider;
         [SerializeField]
         protected Slider m_healthSliderBG;
@@ -16,6 +18,16 @@ namespace Eggacy
         [SerializeField]
         protected float m_timeBeforeUpdateSlider = 0.2f;
 
+        protected Color m_healBarContainerColor;
+        protected Color m_healthSliderColor;
+        protected Color m_healthSliderBGColor;
+
+        protected virtual void Start()
+        {
+            m_healBarContainerColor = m_healthBarContainer.color;
+            m_healthSliderColor = m_healthSlider.colors.normalColor; 
+            m_healthSliderBGColor = m_healthSliderBG.colors.normalColor; 
+        }
 
         public virtual void SetHealthRatio(float a_healthRatio)
         {

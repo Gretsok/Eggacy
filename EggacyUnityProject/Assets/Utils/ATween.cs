@@ -34,12 +34,15 @@ namespace Tween
         [SerializeField]
         protected float m_tweenDuration = 1f;
         [SerializeField]
+        protected float m_tweenDelay = 0f;
+        [SerializeField]
         protected ELoopType m_loopType = ELoopType.Once;
         [SerializeField]
         protected AnimationCurve m_tweenCurve = AnimationCurve.Linear(0f, 0f, 1f, 1f);
 
         public bool PlayOnAwake => m_playOnAwake;
         public float TweenDuration => m_tweenDuration;
+        public float TweenDelay => m_tweenDelay;
         public ELoopType LoopType => m_loopType;
         #endregion
 
@@ -100,7 +103,7 @@ namespace Tween
             }
         }
 
-        protected virtual void Stop()
+        public virtual void Stop()
         {
             StopAllCoroutines();
             m_isPlaying = false;
@@ -152,6 +155,10 @@ namespace Tween
 
         private IEnumerator ForwardRoutine()
         {
+            ResetValues();
+            if(m_tweenDelay > 0f)
+                yield return new WaitForSeconds(m_tweenDelay);
+
             float startingTime = Time.time;
             while (Time.time - startingTime < m_tweenDuration)
             {
@@ -196,6 +203,15 @@ namespace Tween
 
         }
 
+        public void SetTweenDuration(float a_duration)
+        {
+            m_tweenDuration = a_duration;
+        }
+
+        public void SetTweenDelay(float a_delay)
+        {
+            m_tweenDelay = a_delay;
+        }
     }
 
     public enum ELoopType

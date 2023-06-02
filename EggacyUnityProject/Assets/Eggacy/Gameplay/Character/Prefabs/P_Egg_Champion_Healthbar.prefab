@@ -59,7 +59,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.78431374}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -176,6 +176,7 @@ GameObject:
   - component: {fileID: 9128970546448734207}
   - component: {fileID: 7017634827133819470}
   - component: {fileID: 4647874379365305759}
+  - component: {fileID: 1382296810611771628}
   m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
@@ -225,7 +226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.9340349, b: 0.5235849, a: 1}
+  m_Color: {r: 1, g: 0.9340349, b: 0.5235849, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -242,6 +243,54 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1382296810611771628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6494245180879348592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 440f86f271e710b4cb8915fb5ebc0c98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_onStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  m_onFinish:
+    m_PersistentCalls:
+      m_Calls: []
+  m_playOnAwake: 0
+  m_tweenDuration: 1
+  m_tweenDelay: 0
+  m_loopType: 0
+  m_tweenCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  m_initialValue: {r: 1, g: 0.9333334, b: 0.5254902, a: 0.78431374}
+  m_finalValue: {r: 1, g: 0.9333334, b: 0.5254902, a: 0}
 --- !u!1 &7994653903399830840
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,6 +302,7 @@ GameObject:
   - component: {fileID: 7994653903399830841}
   - component: {fileID: 7994653903399830843}
   - component: {fileID: 7994653903399830842}
+  - component: {fileID: 6760722637132297474}
   m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
@@ -319,6 +369,54 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6760722637132297474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7994653903399830840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 440f86f271e710b4cb8915fb5ebc0c98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_onStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  m_onFinish:
+    m_PersistentCalls:
+      m_Calls: []
+  m_playOnAwake: 0
+  m_tweenDuration: 1
+  m_tweenDelay: 0
+  m_loopType: 0
+  m_tweenCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  m_initialValue: {r: 0.9803922, g: 0.22352943, b: 0.21568629, a: 1}
+  m_finalValue: {r: 0.9803922, g: 0.22352943, b: 0.21568629, a: 0}
 --- !u!1 &7994653903579332542
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,7 +476,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 0.78431374}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -497,6 +595,7 @@ GameObject:
   - component: {fileID: 1144231186776883266}
   - component: {fileID: 7994653904442719098}
   - component: {fileID: 1751688513}
+  - component: {fileID: 6523276519098829335}
   m_Layer: 5
   m_Name: P_Egg_Champion_Healthbar
   m_TagString: Untagged
@@ -546,11 +645,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58b6f24290a093243bfd4fe241f9eba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_healthBarContainer: {fileID: 7994653904442719098}
   m_healthSlider: {fileID: 7676725778180819776}
   m_healthSliderBG: {fileID: 7188856067253620231}
   m_updateSliderBGSpeed: 0.5
   m_timeBeforeUpdateSlider: 0.1
-  a_damageReceivedPositionTween: {fileID: 1751688513}
+  m_damageReceivedPositionTween: {fileID: 1751688513}
+  m_timeBeforefadeOut: 1
+  m_fadeOutDuration: 0.3
+  m_healthBarContainerColorTween: {fileID: 6523276519098829335}
+  m_healthSliderColorTween: {fileID: 6760722637132297474}
+  m_healthSliderBGColorTween: {fileID: 1382296810611771628}
 --- !u!114 &7994653904442719098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -564,7 +669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.7058824}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -599,8 +704,9 @@ MonoBehaviour:
   m_onFinish:
     m_PersistentCalls:
       m_Calls: []
-  m_playOnAwake: 1
+  m_playOnAwake: 0
   m_tweenDuration: 0.2
+  m_tweenDelay: 0
   m_loopType: 0
   m_tweenCurve:
     serializedVersion: 2
@@ -655,3 +761,51 @@ MonoBehaviour:
     m_RotationOrder: 4
   m_initialLocalPosition: {x: -0.05, y: -0.1, z: -0.38}
   m_finalLocalPosition: {x: 0.05, y: -0.1, z: -0.38}
+--- !u!114 &6523276519098829335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7994653904442719103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 440f86f271e710b4cb8915fb5ebc0c98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_onStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  m_onFinish:
+    m_PersistentCalls:
+      m_Calls: []
+  m_playOnAwake: 0
+  m_tweenDuration: 1
+  m_tweenDelay: 0
+  m_loopType: 0
+  m_tweenCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  m_initialValue: {r: 1, g: 1, b: 1, a: 0.7058824}
+  m_finalValue: {r: 1, g: 1, b: 1, a: 0}

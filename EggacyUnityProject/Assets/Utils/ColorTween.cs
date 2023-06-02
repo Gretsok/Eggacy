@@ -17,18 +17,23 @@ namespace Tween
         {
             base.Start();
             m_imageTarget = m_target.GetComponent<Image>();
+        } 
+
+        public void ShowFinalValues()
+        {
+            SetFinalValues();
         }
 
         protected override void SetFinalValues()
         {
             base.SetFinalValues();
-            m_imageTarget.color = m_initialValue;
+            m_imageTarget.color = m_finalValue;
         }
 
         protected override void SetStartingValues()
         {
             base.SetStartingValues();
-            m_imageTarget.color = m_finalValue;
+            m_imageTarget.color = m_initialValue;
         }
 
         protected override void ManageTween(float interpolationValue)
