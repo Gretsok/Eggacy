@@ -2,11 +2,14 @@ using Fusion;
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Eggacy.Gameplay.LevelFlow
 {
     public class LevelFlowState : NetworkBehaviour
     {
+        [SerializeField]
+        private UnityEvent onClientFeedbackTriggered = null;
         public Action<LevelFlowState> onStateEnded = null;
 
         public void Server_EnterState()
@@ -22,13 +25,14 @@ namespace Eggacy.Gameplay.LevelFlow
         {
             yield return StartCoroutine(HandleServerSetUpRoutine());
 
+            Debug.Log("About to go there");
             Rpc_Client_EnterState();
         }
 
         [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
         private void Rpc_Client_EnterState()
         {
-            if(!Runner.IsClient) return;
+            if(!Runner.IsPlayer) return;
 
             HandleClientSetUp();
         }
@@ -40,7 +44,7 @@ namespace Eggacy.Gameplay.LevelFlow
 
         protected virtual void HandleClientSetUp()
         {
-
+            onClientFeedbackTriggered?.Invoke();
         }
 
         public void Server_Update()
