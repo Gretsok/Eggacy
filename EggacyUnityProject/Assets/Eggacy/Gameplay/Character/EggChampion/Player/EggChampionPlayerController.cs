@@ -136,6 +136,12 @@ namespace Eggacy.Gameplay.Character.EggChampion.Player
         public override void Despawned(NetworkRunner runner, bool hasState)
         {
             base.Despawned(runner, hasState);
+
+
+            if (!HasInputAuthority)
+            {
+                return;
+            }
             _controls.Gameplay.Rally.performed -= Rally_performed;
             _controls.Gameplay.Charge.performed -= Charge_performed;
             _controls.Gameplay.Jump.performed -= Jump_performed;

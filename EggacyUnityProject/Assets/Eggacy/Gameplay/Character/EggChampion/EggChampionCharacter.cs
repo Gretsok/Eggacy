@@ -8,6 +8,7 @@ namespace Eggacy.Gameplay.Character.EggChampion
     {
         [SerializeField]
         private NetworkRigidbody _rigidbody = null;
+        public NetworkRigidbody networkRigidbody => _rigidbody;
         [SerializeField]
         private float _jumpVelocity = 8f;
         [SerializeField]
