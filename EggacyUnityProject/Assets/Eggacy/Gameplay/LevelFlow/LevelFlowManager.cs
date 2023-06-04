@@ -12,7 +12,9 @@ namespace Eggacy.Gameplay.LevelFlow
         private LevelFlowState _currentState = null;
         [Networked(OnChanged = nameof(HandleCurrentStateIndexChanged))]
         private int _currentStateIndex { get; set; }
+        public int currentStateIndex => _currentStateIndex;
 
+        public Action<LevelFlowManager> onStateUpdated = null;
         public Action onFlowEnded = null;
 
         public override void Spawned()
@@ -40,7 +42,6 @@ namespace Eggacy.Gameplay.LevelFlow
             if(!Runner.IsServer) return;
 
             _currentStateIndex = index;
-            Debug.Log($"CurrentIndex: {_currentStateIndex} Index: {index}");
 
             if (index < _flowStates.Count)
                 _currentState = _flowStates[index];
@@ -75,6 +76,8 @@ namespace Eggacy.Gameplay.LevelFlow
                 changesHandler.Behaviour._currentState = states[index];
             else
                 changesHandler.Behaviour._currentState = null;
+
+            changesHandler.Behaviour.onStateUpdated?.Invoke(changesHandler.Behaviour);
         }
     }
 }

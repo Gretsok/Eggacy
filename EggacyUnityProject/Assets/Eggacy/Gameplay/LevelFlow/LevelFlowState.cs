@@ -14,8 +14,6 @@ namespace Eggacy.Gameplay.LevelFlow
 
         public void Server_EnterState()
         {
-            Debug.Log($"La : {gameObject.name}");
-
             if (!Runner.IsServer) return;
 
             StartCoroutine(SetUpRoutine());
@@ -25,7 +23,6 @@ namespace Eggacy.Gameplay.LevelFlow
         {
             yield return StartCoroutine(HandleServerSetUpRoutine());
 
-            Debug.Log("About to go there");
             Rpc_Client_EnterState();
         }
 
