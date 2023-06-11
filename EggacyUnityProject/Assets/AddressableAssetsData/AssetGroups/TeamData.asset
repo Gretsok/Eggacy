@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: TeamData
+  m_EditorClassIdentifier: 
+  m_GroupName: TeamData
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 2667075776254b84cb61ee8cf96f38c1
+  m_SerializeEntries:
+  - m_GUID: 9224949812bf18447bf53ca00c9b4517
+    m_Address: Assets/Eggacy/Gameplay/Combat/TeamManagement/Teams
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - TeamData
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: b17644de17d327248a3bb5f453e73963, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 8b07f5a74db3e54408ff29f7a0c3f607, type: 2}
+    - {fileID: 11400000, guid: 5521cad153703364e9baaee566761e79, type: 2}

@@ -13,6 +13,9 @@ namespace Eggacy.Gameplay.Character.EggChampion.Player
         [SerializeField]
         private Transform _referencePointForMovement = null;
         public Transform referencePointForMovement => _referencePointForMovement;
+        [SerializeField]
+        private Camera _camera = null;
+        public new Camera camera => _camera;
 
 
         [SerializeField]
@@ -34,15 +37,15 @@ namespace Eggacy.Gameplay.Character.EggChampion.Player
             _rotationInput = rotationInput;
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             if (!gameObject.activeSelf) return;
             if(!_positionTarget || !_rootPivot) return;
 
-            _cameraHorizontalPivot.Rotate(Vector3.up * _rotationInput.x * Time.fixedDeltaTime * _cameraSensitivity.x);
+            _cameraHorizontalPivot.Rotate(Vector3.up * _rotationInput.x * Time.deltaTime * _cameraSensitivity.x);
 
             var eulerAngles = _cameraVerticalPivot.localEulerAngles;
-            eulerAngles.x += -_rotationInput.y * Time.fixedDeltaTime * _cameraSensitivity.y;
+            eulerAngles.x += -_rotationInput.y * Time.deltaTime * _cameraSensitivity.y;
 
             if (eulerAngles.x > _cameraVerticalClamping.y && eulerAngles.x < 180f)
             {

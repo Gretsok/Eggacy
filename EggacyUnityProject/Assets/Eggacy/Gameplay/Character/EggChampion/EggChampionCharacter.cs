@@ -1,6 +1,7 @@
+using Eggacy.Gameplay.Combat.Weapon;
 using Cinemachine.Utility;
-using Fusion;
 using UnityEngine;
+using Fusion;
 
 namespace Eggacy.Gameplay.Character.EggChampion
 {
@@ -9,6 +10,10 @@ namespace Eggacy.Gameplay.Character.EggChampion
         [SerializeField]
         private NetworkRigidbody _rigidbody = null;
         public NetworkRigidbody networkRigidbody => _rigidbody;
+        [SerializeField]
+        private HoldedWeaponController _weaponController = null;
+        public HoldedWeaponController weaponController => _weaponController;
+
         [SerializeField]
         private float _jumpVelocity = 8f;
         [SerializeField]
@@ -24,7 +29,8 @@ namespace Eggacy.Gameplay.Character.EggChampion
         public override void FixedUpdateNetwork()
         {
             base.FixedUpdateNetwork();
-            if(!_orientation.AlmostZero())
+
+            if (!_orientation.AlmostZero())
                 _rigidbody.Rigidbody.rotation = Quaternion.LookRotation(_orientation, Vector3.up);
 
             float gravity = _rigidbody.Rigidbody.velocity.y;
@@ -39,14 +45,47 @@ namespace Eggacy.Gameplay.Character.EggChampion
 
         public void SetOrientation(Vector3 orientation)
         {
-            Rpc_HandleOrientationSetUp(orientation);
-        }
-
-        [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority, Channel = RpcChannel.Unreliable)]
-        public void Rpc_HandleOrientationSetUp(Vector3 orientation)
-        {
             _orientation = orientation;
         }
+
+
+        #region Attack Behaviour
+        [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
+        public void Rpc_StartPrimaryAttack(Vector3 aimSource, Vector3 aimDirection)
+        {
+            if (!Runner.IsServer) return;
+
+            if(_weaponController)
+                _weaponController.StartPrimaryAttack(aimSource, aimDirection);
+        }
+
+        [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
+        public void Rpc_StartSecondaryAttack(Vector3 aimSource, Vector3 aimDirection)
+        {
+            if (!Runner.IsServer) return;
+
+            if (_weaponController)
+                _weaponController.StartSecondaryAttack(aimSource, aimDirection);
+        }
+
+        [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
+        public void Rpc_StopPrimaryAttack()
+        {
+            if (!Runner.IsServer) return;
+
+            if (_weaponController)
+                _weaponController.StopPrimaryAttack();
+        }
+
+        [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
+        public void Rpc_StopSecondaryAttack()
+        {
+            if (!Runner.IsServer) return;
+
+            if (_weaponController)
+                _weaponController.StopSecondaryAttack();
+        }
+        #endregion
 
         #region Rally Behaviour
         [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
@@ -63,7 +102,6 @@ namespace Eggacy.Gameplay.Character.EggChampion
 
         }
         #endregion
-
 
         #region Charge Behaviour
         [Rpc(RpcSources.InputAuthority, RpcTargets.StateAuthority)]
@@ -97,6 +135,15 @@ namespace Eggacy.Gameplay.Character.EggChampion
         public void Rpc_HandleJumpFeedback()
         {
 
+        }
+        #endregion
+
+        #region Aim Behaviour
+        public void SetAim(Vector3 aimSource, Vector3 aimDirection)
+        {
+            if (!Runner.IsServer) return;
+
+            _weaponController.SetAim(aimSource, aimDirection);
         }
         #endregion
     }

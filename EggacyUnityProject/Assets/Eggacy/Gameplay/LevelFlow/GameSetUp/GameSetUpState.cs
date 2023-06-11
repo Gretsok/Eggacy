@@ -1,3 +1,4 @@
+using Eggacy.Gameplay.Combat.TeamManagement;
 using Eggacy.Gameplay.LevelFlow.WorldReferences;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +12,8 @@ namespace Eggacy.Gameplay.LevelFlow.GameSetUp
         private PlayerManagement.PlayerManager _playerManager = null;
         [SerializeField]
         private WorldReferencesHandler _worldReferencesHandler = null;
+        [SerializeField]
+        private TeamHandlerForGameSetUp _teamHandlerForGameSetUp = null;
 
         protected override IEnumerator HandleServerSetUpRoutine()
         {
@@ -23,8 +26,9 @@ namespace Eggacy.Gameplay.LevelFlow.GameSetUp
             {
                 _playerManager.CreateControlsForPlayer(player);
                 var character =  _playerManager.GetCharacterForPlayer(player);
-                (var position, var rotation) = _worldReferencesHandler.GetSpawnPoint(numberOfPlayerCreated % 2);
+                (var position, var rotation) = _worldReferencesHandler.GetSpawnPoint(numberOfPlayerCreated);
                 character.networkRigidbody.TeleportToPositionRotation(position, rotation);
+                character.GetComponent<TeamController>().ChangeTeamData(_teamHandlerForGameSetUp.GetTeamDataByIndex(numberOfPlayerCreated));
 
                 ++numberOfPlayerCreated;
             }
