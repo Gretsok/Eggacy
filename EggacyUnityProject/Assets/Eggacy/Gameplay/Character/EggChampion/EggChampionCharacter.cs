@@ -30,6 +30,8 @@ namespace Eggacy.Gameplay.Character.EggChampion
         private float _movementSpeed = 5f;
         [SerializeField]
         private float _movementSmoothness = 8f;
+        [SerializeField]
+        private LayerMask _groundLayerMask = default;
         private Vector3 _directionToMove { get; set; }
         [Networked]
         private Vector3 _orientation { get; set; }
@@ -39,6 +41,11 @@ namespace Eggacy.Gameplay.Character.EggChampion
 
         [Networked(OnChanged = nameof(HandleIsAliveChanged))]
         private bool _isAlive { get; set; }
+        public bool isAlive => _isAlive;
+
+        [Networked]
+        private bool _isGrounded { get; set; }
+        public bool isGrounded => _isGrounded;
 
         private void Start()
         {
@@ -57,9 +64,14 @@ namespace Eggacy.Gameplay.Character.EggChampion
             if (!_orientation.AlmostZero())
                 _rigidbody.Rigidbody.rotation = Quaternion.LookRotation(_orientation, Vector3.up);
 
-            float gravity = _rigidbody.Rigidbody.velocity.y;
-            _currentPlannedVelocity = Vector3.Lerp(_currentPlannedVelocity, _directionToMove * _movementSpeed, Runner.DeltaTime * _movementSmoothness);
-            _rigidbody.Rigidbody.velocity = _currentPlannedVelocity + gravity * Vector3.up;
+            _isGrounded = IsGrounded();
+
+            if(_isGrounded)
+            {
+                float gravity = _rigidbody.Rigidbody.velocity.y;
+                _currentPlannedVelocity = Vector3.Lerp(_currentPlannedVelocity, _directionToMove * _movementSpeed, Runner.DeltaTime * _movementSmoothness);
+                _rigidbody.Rigidbody.velocity = _currentPlannedVelocity + gravity * Vector3.up;
+            }
         }
 
         #region Movement Behaviour
@@ -71,6 +83,13 @@ namespace Eggacy.Gameplay.Character.EggChampion
         public void SetOrientation(Vector3 orientation)
         {
             _orientation = orientation;
+        }
+
+        public bool IsGrounded()
+        {
+            var isGrounded = Physics.Raycast(transform.position, Vector3.down, 0.05f, _groundLayerMask);
+            Debug.DrawLine(transform.position, transform.position + Vector3.down * 0.05f, isGrounded ? Color.red : Color.yellow);
+            return isGrounded;
         }
         #endregion
 
@@ -160,6 +179,7 @@ namespace Eggacy.Gameplay.Character.EggChampion
         {
             if (!Runner.IsServer) return;
             if (!_isAlive) return;
+            if(!_isGrounded) return;
 
             _rigidbody.Rigidbody.AddForce(Vector3.up * _jumpVelocity, ForceMode.VelocityChange);
 
@@ -191,12 +211,18 @@ namespace Eggacy.Gameplay.Character.EggChampion
             if (!Runner.IsServer) return;
 
             _isAlive = true;
+            _lifeController.ResetLife();
         }
 
         private void HandleDied_ServerOnly(LifeController controller)
         {
             if (!Runner.IsServer) return;
 
+            Die();
+        }
+
+        public void Die()
+        {
             StartCoroutine(DeathRoutine());
         }
 
@@ -204,7 +230,7 @@ namespace Eggacy.Gameplay.Character.EggChampion
         {
             _isAlive = false;
             yield return new WaitForSeconds(0.5f);
-            _isAlive = true;
+            SetToAlive();
         }
 
         public static void HandleIsAliveChanged(Changed<EggChampionCharacter> changesHandler)
