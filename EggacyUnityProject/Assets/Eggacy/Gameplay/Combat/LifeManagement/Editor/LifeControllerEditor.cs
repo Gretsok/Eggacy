@@ -9,6 +9,8 @@ namespace Eggacy.Gameplay.Combat.LifeManagement.Editor
         {
             base.OnInspectorGUI();
 
+            if (!(target as LifeController).Object) return;
+
             EditorGUILayout.Space(EditorGUIUtility.singleLineHeight);
             EditorGUILayout.LabelField($"Max life: {(target as LifeController).maxLife}");
             EditorGUILayout.LabelField($"Current life: {(target as LifeController).currentLife}");
