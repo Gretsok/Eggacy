@@ -30,6 +30,8 @@ namespace Eggacy.Gameplay.LevelFlow.GameSetUp
                 character.networkRigidbody.TeleportToPositionRotation(position, rotation);
                 character.GetComponent<TeamController>().ChangeTeamData(_teamHandlerForGameSetUp.GetTeamDataByIndex(numberOfPlayerCreated));
 
+                character.SetToAlive();
+
                 ++numberOfPlayerCreated;
             }
             yield return null;
