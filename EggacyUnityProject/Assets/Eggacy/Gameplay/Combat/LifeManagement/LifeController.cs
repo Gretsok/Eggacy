@@ -25,10 +25,14 @@ namespace Eggacy.Gameplay.Combat.LifeManagement
         public override void Spawned()
         {
             base.Spawned();
-            if(Runner.IsServer)
-            {
-                _currentLife = maxLife;
-            }
+            ResetLife();
+        }
+
+        public void ResetLife()
+        {
+            if (!Runner.IsServer) return;
+
+            _currentLife = maxLife;
         }
 
         public void TakeDamage(Damage.Damage damage)
