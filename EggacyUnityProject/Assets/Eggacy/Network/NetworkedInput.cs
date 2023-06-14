@@ -6,6 +6,6 @@ namespace Eggacy.Network
     public struct NetworkedInput : INetworkInput
     {
         public Vector2 movement;
-        public Vector3 orientation;
+        public Vector2 lookAround;
     }
 }

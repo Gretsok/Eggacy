@@ -242,7 +242,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 1914728201340874693}
   _weaponController: {fileID: 4374407149508956467}
   _lifeController: {fileID: 2526454341629484489}
-  _model: {fileID: 6998616398714877229}
+  _modelRoot: {fileID: 6998616398714877229}
   _collidersGO: {fileID: 2202288067268596008}
   _jumpVelocity: 4
   _movementSpeed: 5

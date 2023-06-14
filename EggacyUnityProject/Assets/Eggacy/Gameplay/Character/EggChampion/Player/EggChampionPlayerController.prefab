@@ -106,7 +106,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5729154033154022966}
   - {fileID: 6640421708862856511}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -124,7 +123,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
-  _cameraController: {fileID: 614034572043911942}
+  _cameraControllerPrefab: {fileID: 7478266177250570299, guid: 4504da6ded217d641bbe8576f93ef942,
+    type: 3}
   _localGameObjects:
   - {fileID: 8837806305953117386}
 --- !u!114 &711114278105476335
@@ -184,7 +184,7 @@ RectTransform:
   m_Children:
   - {fileID: 3493044102917637232}
   m_Father: {fileID: 4541632914965203613}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -252,90 +252,3 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!1001 &8020170174020334397
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 4541632914965203613}
-    m_Modifications:
-    - target: {fileID: 2364202315978534155, guid: 4504da6ded217d641bbe8576f93ef942,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2364202315978534155, guid: 4504da6ded217d641bbe8576f93ef942,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2364202315978534155, guid: 4504da6ded217d641bbe8576f93ef942,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2364202315978534155, guid: 4504da6ded217d641bbe8576f93ef942,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2364202315978534155, guid: 4504da6ded217d641bbe8576f93ef942,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2364202315978534155, guid: 4504da6ded217d641bbe8576f93ef942,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2364202315978534155, guid: 4504da6ded217d641bbe8576f93ef942,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2364202315978534155, guid: 4504da6ded217d641bbe8576f93ef942,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2364202315978534155, guid: 4504da6ded217d641bbe8576f93ef942,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2364202315978534155, guid: 4504da6ded217d641bbe8576f93ef942,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2364202315978534155, guid: 4504da6ded217d641bbe8576f93ef942,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7275875098716397351, guid: 4504da6ded217d641bbe8576f93ef942,
-        type: 3}
-      propertyPath: m_Name
-      value: CameraController
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4504da6ded217d641bbe8576f93ef942, type: 3}
---- !u!114 &614034572043911942 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7478266177250570299, guid: 4504da6ded217d641bbe8576f93ef942,
-    type: 3}
-  m_PrefabInstance: {fileID: 8020170174020334397}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e9b8e31755e4ac4da55baab3ca8044a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &5729154033154022966 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2364202315978534155, guid: 4504da6ded217d641bbe8576f93ef942,
-    type: 3}
-  m_PrefabInstance: {fileID: 8020170174020334397}
-  m_PrefabAsset: {fileID: 0}

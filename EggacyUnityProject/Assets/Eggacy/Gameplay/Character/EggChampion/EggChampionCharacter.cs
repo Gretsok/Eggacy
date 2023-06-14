@@ -1,9 +1,7 @@
 using Eggacy.Gameplay.Combat.Weapon;
-using Cinemachine.Utility;
 using UnityEngine;
 using Fusion;
 using Eggacy.Gameplay.Combat.LifeManagement;
-using System;
 using System.Collections;
 
 namespace Eggacy.Gameplay.Character.EggChampion
@@ -20,7 +18,8 @@ namespace Eggacy.Gameplay.Character.EggChampion
         private LifeController _lifeController = null;
 
         [SerializeField]
-        private Transform _model = null;
+        private Transform _modelRoot = null;
+        public Transform modelRoot => _modelRoot;
         [SerializeField]
         private GameObject _collidersGO = null;
 
@@ -33,9 +32,9 @@ namespace Eggacy.Gameplay.Character.EggChampion
         [SerializeField]
         private LayerMask _groundLayerMask = default;
         private Vector3 _directionToMove { get; set; }
+        private float _localHorizontalAngle { get; set; }
         [Networked]
-        private Vector3 _orientation { get; set; }
-
+        private float _horizontalAngle { get; set; }
         [Networked]
         private Vector3 _currentPlannedVelocity { get; set; }
 
@@ -60,9 +59,10 @@ namespace Eggacy.Gameplay.Character.EggChampion
         public override void FixedUpdateNetwork()
         {
             base.FixedUpdateNetwork();
-
-            if (!_orientation.AlmostZero())
-                _rigidbody.Rigidbody.rotation = Quaternion.LookRotation(_orientation, Vector3.up);
+             
+            _horizontalAngle = _localHorizontalAngle;
+            _rigidbody.Rigidbody.rotation = Quaternion.Euler(Vector3.up * _horizontalAngle);
+            Debug.Log($"InputAuthority: {HasInputAuthority} | rotation: {_rigidbody.Rigidbody.rotation.eulerAngles}");
 
             _isGrounded = IsGrounded();
 
@@ -80,10 +80,11 @@ namespace Eggacy.Gameplay.Character.EggChampion
             _directionToMove = directionToMove;
         }
 
-        public void SetOrientation(Vector3 orientation)
+
+        public void SetHorizontalAngle(float horizontalAngle)
         {
-            _orientation = orientation;
-        }
+            _localHorizontalAngle = horizontalAngle;
+        } 
 
         public bool IsGrounded()
         {
@@ -235,7 +236,7 @@ namespace Eggacy.Gameplay.Character.EggChampion
 
         public static void HandleIsAliveChanged(Changed<EggChampionCharacter> changesHandler)
         {
-            changesHandler.Behaviour._model.gameObject.SetActive(changesHandler.Behaviour._isAlive);
+            changesHandler.Behaviour._modelRoot.gameObject.SetActive(changesHandler.Behaviour._isAlive);
             changesHandler.Behaviour._collidersGO.SetActive(changesHandler.Behaviour._isAlive);
             changesHandler.Behaviour._rigidbody.Rigidbody.useGravity = changesHandler.Behaviour._isAlive;
         }

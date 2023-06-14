@@ -2,11 +2,14 @@ using Eggacy.Network;
 using Fusion;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Eggacy.Gameplay.LevelFlow.WaitingPlayers
 {
     public class WaitingPlayerState : LevelFlowState
     {
+        [SerializeField]
+        private int _playerCount = 2;
         private NetworkManager _networkManager = null;
 
         protected override IEnumerator HandleServerSetUpRoutine()
@@ -27,7 +30,7 @@ namespace Eggacy.Gameplay.LevelFlow.WaitingPlayers
         private void TryToStartGameIfConditionsFullfilled()
         {
             var playersList = new List<PlayerRef>(Runner.ActivePlayers);
-            if(playersList.Count == 2)
+            if(playersList.Count == _playerCount)
             {
                 Runner.SessionInfo.IsOpen = false;
                 RequestStartGame();

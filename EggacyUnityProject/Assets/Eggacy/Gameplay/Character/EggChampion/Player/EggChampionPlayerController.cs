@@ -16,6 +16,7 @@ namespace Eggacy.Gameplay.Character.EggChampion.Player
         private EggChampionControls _controls = null;
 
         [SerializeField]
+        private EggChampionPlayerCameraController _cameraControllerPrefab = null;
         private EggChampionPlayerCameraController _cameraController = null;
         private NetworkedInput _networkedInput;
         public NetworkedInput networkedInput => _networkedInput;
@@ -26,19 +27,31 @@ namespace Eggacy.Gameplay.Character.EggChampion.Player
         private Vector3 _movementReferenceRight { get; set; }
 
         [SerializeField]
-        private List<GameObject> _localGameObjects = new List<GameObject>();
+        private Vector2 _orientationSensitivity = new Vector2(30f, 30f);
+        private float _horizontalAngle = default;
 
-        private void Awake()
-        {
-            _cameraController.gameObject.SetActive(false);
-        }
+        [SerializeField]
+        private List<GameObject> _localGameObjects = new List<GameObject>();
 
         public void SetCharacter(EggChampionCharacter character)
         {
             _character = character;
             _possessedCharacterID = _character.Object.Id;
 
-            _cameraController.SetPositionTarget(character.transform);
+            SetCharacterTargetToCamera(character);
+
+            _horizontalAngle = _character.transform.eulerAngles.y;
+        }
+
+        private void SetCharacterTargetToCamera(EggChampionCharacter character)
+        {
+            if (!HasInputAuthority) return;
+
+            if(_cameraController)
+            {
+                Destroy(_cameraController.gameObject);
+            }
+            _cameraController = Instantiate(_cameraControllerPrefab, character.modelRoot);
         }
 
 
@@ -58,7 +71,6 @@ namespace Eggacy.Gameplay.Character.EggChampion.Player
 
             Cursor.lockState = CursorLockMode.Locked;
 
-            _cameraController.gameObject.SetActive(true);
             _controls = new EggChampionControls();
             _controls.Enable();
 
@@ -127,19 +139,20 @@ namespace Eggacy.Gameplay.Character.EggChampion.Player
 
         public override void FixedUpdateNetwork()
         {
-            base.FixedUpdateNetwork();
+            base.FixedUpdateNetwork(); 
 
             if (!GetInput(out NetworkedInput input)) return;
 
             HandleMovement(input);
-            HandleOrientation(input);
 
+            HandleCharacterOrientation(input.lookAround.x * _orientationSensitivity.x * Runner.DeltaTime);
         }
 
-        private void HandleOrientation(NetworkedInput input)
-        {
+        private void HandleCharacterOrientation(float deltaHorizontalOrientation)
+        { 
+            _horizontalAngle += deltaHorizontalOrientation; 
             if (_character)
-                _character.SetOrientation(input.orientation);
+                _character.SetHorizontalAngle(_horizontalAngle);
         }
 
         private void HandleMovement(NetworkedInput input)
@@ -152,9 +165,6 @@ namespace Eggacy.Gameplay.Character.EggChampion.Player
             Vector3 directionToMoveCharacter = _movementReferenceForward * input.movement.y
                 + _movementReferenceRight * input.movement.x;
 
-            // Debug.Log($"Movement input: {input.movement} | camera forward: {_cameraController.referencePointForMovement.forward}");
-
-
             if (_character)
                 _character.SetDirectionToMove(directionToMoveCharacter);
         }
@@ -163,12 +173,15 @@ namespace Eggacy.Gameplay.Character.EggChampion.Player
         {
             if (!HasInputAuthority) return;
             if (_controls == null) return;
+            if (!_cameraController) return;
 
-            _cameraController.SetRotationInput(_controls.Gameplay.LookAround.ReadValue<Vector2>());
             NetworkedInput networkedInput = default;
             networkedInput.movement = _controls.Gameplay.Move.ReadValue<Vector2>();
-            networkedInput.orientation = _cameraController.referencePointForMovement.forward;
+            networkedInput.lookAround = _controls.Gameplay.LookAround.ReadValue<Vector2>() ;
+
             _networkedInput = networkedInput;
+
+            _cameraController.SetRotationInput(networkedInput.lookAround.y * Time.deltaTime * _orientationSensitivity.y);
 
             Rpc_SetMovementReferences(_cameraController.referencePointForMovement.forward,
                 _cameraController.referencePointForMovement.right);
@@ -222,7 +235,7 @@ namespace Eggacy.Gameplay.Character.EggChampion.Player
         {
             changesHandler.Behaviour._character = 
                 changesHandler.Behaviour.Runner.FindObject(changesHandler.Behaviour._possessedCharacterID).GetComponent<EggChampionCharacter>();
-            changesHandler.Behaviour._cameraController.SetPositionTarget(changesHandler.Behaviour._character.transform);
+            changesHandler.Behaviour.SetCharacterTargetToCamera(changesHandler.Behaviour._character);
         }
     }
 }
