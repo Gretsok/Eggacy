@@ -51,7 +51,8 @@ namespace Eggacy.Gameplay.Character.EggChampion.Player
             {
                 Destroy(_cameraController.gameObject);
             }
-            _cameraController = Instantiate(_cameraControllerPrefab, character.modelRoot);
+            _cameraController = Instantiate(_cameraControllerPrefab, transform);
+            _cameraController.SetFollowTarget(character.modelRoot);
         }
 
 
@@ -145,14 +146,6 @@ namespace Eggacy.Gameplay.Character.EggChampion.Player
 
             HandleMovement(input);
 
-            HandleCharacterOrientation(input.lookAround.x * _orientationSensitivity.x * Runner.DeltaTime);
-        }
-
-        private void HandleCharacterOrientation(float deltaHorizontalOrientation)
-        { 
-            _horizontalAngle += deltaHorizontalOrientation; 
-            if (_character)
-                _character.SetHorizontalAngle(_horizontalAngle);
         }
 
         private void HandleMovement(NetworkedInput input)
@@ -181,7 +174,8 @@ namespace Eggacy.Gameplay.Character.EggChampion.Player
 
             _networkedInput = networkedInput;
 
-            _cameraController.SetRotationInput(networkedInput.lookAround.y * Time.deltaTime * _orientationSensitivity.y);
+            _cameraController.SetRotationInput(networkedInput.lookAround.y * Time.deltaTime * _orientationSensitivity.y,
+                networkedInput.lookAround.x * Time.deltaTime * _orientationSensitivity.x);
 
             Rpc_SetMovementReferences(_cameraController.referencePointForMovement.forward,
                 _cameraController.referencePointForMovement.right);

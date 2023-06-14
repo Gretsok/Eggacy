@@ -15,14 +15,16 @@ namespace Eggacy.Gameplay.Character.EggChampion.Player
         private Camera _camera = null;
         public new Camera camera => _camera;
 
+        private Transform _followTarget = null;
 
         [SerializeField]
         private Vector2 _cameraVerticalClamping = new Vector2(-50, 85);
 
 
         private float _deltaVerticalOrientation = default;
+        private float _deltaHorizontalOrientation = default;
 
-        public void SetRotationInput(float deltaVerticalOrientation)
+        public void SetRotationInput(float deltaVerticalOrientation, float deltaHorizontalOrientation)
         {
             _deltaVerticalOrientation = deltaVerticalOrientation;
 
@@ -38,6 +40,18 @@ namespace Eggacy.Gameplay.Character.EggChampion.Player
                 eulerAngles.x = 360f + _cameraVerticalClamping.x;
             }
             _cameraVerticalPivot.localEulerAngles = eulerAngles;
+
+            _cameraHorizontalPivot.Rotate(Vector3.up * deltaHorizontalOrientation);
+        }
+
+        public void SetFollowTarget(Transform followTarget)
+        {
+            _followTarget = followTarget;
+        }
+
+        private void LateUpdate()
+        {
+            transform.position = _followTarget.position;
         }
     }
 }

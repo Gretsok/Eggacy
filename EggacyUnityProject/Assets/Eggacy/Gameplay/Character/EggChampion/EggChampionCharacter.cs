@@ -32,9 +32,8 @@ namespace Eggacy.Gameplay.Character.EggChampion
         [SerializeField]
         private LayerMask _groundLayerMask = default;
         private Vector3 _directionToMove { get; set; }
-        private float _localHorizontalAngle { get; set; }
         [Networked]
-        private float _horizontalAngle { get; set; }
+        private Vector3 _orientation { get; set; }
         [Networked]
         private Vector3 _currentPlannedVelocity { get; set; }
 
@@ -43,7 +42,7 @@ namespace Eggacy.Gameplay.Character.EggChampion
         public bool isAlive => _isAlive;
 
         [Networked]
-        private bool _isGrounded { get; set; }
+        private bool _isGrounded { get; set; } 
         public bool isGrounded => _isGrounded;
 
         private void Start()
@@ -60,9 +59,7 @@ namespace Eggacy.Gameplay.Character.EggChampion
         {
             base.FixedUpdateNetwork();
              
-            _horizontalAngle = _localHorizontalAngle;
-            _rigidbody.Rigidbody.rotation = Quaternion.Euler(Vector3.up * _horizontalAngle);
-            Debug.Log($"InputAuthority: {HasInputAuthority} | rotation: {_rigidbody.Rigidbody.rotation.eulerAngles}");
+            _rigidbody.Rigidbody.rotation = Quaternion.LookRotation(_orientation, Vector3.up);
 
             _isGrounded = IsGrounded();
 
@@ -79,12 +76,6 @@ namespace Eggacy.Gameplay.Character.EggChampion
         {
             _directionToMove = directionToMove;
         }
-
-
-        public void SetHorizontalAngle(float horizontalAngle)
-        {
-            _localHorizontalAngle = horizontalAngle;
-        } 
 
         public bool IsGrounded()
         {
@@ -202,6 +193,7 @@ namespace Eggacy.Gameplay.Character.EggChampion
             if (!Runner.IsServer) return;
             if (!_isAlive) return;
 
+            _orientation = new Vector3(aimDirection.x, 0f, aimDirection.z).normalized;
             _weaponController.SetAim(aimSource, aimDirection);
         }
         #endregion
