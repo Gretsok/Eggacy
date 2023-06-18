@@ -27,13 +27,15 @@ namespace Tween
         protected override void SetFinalValues()
         {
             base.SetFinalValues();
-            m_imageTarget.color = m_finalValue;
+            if(m_imageTarget != null)
+                m_imageTarget.color = m_finalValue;
         }
 
         protected override void SetStartingValues()
         {
             base.SetStartingValues();
-            m_imageTarget.color = m_initialValue;
+            if (m_imageTarget != null)
+                m_imageTarget.color = m_initialValue;
         }
 
         protected override void ManageTween(float interpolationValue)
