@@ -20,16 +20,10 @@ namespace Eggacy.Gameplay.Character.EggChampion.Player
         [SerializeField]
         private Vector2 _cameraVerticalClamping = new Vector2(-50, 85);
 
-
-        private float _deltaVerticalOrientation = default;
-        private float _deltaHorizontalOrientation = default;
-
         public void SetRotationInput(float deltaVerticalOrientation, float deltaHorizontalOrientation)
         {
-            _deltaVerticalOrientation = deltaVerticalOrientation;
-
             var eulerAngles = _cameraVerticalPivot.localEulerAngles;
-            eulerAngles.x += -_deltaVerticalOrientation;
+            eulerAngles.x += -deltaVerticalOrientation;
 
             if (eulerAngles.x > _cameraVerticalClamping.y && eulerAngles.x < 180f)
             {
