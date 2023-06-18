@@ -10,6 +10,16 @@ namespace Tween
         [SerializeField]
         private Vector3 m_finalLocalPosition = Vector3.one;
 
+        public void ShowFinalValues()
+        {
+            SetFinalValues();
+        }
+
+        public void ShowStartingValues()
+        {
+            SetStartingValues();
+        }
+
         protected override void SetStartingValues()
         {
             base.SetStartingValues();
