@@ -49,6 +49,7 @@ MonoBehaviour:
   onClientFeedbackTriggered:
     m_PersistentCalls:
       m_Calls: []
+  _playerCount: 2
 --- !u!114 &3078932896993645291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,6 +314,7 @@ GameObject:
   - component: {fileID: 2603498483558995264}
   - component: {fileID: 5302317411635600364}
   - component: {fileID: 1695731631751707486}
+  - component: {fileID: 5523404506155420831}
   - component: {fileID: 6991459941033085427}
   m_Layer: 0
   m_Name: GameSetUpState
@@ -371,6 +373,25 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0f50fb82485c6f844a95c9204dd80240, type: 2}
   - {fileID: 11400000, guid: bd672cac8545caa4e9ce4bf54f85788c, type: 2}
   _numberOfTeams: 2
+--- !u!114 &5523404506155420831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4932595045155411388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9c428382164d604082cdf16312e604c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _waypointsManager: {fileID: 0}
+  _tanks:
+  - {fileID: 0}
+  - {fileID: 0}
+  _startingChickenWaypoints:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &6991459941033085427
 MonoBehaviour:
   m_ObjectHideFlags: 0

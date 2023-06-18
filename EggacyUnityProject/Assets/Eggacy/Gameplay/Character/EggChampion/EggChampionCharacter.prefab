@@ -249,7 +249,7 @@ MonoBehaviour:
   _movementSmoothness: 8
   _groundLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 129
 --- !u!114 &7974776616204183428
 MonoBehaviour:
   m_ObjectHideFlags: 0

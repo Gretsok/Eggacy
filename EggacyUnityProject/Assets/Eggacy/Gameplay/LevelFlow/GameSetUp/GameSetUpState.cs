@@ -14,12 +14,16 @@ namespace Eggacy.Gameplay.LevelFlow.GameSetUp
         private WorldReferencesHandler _worldReferencesHandler = null;
         [SerializeField]
         private TeamHandlerForGameSetUp _teamHandlerForGameSetUp = null;
+        [SerializeField]
+        private TankHandlerForGameSetUp _tankHandlerForGameSetUp = null;
 
         protected override IEnumerator HandleServerSetUpRoutine()
         {
             yield return StartCoroutine(base.HandleServerSetUpRoutine());
 
             Debug.Log($"Player count : {(new List<Fusion.PlayerRef>(Runner.ActivePlayers)).Count}");
+
+            _tankHandlerForGameSetUp.SetUp();
 
             int numberOfPlayerCreated = 0;
             foreach (var player in Runner.ActivePlayers)
@@ -35,6 +39,7 @@ namespace Eggacy.Gameplay.LevelFlow.GameSetUp
                 ++numberOfPlayerCreated;
             }
             yield return null;
+
             onStateEnded?.Invoke(this);
         }
     }
