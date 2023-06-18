@@ -12,6 +12,9 @@ namespace Eggacy
         private PositionTween m_damageReceivedPositionTween;
 
         [SerializeField]
+        private bool m_useFadeOut = false;
+
+        [SerializeField]
         private float m_timeBeforefadeOut = 0.2f;
         [SerializeField]
         private float m_fadeOutDuration = 0.4f;
@@ -47,6 +50,7 @@ namespace Eggacy
         public override void SetHealthRatio(float a_healthRatio)
         {
             base.SetHealthRatio(a_healthRatio);
+            Debug.Log(a_healthRatio);
             PlayDamageReceivedFeedback();
         }
 
@@ -54,25 +58,28 @@ namespace Eggacy
         {
             m_damageReceivedPositionTween.StartTween();
 
-            m_healthBarContainerColorTween.SetTweenDelay(m_timeBeforefadeOut);
-            m_healthSliderColorTween.SetTweenDelay(m_timeBeforefadeOut);
-            m_healthSliderBGColorTween.SetTweenDelay(m_timeBeforefadeOut);
+            if (m_useFadeOut)
+            {
+                m_healthBarContainerColorTween.SetTweenDelay(m_timeBeforefadeOut);
+                m_healthSliderColorTween.SetTweenDelay(m_timeBeforefadeOut);
+                m_healthSliderBGColorTween.SetTweenDelay(m_timeBeforefadeOut);
 
-            m_healthBarContainerColorTween.SetTweenDuration(m_fadeOutDuration);
-            m_healthSliderColorTween.SetTweenDuration(m_fadeOutDuration);
-            m_healthSliderBGColorTween.SetTweenDuration(m_fadeOutDuration);
+                m_healthBarContainerColorTween.SetTweenDuration(m_fadeOutDuration);
+                m_healthSliderColorTween.SetTweenDuration(m_fadeOutDuration);
+                m_healthSliderBGColorTween.SetTweenDuration(m_fadeOutDuration);
 
-            m_healthBarContainerColorTween.Stop();
-            m_healthSliderColorTween.Stop();
-            m_healthSliderBGColorTween.Stop();
+                m_healthBarContainerColorTween.Stop();
+                m_healthSliderColorTween.Stop();
+                m_healthSliderBGColorTween.Stop();
 
-            m_healthBarContainerColorTween.ShowFinalValues();
-            m_healthSliderColorTween.ShowFinalValues();
-            m_healthSliderBGColorTween.ShowFinalValues();
+                m_healthBarContainerColorTween.ShowFinalValues();
+                m_healthSliderColorTween.ShowFinalValues();
+                m_healthSliderBGColorTween.ShowFinalValues();
 
-            m_healthBarContainerColorTween.StartTween();
-            m_healthSliderColorTween.StartTween();
-            m_healthSliderBGColorTween.StartTween();
+                m_healthBarContainerColorTween.StartTween();
+                m_healthSliderColorTween.StartTween();
+                m_healthSliderBGColorTween.StartTween();
+            }
         }
     }
 }
