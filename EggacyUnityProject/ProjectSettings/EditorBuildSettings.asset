@@ -11,4 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Eggacy/Gameplay/LevelFlow/LevelFlow_Test.unity
     guid: 355b071ce83f1d74288ecdf2413b8d45
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: ffbdc1b0b2731c441bc38fe38f0721ab,
+      type: 2}

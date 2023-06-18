@@ -12,13 +12,15 @@ namespace Eggacy.Network
     {
         private NetworkRunner _runner = null;
 
-        [SerializeField]
-        private NetworkPrefabRef _characterPrefab = default;
-        [SerializeField]
-        private NetworkPrefabRef _playerControllerPrefab = default;
+        private EggChampionPlayerController _localPlayerController = null;
 
-        private Dictionary<PlayerRef, EggChampionCharacter> _characters = new Dictionary<PlayerRef, EggChampionCharacter>();
-        private Dictionary<PlayerRef, EggChampionPlayerController> _playerControllers = new Dictionary<PlayerRef, EggChampionPlayerController>();
+        public Action<PlayerRef> onNewPlayerJoined = null;
+        public Action<PlayerRef> onPlayerLeft = null;
+
+        public void SetLocalPlayerController(EggChampionPlayerController localPlayerController)
+        {
+            _localPlayerController = localPlayerController;
+        }
 
         public void OnConnectedToServer(NetworkRunner runner)
         {
@@ -46,9 +48,9 @@ namespace Eggacy.Network
 
         public void OnInput(NetworkRunner runner, NetworkInput input)
         {
-            if(_playerControllers.ContainsKey(runner.LocalPlayer))
+            if(_localPlayerController)
             {
-                input.Set(_playerControllers[runner.LocalPlayer].networkedInput);
+                input.Set(_localPlayerController.networkedInput);
             }
             else
             {
@@ -62,23 +64,16 @@ namespace Eggacy.Network
 
         public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
         {
+            onNewPlayerJoined?.Invoke(player);
+
             if (!_runner.IsServer) return;
 
-            Vector3 spawnPosition = new Vector3((player.RawEncoded % runner.Config.Simulation.DefaultPlayers) * 3, 1, 0);
-            EggChampionCharacter networkedCharacter = runner.Spawn(_characterPrefab, spawnPosition, Quaternion.identity, player)
-                .GetComponent<EggChampionCharacter>();
-            _characters.Add(player, networkedCharacter);
 
-            EggChampionPlayerController networkedPlayerController = runner.Spawn(_playerControllerPrefab, spawnPosition, Quaternion.identity, player)
-                .GetComponent<EggChampionPlayerController>();
-            _playerControllers.Add(player, networkedPlayerController);
-
-            networkedPlayerController.SetCharacter(networkedCharacter);
-            networkedPlayerController.Initialize();
         }
 
         public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
         {
+            onPlayerLeft?.Invoke(player);
         }
 
         public void OnReliableDataReceived(NetworkRunner runner, PlayerRef player, ArraySegment<byte> data)
