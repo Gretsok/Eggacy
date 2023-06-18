@@ -5,27 +5,19 @@ namespace Eggacy.Gameplay.Character.EggChampion.Weapons.Rifle.AK47
 {
     public class AK47WeaponModelController : AWeaponModelController<AK47Weapon, AK47WeaponModel>
     {
-        [SerializeField]
-        private ParticleSystem _shootFX = null;
-
-        protected override void SetUp()
+        private void Start()
         {
-            base.SetUp();
-
             weapon.onShoot += HandleShoot;
         }
 
-        protected override void CleanUp()
+        private void OnDestroy()
         {
-            base.CleanUp();
-
             weapon.onShoot -= HandleShoot;
         }
 
         private void HandleShoot()
         {
-            if(_shootFX)
-                _shootFX.Play();
+            weaponModel.PlayShootFeedback();
         }
     }
 }

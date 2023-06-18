@@ -50,7 +50,6 @@ namespace Eggacy
         public override void SetHealthRatio(float a_healthRatio)
         {
             base.SetHealthRatio(a_healthRatio);
-            Debug.Log(a_healthRatio);
             PlayDamageReceivedFeedback();
         }
 

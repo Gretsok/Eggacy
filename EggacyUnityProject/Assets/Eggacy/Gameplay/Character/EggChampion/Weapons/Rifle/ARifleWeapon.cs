@@ -20,6 +20,7 @@ namespace Eggacy.Gameplay.Character.EggChampion.Weapons.Rifle
         private float _lastTimeOfShoot = float.MinValue;
 
         public Action onShoot = null;
+        public Action onShoot_serverOnly = null;
 
 
         protected override void HandlePrimaryAttackStarted(Vector3 aimSource, Vector3 aimDirection)
@@ -49,9 +50,21 @@ namespace Eggacy.Gameplay.Character.EggChampion.Weapons.Rifle
             if (Time.time - _lastTimeOfShoot > cooldown)
             {
                 Shoot();
-                onShoot?.Invoke();
+                NotifyOnShoot();
                 _lastTimeOfShoot = Time.time;
             }
+        }
+
+        private void NotifyOnShoot()
+        {
+            onShoot_serverOnly?.Invoke();
+            Rpc_NotifyOnShoot();
+        }
+
+        [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+        private void Rpc_NotifyOnShoot()
+        {
+            onShoot?.Invoke();
         }
 
         protected virtual void Shoot()
