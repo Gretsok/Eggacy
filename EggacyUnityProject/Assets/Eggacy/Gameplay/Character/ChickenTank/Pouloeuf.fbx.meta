@@ -16,7 +16,8 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 1
     motionNodeName: 
-    rigImportErrors: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'Head' not found\n"
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -24,7 +25,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -80,7 +81,137 @@ ModelImporter:
   humanDescription:
     serializedVersion: 3
     human: []
-    skeleton: []
+    skeleton:
+    - name: Pouloeuf(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Oeuf03
+      parentName: Pouloeuf(Clone)
+      position: {x: -0, y: -0.0029481265, z: 0}
+      rotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Oeuf02
+      parentName: Oeuf03
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Jambe1
+      parentName: Oeuf03
+      position: {x: -0.0013071862, y: 0.002876979, z: 0.0026415314}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: pCylinder27
+      parentName: Jambe1
+      position: {x: 0.0013071862, y: -0.002876979, z: -0.0026415314}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: pCylinder18
+      parentName: Jambe1
+      position: {x: 0.0013071862, y: -0.002876979, z: -0.0026415314}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: pCylinder19
+      parentName: Jambe1
+      position: {x: 0.0013071862, y: -0.002876979, z: -0.0026415314}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: pCylinder20
+      parentName: Jambe1
+      position: {x: 0.0013071862, y: -0.002876979, z: -0.0026415314}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: pCylinder21
+      parentName: Jambe1
+      position: {x: 0.0013071862, y: -0.002876979, z: -0.0026415314}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Jambe
+      parentName: Oeuf03
+      position: {x: -0.0012768987, y: -0.003905568, z: -0.0017934416}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: pCylinder28
+      parentName: Jambe
+      position: {x: 0.0012768987, y: 0.003905568, z: 0.0017934416}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: pCylinder22
+      parentName: Jambe
+      position: {x: 0.0012768987, y: 0.003905568, z: 0.0017934416}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: pCylinder24
+      parentName: Jambe
+      position: {x: 0.0012768987, y: 0.003905568, z: 0.0017934416}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: pCylinder23
+      parentName: Jambe
+      position: {x: 0.0012768987, y: 0.003905568, z: 0.0017934416}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: pCylinder25
+      parentName: Jambe
+      position: {x: 0.0012768987, y: 0.003905568, z: 0.0017934416}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: M_Body01_jnt
+      parentName: Pouloeuf(Clone)
+      position: {x: -0.000043265904, y: 0.00922586, z: 0}
+      rotation: {x: -0.70528203, y: 0.70892686, z: 0.00000004203808, w: -0.00000004225533}
+      scale: {x: 1.0000006, y: 1.0000006, z: 1}
+    - name: R_Hip_jnt
+      parentName: M_Body01_jnt
+      position: {x: -0.004492469, y: -0.0069976817, z: -0.0010262099}
+      rotation: {x: 0.038335674, y: -0.2705629, z: 0.9517177, w: 0.1398555}
+      scale: {x: 1.0000005, y: 1.0000001, z: 0.9999995}
+    - name: R_Knee_jnt
+      parentName: R_Hip_jnt
+      position: {x: -0.008558226, y: -4.6554622e-18, z: 1.561251e-19}
+      rotation: {x: -0.8631338, y: -0.33249366, z: 0.03899167, w: -0.37805793}
+      scale: {x: 1.0000001, y: 1.000001, z: 1}
+    - name: R_ankle_jnt
+      parentName: R_Knee_jnt
+      position: {x: -0.004532821, y: 9.36369e-19, z: 1.5905314e-18}
+      rotation: {x: 0.62649107, y: 0.7765554, z: 0.021234706, w: -0.06340127}
+      scale: {x: 1.0000012, y: 0.9999997, z: 1.0000014}
+    - name: R_Foot_jnt
+      parentName: R_ankle_jnt
+      position: {x: -0.0054310183, y: -1.7282182e-18, z: 1.5265567e-18}
+      rotation: {x: 0.0000000037252903, y: -0, z: -0.000000029802322, w: 1}
+      scale: {x: 1.0000002, y: 1.0000001, z: 0.9999996}
+    - name: M_Body02_jnt
+      parentName: M_Body01_jnt
+      position: {x: -0.010676331, y: -1.5439039e-18, z: -1.8970409e-34}
+      rotation: {x: 1.7763568e-15, y: -0, z: -0.0005611479, w: 0.9999999}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.000001}
+    - name: M_Body03_jnt
+      parentName: M_Body02_jnt
+      position: {x: -0.013648023, y: 1.2886306e-15, z: 1.8759085e-21}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+    - name: L_Hip_jnt
+      parentName: M_Body01_jnt
+      position: {x: -0.00442054, y: 0.0069570905, z: -0.0010262069}
+      rotation: {x: 0.13494813, y: -0.95242614, z: 0.27036107, w: 0.03972981}
+      scale: {x: 1.0000004, y: 1.0000002, z: 1}
+    - name: L_Knee_jnt
+      parentName: L_Hip_jnt
+      position: {x: -0.008558231, y: -2.6867884e-19, z: 2.3418765e-19}
+      rotation: {x: -0.8718231, y: -0.30541462, z: -0.03715914, w: 0.38113722}
+      scale: {x: 1.0000002, y: 1.0000017, z: 0.99999994}
+    - name: L_ankle_jnt
+      parentName: L_Knee_jnt
+      position: {x: -0.0045328196, y: 1.2062427e-18, z: -1.6400979e-18}
+      rotation: {x: 0.5943572, y: 0.80178356, z: -0.024093475, w: 0.057464465}
+      scale: {x: 1.0000015, y: 0.9999997, z: 1.000001}
+    - name: L_Foot_jnt
+      parentName: L_ankle_jnt
+      position: {x: -0.0054310244, y: 2.450297e-19, z: -2.220446e-18}
+      rotation: {x: -0, y: -0, z: -0.000000029802319, w: 1}
+      scale: {x: 1.0000002, y: 0.99999994, z: 1.0000005}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -91,13 +222,13 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
