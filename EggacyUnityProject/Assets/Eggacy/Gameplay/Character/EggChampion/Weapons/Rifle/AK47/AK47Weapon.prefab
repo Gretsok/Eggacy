@@ -100,7 +100,7 @@ MonoBehaviour:
   _shootingRange: 100
   _shootableMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 1921
 --- !u!114 &2805709829549532966
 MonoBehaviour:
   m_ObjectHideFlags: 0

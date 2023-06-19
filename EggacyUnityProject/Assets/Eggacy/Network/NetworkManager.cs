@@ -5,6 +5,7 @@ using Fusion.Sockets;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Eggacy.Network
 {
@@ -113,6 +114,11 @@ namespace Eggacy.Network
                 Scene = 1,
                 SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
             });
+        }
+
+        private void OnDestroy()
+        {
+            SceneManager.LoadSceneAsync(0);
         }
     }
 }

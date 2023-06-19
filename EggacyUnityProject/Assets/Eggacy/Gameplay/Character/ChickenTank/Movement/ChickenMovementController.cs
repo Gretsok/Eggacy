@@ -78,7 +78,6 @@ namespace Eggacy.Gameplay.Character.ChickenTank.Movement
             transform.forward = _direction;
             if(Physics.Raycast(transform.position + transform.up *2f, -transform.up, out _hitInfo, 10f, _groundDetectionLayerMask))
             {
-                Debug.Log("HIT");
                 transform.position = _hitInfo.point;
                 transform.forward = Vector3.Cross(_hitInfo.normal, -transform.right);
                 Debug.DrawLine(transform.position + transform.up * 2f, _hitInfo.point, Color.green);

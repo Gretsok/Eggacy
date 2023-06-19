@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Eggacy.Gameplay.LevelFlow.TeamManagement
 {
-    public class TeamManager : MonoBehaviour
+    public class TeamManager : NetworkBehaviour
     {
         [SerializeField]
         private List<TeamData> _teamDataPool = new List<TeamData>();
@@ -14,6 +14,8 @@ namespace Eggacy.Gameplay.LevelFlow.TeamManagement
         private int _numberOfTeams = 2;
 
         private List<TeamData> _orderedTeamDataPool = null;
+
+
 
         private TeamData _winningTeamData = null;
         public TeamData winningTeamData => _winningTeamData;
@@ -59,19 +61,24 @@ namespace Eggacy.Gameplay.LevelFlow.TeamManagement
 
         public void SetLosingTeamData(TeamData losingTeamData)
         {
-            _livingTeamData.Remove(losingTeamData);
 
-            if(_livingTeamData.Count - _numberOfTeams < 0)
+            _livingTeamData.RemoveAll(teamData => teamData.instanceIndex == losingTeamData.instanceIndex);
+            var livingTeamLeft = _livingTeamData.Count - (_orderedTeamDataPool.Count - _numberOfTeams);
+
+            Debug.LogError($"Adding losing team | left : {livingTeamLeft}");
+            if(livingTeamLeft <=  1)
             {
+                Debug.LogError("Setting winner");
                 _winningTeamData = _livingTeamData[0];
-                Rpc_SettingWinnngTeamData(winningTeamData.instanceIndex);
+                Rpc_SettingWinningTeamData(winningTeamData.instanceIndex);
             }
         }
 
-        [Rpc(RpcSources.StateAuthority, RpcTargets.InputAuthority)]
-        private void Rpc_SettingWinnngTeamData(int indexWinningTeamData)
+        [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+        public void Rpc_SettingWinningTeamData(int indexWinningTeamData)
         {
-            _winningTeamData = _teamDataPool.Find(data => data.instanceIndex == indexWinningTeamData);
+            Debug.LogError("Setting up winning team data"); 
+            _winningTeamData = _teamDataPool.Find(data => data.instanceIndex == indexWinningTeamData); 
         }
     }
 }

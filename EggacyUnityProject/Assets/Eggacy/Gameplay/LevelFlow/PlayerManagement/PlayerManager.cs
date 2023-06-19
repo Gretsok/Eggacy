@@ -38,12 +38,20 @@ namespace Eggacy.Gameplay.LevelFlow.PlayerManagement
             networkedPlayerController.SetCharacter(networkedCharacter);
 
             Rpc_NotifyNewCharacterCreated(networkedCharacter);
+            Rpc_Test();
         }
 
         [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
-        private void Rpc_NotifyNewCharacterCreated(EggChampionCharacter newCreatedCharacter)
+        public void Rpc_Test()
         {
-            if(newCreatedCharacter.HasInputAuthority)
+            Debug.LogError("Test RPC");
+        }
+
+        [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+        public void Rpc_NotifyNewCharacterCreated(EggChampionCharacter newCreatedCharacter)
+        {
+            Debug.LogError("Rpc_NotifyNewCharacterCreated RPC");
+            if (newCreatedCharacter.HasInputAuthority)
             {
                 _localChampionCharacter = newCreatedCharacter;
             }

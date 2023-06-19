@@ -8,6 +8,8 @@ namespace Eggacy.Gameplay.LevelFlow.Result
     public class ResultScreen : FlowUIScreen
     {
         [SerializeField]
+        private GameObject _waitingForDataContainer = null;
+        [SerializeField]
         private GameObject _winContainer = null;
         [SerializeField]
         private GameObject _loseContainer = null;
@@ -20,18 +22,23 @@ namespace Eggacy.Gameplay.LevelFlow.Result
         protected override void SetUp()
         {
             base.SetUp();
+            _waitingForDataContainer.SetActive(true);
+            _winContainer.SetActive(false);
+            _loseContainer.SetActive(false);
             StartCoroutine(WaitForWinningTeamDataInfo(DisplayContainerAccordingToGameScore));
         }
 
         private void DisplayContainerAccordingToGameScore()
         {
-            if (_teamManager.winningTeamData == _playerManager.localChampionCharacter.lifeController.teamController.teamData)
+            if (_teamManager.winningTeamData.instanceIndex == _playerManager.localChampionCharacter.lifeController.teamController.teamData.instanceIndex)
             {
+                _waitingForDataContainer.SetActive(false);
                 _winContainer.SetActive(true);
                 _loseContainer.SetActive(false);
             }
             else
             {
+                _waitingForDataContainer.SetActive(false);
                 _winContainer.SetActive(false);
                 _loseContainer.SetActive(true);
             }

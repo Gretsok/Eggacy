@@ -11,6 +11,21 @@ namespace Eggacy.Gameplay.LevelFlow.WaitingPlayers
         [SerializeField]
         private int _playerCount = 2;
         private NetworkManager _networkManager = null;
+        private List<PlayerRef> _loadedPlayers = new List<PlayerRef>();
+
+        public override void Spawned()
+        {
+            base.Spawned();
+            Rpc_NotifyPlayerLoaded(Runner.LocalPlayer);
+        }
+
+        private void Start()
+        {
+            if (!Runner) return;
+            if (!Runner.IsRunning) return;
+
+            Rpc_NotifyPlayerLoaded(Runner.LocalPlayer);
+        }
 
         protected override IEnumerator HandleServerSetUpRoutine()
         {
@@ -18,8 +33,14 @@ namespace Eggacy.Gameplay.LevelFlow.WaitingPlayers
 
             _networkManager = Runner.GetComponent<NetworkManager>();
             _networkManager.onNewPlayerJoined += HandleNewPlayerJoined;
+            _networkManager.onPlayerLeft += HandlePlayerLeft;
 
             TryToStartGameIfConditionsFullfilled();
+        }
+
+        private void HandlePlayerLeft(PlayerRef player)
+        {
+            _loadedPlayers.RemoveAll(x => x == player);
         }
 
         private void HandleNewPlayerJoined(PlayerRef obj)
@@ -30,7 +51,7 @@ namespace Eggacy.Gameplay.LevelFlow.WaitingPlayers
         private void TryToStartGameIfConditionsFullfilled()
         {
             var playersList = new List<PlayerRef>(Runner.ActivePlayers);
-            if(playersList.Count == _playerCount)
+            if(playersList.Count == _playerCount && _loadedPlayers.Count == 2)
             {
                 Runner.SessionInfo.IsOpen = false;
                 RequestStartGame();
@@ -40,7 +61,16 @@ namespace Eggacy.Gameplay.LevelFlow.WaitingPlayers
         private void RequestStartGame()
         {
             _networkManager.onNewPlayerJoined -= HandleNewPlayerJoined;
+            _networkManager.onPlayerLeft -= HandlePlayerLeft;
             onStateEnded?.Invoke(this);
+        }
+
+        [Rpc(RpcSources.All, RpcTargets.StateAuthority)]
+        private void Rpc_NotifyPlayerLoaded(PlayerRef player)
+        {
+            if(!_loadedPlayers.Find(p => p == player).IsValid)
+                _loadedPlayers.Add(player);
+            TryToStartGameIfConditionsFullfilled();
         }
     }
 }
