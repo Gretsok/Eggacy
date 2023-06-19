@@ -54,13 +54,19 @@ namespace Eggacy.Gameplay.Character.ChickenTank.Shooting
 
             var collidersInContact = Physics.OverlapSphere(_turretModelRoot.position, _scanRadius);
             LifeControllerCollider closestValidTarget = null;
+            float sqrDistanceToClosestValidTarget = float.MaxValue;
             for(int i = 0; i < collidersInContact.Length; ++i)
             {
                 if (collidersInContact[i].TryGetComponent(out LifeControllerCollider lifeControllerCollider))
                 {
                     if(lifeControllerCollider.lifeController.teamController.teamData != _teamController.teamData)
                     {
-                        closestValidTarget = lifeControllerCollider;
+                        var sqrDistanceToCollider = (transform.position - lifeControllerCollider.transform.position).sqrMagnitude;
+                        if(sqrDistanceToCollider < sqrDistanceToClosestValidTarget)
+                        {
+                            sqrDistanceToClosestValidTarget = sqrDistanceToCollider;
+                            closestValidTarget = lifeControllerCollider;
+                        }
                     }
                 }
             }
