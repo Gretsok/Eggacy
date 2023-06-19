@@ -12,7 +12,7 @@ namespace Eggacy.Gameplay.LevelFlow
         private UnityEvent onClientFeedbackTriggered = null;
         public Action<LevelFlowState> onStateEnded = null;
 
-        public void Server_EnterState()
+        public void Server_Enter()
         {
             if (!Runner.IsServer) return;
 
@@ -23,11 +23,11 @@ namespace Eggacy.Gameplay.LevelFlow
         {
             yield return StartCoroutine(HandleServerSetUpRoutine());
 
-            Rpc_Client_EnterState();
+            Rpc_Client_Enter();
         }
 
         [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
-        private void Rpc_Client_EnterState()
+        private void Rpc_Client_Enter()
         {
             if(!Runner.IsPlayer) return;
 
@@ -51,6 +51,16 @@ namespace Eggacy.Gameplay.LevelFlow
 
         protected virtual void HandleServerUpdate()
         {
+        }
+
+        public void Server_Leave()
+        {
+            HandleServerLeave();
+        }
+
+        protected virtual void HandleServerLeave()
+        {
+
         }
     }
 }

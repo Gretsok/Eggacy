@@ -44,7 +44,13 @@ namespace Eggacy.Gameplay.LevelFlow
             _currentStateIndex = index;
 
             if (index < _flowStates.Count)
+            {
+                if (_currentState)
+                {
+                    _currentState.Server_Leave();
+                }
                 _currentState = _flowStates[index];
+            }
             else
             {
                 _currentState = null;
@@ -53,7 +59,7 @@ namespace Eggacy.Gameplay.LevelFlow
 
             if(_currentState)
             {
-                _currentState.Server_EnterState();
+                _currentState.Server_Enter();
                 _currentState.onStateEnded += HandleCurrentStateEnded;
             }
         }

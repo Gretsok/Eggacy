@@ -14,6 +14,8 @@ namespace Eggacy.MainMenu
         {
             _mainMenuUIController.onJoinGameRequested += HandleJoinGameRequested;
             _mainMenuUIController.onQuitGameRequested += HandleQuitGameRequested;
+
+            Cursor.lockState = CursorLockMode.Confined;
         }
 
         private void HandleQuitGameRequested()

@@ -1,4 +1,5 @@
 using Eggacy.Gameplay.LevelFlow.Game;
+using Eggacy.Gameplay.LevelFlow.Result;
 using Eggacy.Gameplay.LevelFlow.WaitingPlayers;
 using Fusion;
 using System;
@@ -15,6 +16,8 @@ namespace Eggacy.Gameplay.LevelFlow.UIManagement
         private WaitingPlayersScreen _waitingScreen = null;
         [SerializeField]
         private GameScreen _gameScreen = null;
+        [SerializeField]
+        private ResultScreen _resultScreen = null;
 
         private void Start()
         {
@@ -36,6 +39,7 @@ namespace Eggacy.Gameplay.LevelFlow.UIManagement
         {
             _waitingScreen.Disable();
             _gameScreen.Disable();
+            _resultScreen.Disable();
         }
 
         public void ShowWaitingScreen()
@@ -48,6 +52,12 @@ namespace Eggacy.Gameplay.LevelFlow.UIManagement
         {
             HideEverything();
             _gameScreen.Enable();
+        }
+
+        public void ShowResultScreen()
+        {
+            HideEverything();
+            _resultScreen.Enable();
         }
 
         private void SetUpUI(int stateIndex)
@@ -64,7 +74,7 @@ namespace Eggacy.Gameplay.LevelFlow.UIManagement
                     ShowGameScreen();
                     break;
                 case 3:
-                    HideEverything();
+                    ShowResultScreen();
                     break;
                 default:
                     HideEverything();
