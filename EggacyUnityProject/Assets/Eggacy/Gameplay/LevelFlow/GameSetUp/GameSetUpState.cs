@@ -1,4 +1,6 @@
 using Eggacy.Gameplay.Combat.TeamManagement;
+using Eggacy.Gameplay.LevelFlow.ChickenTankManagement;
+using Eggacy.Gameplay.LevelFlow.TeamManagement;
 using Eggacy.Gameplay.LevelFlow.WorldReferences;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,9 +15,9 @@ namespace Eggacy.Gameplay.LevelFlow.GameSetUp
         [SerializeField]
         private WorldReferencesHandler _worldReferencesHandler = null;
         [SerializeField]
-        private TeamHandlerForGameSetUp _teamHandlerForGameSetUp = null;
+        private TeamManager _teamManager = null;
         [SerializeField]
-        private TankHandlerForGameSetUp _tankHandlerForGameSetUp = null;
+        private ChickenTankManager _chickenTankManger = null;
 
         protected override IEnumerator HandleServerSetUpRoutine()
         {
@@ -23,7 +25,7 @@ namespace Eggacy.Gameplay.LevelFlow.GameSetUp
 
             Debug.Log($"Player count : {(new List<Fusion.PlayerRef>(Runner.ActivePlayers)).Count}");
 
-            _tankHandlerForGameSetUp.SetUp();
+            _chickenTankManger.SetUp();
 
             int numberOfPlayerCreated = 0;
             foreach (var player in Runner.ActivePlayers)
@@ -32,13 +34,17 @@ namespace Eggacy.Gameplay.LevelFlow.GameSetUp
                 var character =  _playerManager.GetCharacterForPlayer(player);
                 (var position, var rotation) = _worldReferencesHandler.GetSpawnPoint(numberOfPlayerCreated);
                 character.networkRigidbody.TeleportToPositionRotation(position, rotation);
-                character.GetComponent<TeamController>().ChangeTeamData(_teamHandlerForGameSetUp.GetTeamDataByIndex(numberOfPlayerCreated));
+                character.GetComponent<TeamController>().ChangeTeamData(_teamManager.GetTeamDataByIndex(numberOfPlayerCreated));
 
                 character.SetToAlive();
 
                 ++numberOfPlayerCreated;
             }
             yield return null;
+            for(int i = 0; i < _chickenTankManger.tanksCount; ++i)
+            {
+                _chickenTankManger.SetTeamForTank(i, _teamManager.GetTeamDataByIndex(i));
+            }
 
             onStateEnded?.Invoke(this);
         }

@@ -16,6 +16,7 @@ namespace Eggacy.Gameplay.Character.EggChampion
         public HoldedWeaponController weaponController => _weaponController;
         [SerializeField]
         private LifeController _lifeController = null;
+        public LifeController lifeController => _lifeController;
 
         [SerializeField]
         private Transform _modelRoot = null;

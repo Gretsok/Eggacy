@@ -123,6 +123,7 @@ MonoBehaviour:
   onClientFeedbackTriggered:
     m_PersistentCalls:
       m_Calls: []
+  _displayDuration: 4
 --- !u!114 &6494880215577798481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,6 +197,8 @@ MonoBehaviour:
   onClientFeedbackTriggered:
     m_PersistentCalls:
       m_Calls: []
+  _chickenTankManager: {fileID: 0}
+  _teamManager: {fileID: 0}
 --- !u!114 &1535825528866292766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,6 +257,7 @@ Transform:
   - {fileID: 2603498483558995264}
   - {fileID: 5156991911028875279}
   - {fileID: 5436306922020229918}
+  - {fileID: 3076651095965877720}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -275,6 +279,7 @@ MonoBehaviour:
   - {fileID: 5302317411635600364}
   - {fileID: 5770884363590941432}
   - {fileID: 7793152181838551078}
+  - {fileID: 7568373592558446930}
 --- !u!114 &2376493532701513284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,6 +305,7 @@ MonoBehaviour:
   - {fileID: 6991459941033085427}
   - {fileID: 1535825528866292766}
   - {fileID: 6494880215577798481}
+  - {fileID: 1411920373350256864}
   NetworkedBehaviours:
   - {fileID: 6273195521026683327}
   SimulationBehaviours: []
@@ -313,8 +319,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2603498483558995264}
   - component: {fileID: 5302317411635600364}
-  - component: {fileID: 1695731631751707486}
-  - component: {fileID: 5523404506155420831}
   - component: {fileID: 6991459941033085427}
   m_Layer: 0
   m_Name: GameSetUpState
@@ -356,42 +360,8 @@ MonoBehaviour:
       m_Calls: []
   _playerManager: {fileID: 0}
   _worldReferencesHandler: {fileID: 0}
-  _teamHandlerForGameSetUp: {fileID: 1695731631751707486}
---- !u!114 &1695731631751707486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4932595045155411388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f30a27e3c3e98141a93d5e6d1ace7fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _teamDataPool:
-  - {fileID: 11400000, guid: 0f50fb82485c6f844a95c9204dd80240, type: 2}
-  - {fileID: 11400000, guid: bd672cac8545caa4e9ce4bf54f85788c, type: 2}
-  _numberOfTeams: 2
---- !u!114 &5523404506155420831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4932595045155411388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9c428382164d604082cdf16312e604c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _waypointsManager: {fileID: 0}
-  _tanks:
-  - {fileID: 0}
-  - {fileID: 0}
-  _startingChickenWaypoints:
-  - {fileID: 0}
-  - {fileID: 0}
+  _teamManager: {fileID: 0}
+  _chickenTankManger: {fileID: 0}
 --- !u!114 &6991459941033085427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -416,3 +386,76 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 5302317411635600364}
   SimulationBehaviours: []
+--- !u!1 &6338705467084296856
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3076651095965877720}
+  - component: {fileID: 1411920373350256864}
+  - component: {fileID: 7568373592558446930}
+  m_Layer: 0
+  m_Name: QuitState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3076651095965877720
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6338705467084296856}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6941403799365891935}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1411920373350256864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6338705467084296856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 3073
+  NetworkGuid:
+    RawGuidValue: 00000000000000000000000000000000
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 7568373592558446930}
+  SimulationBehaviours: []
+--- !u!114 &7568373592558446930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6338705467084296856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 556054e7ab2531144b3d917b4ddd5fea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  onClientFeedbackTriggered:
+    m_PersistentCalls:
+      m_Calls: []
