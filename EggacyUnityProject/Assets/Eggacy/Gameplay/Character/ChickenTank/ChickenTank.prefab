@@ -10,9 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7856747159467283783}
   - component: {fileID: 1124029711333230019}
-  - component: {fileID: 471807158800744167}
   - component: {fileID: 3731622601174210523}
   - component: {fileID: 6548933422087506432}
+  - component: {fileID: 5256700346822055624}
+  - component: {fileID: 2055588102314242264}
+  - component: {fileID: 471807158800744167}
   m_Layer: 0
   m_Name: ChickenTank
   m_TagString: Untagged
@@ -50,32 +52,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
   _movementController: {fileID: 3731622601174210523}
---- !u!114 &471807158800744167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1298976477229702357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObjectInterest: 1
-  DefaultInterestGroups: []
-  DestroyWhenStateAuthorityLeaves: 0
-  AllowStateAuthorityOverride: 1
-  AoiPositionSource: {fileID: 0}
-  Flags: 2305
-  NetworkGuid:
-    RawGuidValue: 4086ccf06ec3b7646ac61df24a1e2da2
-  NestedObjects: []
-  NetworkedBehaviours:
-  - {fileID: 1124029711333230019}
-  - {fileID: 3731622601174210523}
-  - {fileID: 6548933422087506432}
-  SimulationBehaviours: []
 --- !u!114 &3731622601174210523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,6 +99,64 @@ MonoBehaviour:
     RotTeleportRadians: 1.5
   UseLegacySharedModeInterpolation: 0
   TargetInterpolationDelay: 0.03
+--- !u!114 &5256700346822055624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298976477229702357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 440706faf7542b34199aa3c47184510b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  _teamController: {fileID: 2055588102314242264}
+  _turretModelRoot: {fileID: 948901124260557145}
+  _rotationSmoothness: 3
+  _scanRadius: 10
+--- !u!114 &2055588102314242264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298976477229702357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75b8dd059a0aa2842bb50b9708969133, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+--- !u!114 &471807158800744167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298976477229702357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2305
+  NetworkGuid:
+    RawGuidValue: 4086ccf06ec3b7646ac61df24a1e2da2
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 1124029711333230019}
+  - {fileID: 3731622601174210523}
+  - {fileID: 6548933422087506432}
+  - {fileID: 5256700346822055624}
+  - {fileID: 2055588102314242264}
+  SimulationBehaviours: []
 --- !u!1 &2176068951485433918
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,7 +438,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3716761584842934769}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: 0.20838428, z: -0, w: 0.978047}
   m_LocalPosition: {x: 0, y: 0.50000006, z: -0.08876333}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -412,7 +446,7 @@ Transform:
   - {fileID: 2964760664677720319}
   m_Father: {fileID: 4054737550569856337}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 24.055, z: 0}
 --- !u!33 &2422278933027323584
 MeshFilter:
   m_ObjectHideFlags: 0

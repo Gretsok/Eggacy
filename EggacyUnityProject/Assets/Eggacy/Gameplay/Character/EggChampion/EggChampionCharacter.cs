@@ -79,8 +79,8 @@ namespace Eggacy.Gameplay.Character.EggChampion
 
         public bool IsGrounded()
         {
-            var isGrounded = Physics.Raycast(transform.position, Vector3.down, 0.25f, _groundLayerMask);
-            Debug.DrawLine(transform.position, transform.position + Vector3.down * 0.25f, isGrounded ? Color.red : Color.yellow);
+            var isGrounded = Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, 0.15f, _groundLayerMask);
+            Debug.DrawLine(transform.position + Vector3.up * 0.1f, transform.position + Vector3.down * 0.15f, isGrounded ? Color.red : Color.yellow);
             return isGrounded;
         }
         #endregion
