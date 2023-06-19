@@ -8,6 +8,8 @@ namespace Eggacy.Gameplay.Combat.LifeManagement
     {
         [SerializeField]
         private TeamManagement.TeamController _teamController = null;
+        public TeamManagement.TeamController teamController => _teamController;
+
         [SerializeField]
         private int _baseMaxLife = 100;
         public int maxLife => _baseMaxLife;
