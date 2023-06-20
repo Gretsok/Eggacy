@@ -47,6 +47,9 @@ namespace Eggacy.Gameplay.Character.EggChampion
         public bool isGrounded => _isGrounded;
 
         private Transform _respawnPoint = null;
+        [SerializeField]
+        private float _respawnDuration = 7f;
+        public float respawnDuration => _respawnDuration;
 
         private void Start()
         {
@@ -233,7 +236,7 @@ namespace Eggacy.Gameplay.Character.EggChampion
         private IEnumerator DeathRoutine()
         {
             _isAlive = false;
-            yield return new WaitForSeconds(7f);
+            yield return new WaitForSeconds(respawnDuration);
             SetToAlive();
         }
 

@@ -1,4 +1,6 @@
+using Eggacy.Gameplay.Character.ChickenTank;
 using Eggacy.Gameplay.Combat.LifeManagement;
+using System.Collections;
 using UnityEngine;
 
 namespace Eggacy.Gameplay.LevelFlow.ChickenTankManagement.UI
@@ -39,18 +41,25 @@ namespace Eggacy.Gameplay.LevelFlow.ChickenTankManagement.UI
             gameObject.SetActive(true);
 
             var firstTank = _tankManager.GetTankAt(0);
-            _firstHealthDisplayContainer.SetName(firstTank.lifeController.teamController.teamData.team.teamName);
-            _firstHealthDisplayContainer.SetColor(firstTank.lifeController.teamController.teamData.team.teamColor);
-            _firstHealthDisplayContainer.SetHealthRatio((float)firstTank.lifeController.currentLife / (float)firstTank.lifeController.maxLife);
+            StartCoroutine(WaitAndSetUpTank(firstTank, _firstHealthDisplayContainer));
             firstTank.lifeController.onDamageTaken += HandleLifeChangedOnFirstTank;
             firstTank.lifeController.onHealed += HandleLifeChangedOnFirstTank;
 
             var secondTank = _tankManager.GetTankAt(1);
-            _secondHealthDisplayContainer.SetName(secondTank.lifeController.teamController.teamData.team.teamName);
-            _secondHealthDisplayContainer.SetColor(secondTank.lifeController.teamController.teamData.team.teamColor);
-            _secondHealthDisplayContainer.SetHealthRatio((float)secondTank.lifeController.currentLife / (float)secondTank.lifeController.maxLife);
+            StartCoroutine(WaitAndSetUpTank(secondTank, _secondHealthDisplayContainer));
             secondTank.lifeController.onDamageTaken += HandleLifeChangedOnSecondTank;
             secondTank.lifeController.onHealed += HandleLifeChangedOnSecondTank;
+        }
+
+        private IEnumerator WaitAndSetUpTank(ChickenTank tank, TankHealthTeamDisplayContainer displayContainer)
+        {
+            while(tank.lifeController.teamController.teamData == null)
+            {
+                yield return null;
+            }
+            displayContainer.SetName(tank.lifeController.teamController.teamData.team.teamName);
+            displayContainer.SetColor(tank.lifeController.teamController.teamData.team.teamColor);
+            displayContainer.SetHealthRatio((float)tank.lifeController.currentLife / (float)tank.lifeController.maxLife);
         }
 
         private void HandleLifeChangedOnSecondTank(LifeController arg1, int arg2)
