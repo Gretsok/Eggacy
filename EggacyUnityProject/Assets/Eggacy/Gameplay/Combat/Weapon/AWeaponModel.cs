@@ -1,3 +1,4 @@
+using Eggacy.Sound;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,10 +11,15 @@ namespace Eggacy.Gameplay.Combat.Weapon
         [SerializeField]
         protected ParticleSystem _shootFX = null;
 
+        [SerializeField]
+        protected SoundEventData _shootSFX = null;
+
         internal virtual void PlayShootFeedback()
         {
             if (_shootFX)
                 _shootFX.Play();
+            if (_shootSFX)
+                _shootSFX.Request3DPlay(this.transform);
         }
     }
 }
