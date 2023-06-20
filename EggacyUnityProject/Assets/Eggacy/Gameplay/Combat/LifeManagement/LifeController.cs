@@ -23,6 +23,8 @@ namespace Eggacy.Gameplay.Combat.LifeManagement
         public Action<LifeController> onDied_ServerOnly = null;
         public Action<LifeController, int> onDamageTaken_ServerOnly = null;
         public Action<LifeController, int> onHealed_ServerOnly = null;
+        public Action<LifeController, int> onDamageDealt = null;
+        public Action<LifeController, int> onDamageDealt_ServerOnly = null;
 
         public override void Spawned()
         {
@@ -68,6 +70,26 @@ namespace Eggacy.Gameplay.Combat.LifeManagement
                 _currentLife -= damage.amountToRetreat;
                 NotifyDamageTaken(damage.amountToRetreat);
             }
+
+            if(damage.source is GameObject)
+            {
+                if((damage.source as GameObject).TryGetComponent(out LifeController sourceLifeController))
+                {
+                    sourceLifeController.NotifyDamageDealt(damage.amountToRetreat);
+                }
+            }
+        }
+
+        private void NotifyDamageDealt(int amountToRetreat)
+        {
+            onDamageDealt_ServerOnly?.Invoke(this, amountToRetreat);
+            Rpc_NotifyDamageDealt(amountToRetreat);
+        }
+
+        [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+        private void Rpc_NotifyDamageDealt(int amountToRetreat)
+        {
+            onDamageDealt?.Invoke(this, amountToRetreat);
         }
 
         private void NotifyDamageTaken(int damageTaken)
