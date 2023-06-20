@@ -27,6 +27,15 @@ namespace Eggacy.Gameplay.LevelFlow.GameSetUp
 
             _chickenTankManger.SetUp();
 
+            yield return null;
+
+            for (int i = 0; i < _chickenTankManger.tanksCount; ++i)
+            {
+                _chickenTankManger.SetTeamForTank(i, _teamManager.GetTeamDataByIndex(i));
+            }
+
+            yield return null;
+
             int numberOfPlayerCreated = 0;
             foreach (var player in Runner.ActivePlayers)
             {
@@ -34,17 +43,19 @@ namespace Eggacy.Gameplay.LevelFlow.GameSetUp
                 var character =  _playerManager.GetCharacterForPlayer(player);
                 (var position, var rotation) = _worldReferencesHandler.GetSpawnPoint(numberOfPlayerCreated);
                 character.networkRigidbody.TeleportToPositionRotation(position, rotation);
-                character.GetComponent<TeamController>().ChangeTeamData(_teamManager.GetTeamDataByIndex(numberOfPlayerCreated));
+                var team = _teamManager.GetTeamDataByIndex(numberOfPlayerCreated);
+                character.GetComponent<TeamController>().ChangeTeamData(team);
+
+                var teamTank = _chickenTankManger.GetTankForTeam(team);
+                
+                character.SetRespawnPoint(teamTank.respawnPointsHandler.GetAndLockRespawnPoint());
 
                 character.SetToAlive();
 
                 ++numberOfPlayerCreated;
             }
             yield return null;
-            for(int i = 0; i < _chickenTankManger.tanksCount; ++i)
-            {
-                _chickenTankManger.SetTeamForTank(i, _teamManager.GetTeamDataByIndex(i));
-            }
+
 
             onStateEnded?.Invoke(this);
         }

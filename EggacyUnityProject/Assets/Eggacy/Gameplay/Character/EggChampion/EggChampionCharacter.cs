@@ -46,6 +46,8 @@ namespace Eggacy.Gameplay.Character.EggChampion
         private bool _isGrounded { get; set; } 
         public bool isGrounded => _isGrounded;
 
+        private Transform _respawnPoint = null;
+
         private void Start()
         {
             _lifeController.onDied_ServerOnly += HandleDied_ServerOnly;
@@ -200,12 +202,20 @@ namespace Eggacy.Gameplay.Character.EggChampion
         #endregion
 
         #region Death Behaviour
+        public void SetRespawnPoint(Transform respawnPoint)
+        {
+            if (!Runner.IsServer) return;
+
+            _respawnPoint = respawnPoint;
+        }
+
         public void SetToAlive()
         {
             if (!Runner.IsServer) return;
 
             _isAlive = true;
             _lifeController.ResetLife();
+            GetComponent<NetworkTransform>().TeleportToPositionRotation(_respawnPoint.position, _respawnPoint.rotation);
         }
 
         private void HandleDied_ServerOnly(LifeController controller)
@@ -223,7 +233,7 @@ namespace Eggacy.Gameplay.Character.EggChampion
         private IEnumerator DeathRoutine()
         {
             _isAlive = false;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(7f);
             SetToAlive();
         }
 

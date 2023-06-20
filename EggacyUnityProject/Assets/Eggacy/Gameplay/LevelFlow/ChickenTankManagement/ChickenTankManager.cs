@@ -85,5 +85,10 @@ namespace Eggacy.Gameplay.LevelFlow.ChickenTankManagement
         {
             return _chickenTanks[index];
         }
+
+        public ChickenTank GetTankForTeam(TeamData teamData)
+        {
+            return _chickenTanks.Find(tank => tank.lifeController.teamController.teamData.instanceIndex == teamData.instanceIndex);
+        }
     }
 }
