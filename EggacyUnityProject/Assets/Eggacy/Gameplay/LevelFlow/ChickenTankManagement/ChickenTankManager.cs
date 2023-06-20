@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Eggacy.Gameplay.LevelFlow.ChickenTankManagement
 {
-    public class ChickenTankManager : MonoBehaviour
+    public class ChickenTankManager : NetworkBehaviour
     {
         [SerializeField]
         private ChickenWaypointsManager _waypointsManager = null;
@@ -37,7 +37,7 @@ namespace Eggacy.Gameplay.LevelFlow.ChickenTankManagement
         }
 
         [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
-        private void Rpc_NotifyInitializedForGameplay()
+        public void Rpc_NotifyInitializedForGameplay()
         {
             onInitializedForGameplay?.Invoke(this);
         }
@@ -52,7 +52,7 @@ namespace Eggacy.Gameplay.LevelFlow.ChickenTankManagement
         }
 
         [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
-        private void Rpc_NotifyCleanedUpFromGameplay()
+        public void Rpc_NotifyCleanedUpFromGameplay()
         {
             onCleanedUpFromGameplay?.Invoke(this);
         }
