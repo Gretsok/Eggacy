@@ -1,10 +1,9 @@
-using Eggacy.Gameplay.Combat.TeamManagement;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Eggacy.Gameplay.Character.ChickenTank.TeamColor
+namespace Eggacy.Gameplay.Combat.TeamManagement.TeamColor
 {
-    public class ChickenTankTeamColorer : MonoBehaviour
+    public class TeamColorer : MonoBehaviour
     {
         [SerializeField]
         private TeamController _teamController = null;
@@ -12,6 +11,10 @@ namespace Eggacy.Gameplay.Character.ChickenTank.TeamColor
         [SerializeField]
         private List<Renderer> _renderersToColor = null;
 
+        [SerializeField]
+        private float _saturationValue = 0.7f;
+        [SerializeField]
+        private float _valueValue = 1.0f;
 
         private void Awake()
         {
@@ -25,7 +28,8 @@ namespace Eggacy.Gameplay.Character.ChickenTank.TeamColor
 
             Color teamColor = _teamController.teamData.team.teamColor;
             Color.RGBToHSV(teamColor, out float h, out float s, out float v);
-            s = 0.7f;
+            s = _saturationValue;
+            v = _valueValue;
             teamColor = Color.HSVToRGB(h, s, v);
 
             _renderersToColor?.ForEach(r =>
