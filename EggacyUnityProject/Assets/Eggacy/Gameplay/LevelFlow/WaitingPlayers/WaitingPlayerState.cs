@@ -16,6 +16,7 @@ namespace Eggacy.Gameplay.LevelFlow.WaitingPlayers
         public override void Spawned()
         {
             base.Spawned();
+            _networkManager = Runner.GetComponent<NetworkManager>();
             Rpc_NotifyPlayerLoaded(Runner.LocalPlayer);
         }
 
@@ -51,7 +52,7 @@ namespace Eggacy.Gameplay.LevelFlow.WaitingPlayers
         private void TryToStartGameIfConditionsFullfilled()
         {
             var playersList = new List<PlayerRef>(Runner.ActivePlayers);
-            if(playersList.Count == _playerCount && _loadedPlayers.Count == 2)
+            if(playersList.Count == _playerCount && _loadedPlayers.Count == _playerCount)
             {
                 Runner.SessionInfo.IsOpen = false;
                 RequestStartGame();

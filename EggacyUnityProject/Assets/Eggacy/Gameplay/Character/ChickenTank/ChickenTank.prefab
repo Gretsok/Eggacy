@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2587740757161551470}
   - component: {fileID: 2055588102314242264}
   - component: {fileID: 471807158800744167}
+  - component: {fileID: 5732806708683487931}
   m_Layer: 8
   m_Name: ChickenTank
   m_TagString: Untagged
@@ -176,6 +177,23 @@ MonoBehaviour:
   - {fileID: 2587740757161551470}
   - {fileID: 2055588102314242264}
   SimulationBehaviours: []
+--- !u!114 &5732806708683487931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298976477229702357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f88654f05088cf40a508cf9af9498d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _teamController: {fileID: 2055588102314242264}
+  _renderersToColor:
+  - {fileID: 5417168102847463803}
+  - {fileID: 6259123740326221426}
+  - {fileID: 3623918574908072661}
 --- !u!1 &2176068951485433918
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,7 +344,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4577ee2046668dc4faae41439ead563c, type: 2}
+  - {fileID: 2100000, guid: 2a6086c3fa2a58249b68ff310c474e22, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -494,7 +512,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4577ee2046668dc4faae41439ead563c, type: 2}
+  - {fileID: 2100000, guid: 2a6086c3fa2a58249b68ff310c474e22, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -577,7 +595,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4577ee2046668dc4faae41439ead563c, type: 2}
+  - {fileID: 2100000, guid: 2a6086c3fa2a58249b68ff310c474e22, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
