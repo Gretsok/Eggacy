@@ -272,6 +272,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChickenTank (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1298976477229702357, guid: 4086ccf06ec3b7646ac61df24a1e2da2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1926854731735464049, guid: 4086ccf06ec3b7646ac61df24a1e2da2,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -908,6 +913,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChickenTank
       objectReference: {fileID: 0}
+    - target: {fileID: 1298976477229702357, guid: 4086ccf06ec3b7646ac61df24a1e2da2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1926854731735464049, guid: 4086ccf06ec3b7646ac61df24a1e2da2,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1151,11 +1161,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6738755478136270171, guid: 0d2df71c9d121c1479b55a4e594f00ef,
         type: 3}
-      propertyPath: _waypointsManager
-      value: 
-      objectReference: {fileID: 3573766304266758691}
-    - target: {fileID: 6738755478136270171, guid: 0d2df71c9d121c1479b55a4e594f00ef,
-        type: 3}
       propertyPath: _chickenTanks.Array.data[0]
       value: 
       objectReference: {fileID: 4192070514103326952}
@@ -1164,21 +1169,6 @@ PrefabInstance:
       propertyPath: _chickenTanks.Array.data[1]
       value: 
       objectReference: {fileID: 1182858216}
-    - target: {fileID: 6738755478136270171, guid: 0d2df71c9d121c1479b55a4e594f00ef,
-        type: 3}
-      propertyPath: _startingChickenWaypoints.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6738755478136270171, guid: 0d2df71c9d121c1479b55a4e594f00ef,
-        type: 3}
-      propertyPath: _startingChickenWaypoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 3573766304266758693}
-    - target: {fileID: 6738755478136270171, guid: 0d2df71c9d121c1479b55a4e594f00ef,
-        type: 3}
-      propertyPath: _startingChickenWaypoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 3573766304266758692}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d2df71c9d121c1479b55a4e594f00ef, type: 3}
 --- !u!114 &5646807481397689499 stripped
@@ -1268,7 +1258,7 @@ PrefabInstance:
     - target: {fileID: 3126259521419732235, guid: 32d35dd9ec188af4698b0c147ce0b994,
         type: 3}
       propertyPath: _playerCount
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5302317411635600364, guid: 32d35dd9ec188af4698b0c147ce0b994,
         type: 3}
