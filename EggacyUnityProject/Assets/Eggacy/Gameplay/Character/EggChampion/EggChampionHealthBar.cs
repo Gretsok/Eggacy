@@ -27,24 +27,18 @@ namespace Eggacy
         [SerializeField]
         private ColorTween m_healthSliderBGColorTween;
 
-        protected override void Start()
+        private void OnDisable()
         {
-            base.Start();
             m_healthSlider.value = 1f;
             m_healthSliderBG.value = 1f;
         }
 
-        private void Update()
+        private void Awake()
         {
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                SetHealthRatio(m_healthSlider.value - 0.1f);
-            }
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                m_healthSlider.value = 1f;
-                m_healthSliderBG.value = 1f;
-            }
+            m_healthSlider.value = 1f;
+            m_healthSliderBG.value = 1f;
+          
+            m_damageReceivedPositionTween.Stop();
         }
 
         public override void SetHealthRatio(float a_healthRatio)

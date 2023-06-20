@@ -26,7 +26,10 @@ namespace Eggacy
         {
             m_healBarContainerColor = m_healthBarContainer.color;
             m_healthSliderColor = m_healthSlider.colors.normalColor; 
-            m_healthSliderBGColor = m_healthSliderBG.colors.normalColor; 
+            m_healthSliderBGColor = m_healthSliderBG.colors.normalColor;
+
+            m_healthSlider.value = 1f;
+            m_healthSliderBG.value = 1f;
         }
 
         public virtual void SetHealthRatio(float a_healthRatio)
