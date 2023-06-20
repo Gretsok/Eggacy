@@ -80,6 +80,20 @@ namespace Eggacy.Gameplay.Combat.LifeManagement
             }
         }
 
+        public void Heal(int amountToHeal)
+        {
+            if (!Runner.IsServer) return;
+
+            if (_currentLife >= maxLife) return;
+
+            _currentLife += amountToHeal;
+            if(_currentLife > maxLife)
+            {
+                _currentLife = maxLife;
+            }
+            NotifyHealed(amountToHeal);
+        }
+
         private void NotifyDamageDealt(int amountToRetreat)
         {
             onDamageDealt_ServerOnly?.Invoke(this, amountToRetreat);
