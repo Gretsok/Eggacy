@@ -20,7 +20,7 @@ namespace Eggacy.Gameplay.Character.ChickenTank.Healing
 
         private void Update()
         {
-            if(Time.time - _lastTimeHealed < _healCooldown)
+            if(Time.time - _lastTimeHealed > _healCooldown)
             {
                 Heal();
                 _lastTimeHealed = Time.time;
