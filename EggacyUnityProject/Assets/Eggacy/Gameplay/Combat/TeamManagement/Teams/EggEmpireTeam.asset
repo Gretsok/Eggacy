@@ -15,6 +15,6 @@ MonoBehaviour:
   _instanceIndex: 1761467795
   _team:
     _teamName: Egg Empire
-    _teamColor: {r: 0.18039215, g: 0.36078432, b: 0.9019608, a: 1}
+    _teamColor: {r: 0.16000003, g: 1, b: 0.9745455, a: 1}
     _friendlyFire: 0
     _alliedTeams: []

@@ -1,5 +1,6 @@
 using Eggacy.Gameplay.Combat.TeamManagement;
 using Fusion;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,8 +15,6 @@ namespace Eggacy.Gameplay.LevelFlow.TeamManagement
         private int _numberOfTeams = 2;
 
         private List<TeamData> _orderedTeamDataPool = null;
-
-
 
         private TeamData _winningTeamData = null;
         public TeamData winningTeamData => _winningTeamData;
@@ -39,7 +38,7 @@ namespace Eggacy.Gameplay.LevelFlow.TeamManagement
             List<int> randomIndexes = new List<int>();
             do
             {
-                var randomIndex = Random.Range(0, _teamDataPool.Count);
+                var randomIndex = UnityEngine.Random.Range(0, _teamDataPool.Count);
                 if (!randomIndexes.Contains(randomIndex))
                 {
                     randomIndexes.Add(randomIndex);

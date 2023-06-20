@@ -257,10 +257,30 @@ PrefabInstance:
       propertyPath: NetworkGuid.RawGuidValue.Array.data[1]
       value: 3734700650398120117
       objectReference: {fileID: 0}
+    - target: {fileID: 792555663684119223, guid: 4086ccf06ec3b7646ac61df24a1e2da2,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 792555663684119223, guid: 4086ccf06ec3b7646ac61df24a1e2da2,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1298976477229702357, guid: 4086ccf06ec3b7646ac61df24a1e2da2,
         type: 3}
       propertyPath: m_Name
       value: ChickenTank (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926854731735464049, guid: 4086ccf06ec3b7646ac61df24a1e2da2,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926854731735464049, guid: 4086ccf06ec3b7646ac61df24a1e2da2,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3909802495477228497, guid: 4086ccf06ec3b7646ac61df24a1e2da2,
         type: 3}
@@ -804,10 +824,30 @@ PrefabInstance:
       propertyPath: NetworkGuid.RawGuidValue.Array.data[1]
       value: -184336838417193317
       objectReference: {fileID: 0}
+    - target: {fileID: 792555663684119223, guid: 4086ccf06ec3b7646ac61df24a1e2da2,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 792555663684119223, guid: 4086ccf06ec3b7646ac61df24a1e2da2,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1298976477229702357, guid: 4086ccf06ec3b7646ac61df24a1e2da2,
         type: 3}
       propertyPath: m_Name
       value: ChickenTank
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926854731735464049, guid: 4086ccf06ec3b7646ac61df24a1e2da2,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1926854731735464049, guid: 4086ccf06ec3b7646ac61df24a1e2da2,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7856747159467283783, guid: 4086ccf06ec3b7646ac61df24a1e2da2,
         type: 3}
@@ -1327,6 +1367,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7069047065618890278, guid: e39b5692c2e04c848bcaf6c41c3d2dc5,
+        type: 3}
+      propertyPath: Flags
+      value: 2561
+      objectReference: {fileID: 0}
+    - target: {fileID: 7069047065618890278, guid: e39b5692c2e04c848bcaf6c41c3d2dc5,
+        type: 3}
+      propertyPath: NetworkGuid.RawGuidValue.Array.data[0]
+      value: 958435612878645635
+      objectReference: {fileID: 0}
+    - target: {fileID: 7069047065618890278, guid: e39b5692c2e04c848bcaf6c41c3d2dc5,
+        type: 3}
+      propertyPath: NetworkGuid.RawGuidValue.Array.data[1]
+      value: 7768260184634281395
+      objectReference: {fileID: 0}
     - target: {fileID: 8477128233363845342, guid: e39b5692c2e04c848bcaf6c41c3d2dc5,
         type: 3}
       propertyPath: m_Name
@@ -1340,7 +1395,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 7365513861084001271}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7365513861084001274}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a280ec694e2264a44aa7e5990c86d2f3, type: 3}
@@ -1352,36 +1407,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7365513861084001271}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7365513861084001274 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8477128233363845342, guid: e39b5692c2e04c848bcaf6c41c3d2dc5,
-    type: 3}
-  m_PrefabInstance: {fileID: 7365513861084001271}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7365513861084001275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7365513861084001274}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObjectInterest: 1
-  DefaultInterestGroups: []
-  DestroyWhenStateAuthorityLeaves: 0
-  AllowStateAuthorityOverride: 1
-  AoiPositionSource: {fileID: 0}
-  Flags: 2561
-  NetworkGuid:
-    RawGuidValue: 0d89fee827a94998836c8d75808fe7bd
-  NestedObjects: []
-  NetworkedBehaviours:
-  - {fileID: 7365513861084001272}
-  SimulationBehaviours: []
 --- !u!1001 &8011919111923977646
 PrefabInstance:
   m_ObjectHideFlags: 0

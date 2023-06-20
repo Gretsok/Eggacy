@@ -2070,7 +2070,8 @@ MonoBehaviour:
   _teamController: {fileID: 7974776616204183428}
   _renderersToColor:
   - {fileID: 6373461538909551768}
-  _saturationValue: 0.4
+  _saturationValue: 0.8
+  _valueValue: 1
 --- !u!1 &7511770766470569555
 GameObject:
   m_ObjectHideFlags: 0
