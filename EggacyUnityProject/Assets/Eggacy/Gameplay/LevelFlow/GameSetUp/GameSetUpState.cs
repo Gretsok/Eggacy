@@ -34,7 +34,13 @@ namespace Eggacy.Gameplay.LevelFlow.GameSetUp
                 var character =  _playerManager.GetCharacterForPlayer(player);
                 (var position, var rotation) = _worldReferencesHandler.GetSpawnPoint(numberOfPlayerCreated);
                 character.networkRigidbody.TeleportToPositionRotation(position, rotation);
-                character.GetComponent<TeamController>().ChangeTeamData(_teamManager.GetTeamDataByIndex(numberOfPlayerCreated));
+                var team = _teamManager.GetTeamDataByIndex(numberOfPlayerCreated);
+                character.GetComponent<TeamController>().ChangeTeamData(team);
+
+                var teamTank = _chickenTankManger.GetTankForTeam(team);
+                
+                character.SetRespawnPoint(teamTank.respawnPointsHandler.GetAndLockRespawnPoint());
+                character.TankAllyPositionFeedback.SetAllyChickenTank(teamTank);
 
                 character.SetToAlive();
 
