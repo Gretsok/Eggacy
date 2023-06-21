@@ -2,7 +2,7 @@ using Eggacy.Gameplay.Combat.LifeManagement;
 using Eggacy.Gameplay.Combat.TeamManagement;
 using UnityEngine;
 
-namespace Eggacy.Gameplay.Character.ChickenTank.Healing
+namespace Eggacy.Gameplay.Character.ChickenTank.HealingZone
 {
     public class ChickenTankHealingController : MonoBehaviour
     {

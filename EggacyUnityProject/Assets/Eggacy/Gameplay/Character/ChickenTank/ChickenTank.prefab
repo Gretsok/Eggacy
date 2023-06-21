@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 3386002262443749609}
   - component: {fileID: 7129425753733747931}
   - component: {fileID: 6925589244957410854}
+  - component: {fileID: 7563295367919851451}
   m_Layer: 8
   m_Name: ChickenTank
   m_TagString: Untagged
@@ -180,6 +181,7 @@ MonoBehaviour:
   - {fileID: 5256700346822055624}
   - {fileID: 2587740757161551470}
   - {fileID: 2055588102314242264}
+  - {fileID: 7563295367919851451}
   SimulationBehaviours: []
 --- !u!114 &3386002262443749609
 MonoBehaviour:
@@ -231,6 +233,22 @@ MonoBehaviour:
   _zoneRadius: 6
   _healCooldown: 0.5
   _amountToHeal: 5
+--- !u!114 &7563295367919851451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298976477229702357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0a6dfd174c9e1b418a98a26019073f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  _lifeController: {fileID: 2587740757161551470}
+  _healingAmount: 1
+  _healingCooldown: 0.2
 --- !u!1 &2053034144975151635
 GameObject:
   m_ObjectHideFlags: 0
