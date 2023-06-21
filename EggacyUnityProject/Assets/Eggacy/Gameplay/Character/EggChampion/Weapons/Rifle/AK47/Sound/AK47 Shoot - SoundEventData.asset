@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: AK47 Shoot - SoundEventData
   m_EditorClassIdentifier: 
   m_audioClip: {fileID: 8300000, guid: 2fdddf901fe4b5f43a547e121d9d5d8f, type: 3}
+  _maxLifeTime: 2

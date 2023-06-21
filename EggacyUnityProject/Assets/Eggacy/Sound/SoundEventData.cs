@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Eggacy.Sound
@@ -10,7 +8,11 @@ namespace Eggacy.Sound
     {
         [SerializeField]
         private AudioClip m_audioClip;
-        public AudioClip AudioClip => m_audioClip; 
+        public AudioClip AudioClip => m_audioClip;
+
+        [SerializeField]
+        private float _maxLifeTime = 1000;
+        public float maxLifeTime => _maxLifeTime;
 
         public Action<SoundEventData> on2DPlayRequested;
         public Action<SoundEventData, Transform> on3DPlayRequested;

@@ -36,7 +36,7 @@ namespace Eggacy.Gameplay.Character.EggChampion.Player.ShotsAwareness
             }
 
 
-            var angle = Vector3.SignedAngle(transform.forward, (_sourcePosition - _playerController.character.transform.position).normalized, Vector3.up);
+            var angle = Vector3.SignedAngle((_sourcePosition - _playerController.character.transform.position).normalized, transform.forward, Vector3.up);
 
             transform.rotation = Quaternion.Euler(0f, 0f, angle);
         }

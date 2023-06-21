@@ -26,6 +26,10 @@ namespace Eggacy.Sound
             var audioSource = Instantiate(m_audioSource, transform.position, Quaternion.identity, this.transform);
             audioSource.clip = soundEventData.AudioClip;
             audioSource.spatialBlend = 1f;
+            if(audioSource.TryGetComponent<SoundDataHandler>(out SoundDataHandler handler))
+            {
+                handler.SetLifeDuration(soundEventData.maxLifeTime);
+            }
             audioSource.Play();
         }
 
@@ -34,6 +38,10 @@ namespace Eggacy.Sound
             var audioSource = Instantiate(m_audioSource, this.transform);
             audioSource.clip = soundEventData.AudioClip;
             audioSource.spatialBlend = 0f;
+            if (audioSource.TryGetComponent<SoundDataHandler>(out SoundDataHandler handler))
+            {
+                handler.SetLifeDuration(soundEventData.maxLifeTime);
+            }
             audioSource.Play();
         }
     }
