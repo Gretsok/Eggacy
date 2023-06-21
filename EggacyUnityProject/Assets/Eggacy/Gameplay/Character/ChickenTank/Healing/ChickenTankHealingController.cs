@@ -34,7 +34,9 @@ namespace Eggacy.Gameplay.Character.ChickenTank.Healing
             for(int i = 0; i <  colliders.Length; ++i)
             {
                 if (colliders[i].TryGetComponent<LifeControllerCollider>(out LifeControllerCollider lifeControllerCollider) 
-                    && lifeControllerCollider.lifeController.teamController.teamData.instanceIndex == _teamController.teamData.instanceIndex)
+                    && lifeControllerCollider.lifeController.teamController.teamData != null 
+                    && lifeControllerCollider.lifeController.teamController.teamData.instanceIndex == _teamController.teamData.instanceIndex
+                    && lifeControllerCollider.lifeController.teamController != _teamController)
                 {
                     lifeControllerCollider.lifeController.Heal(_amountToHeal);
                 }
