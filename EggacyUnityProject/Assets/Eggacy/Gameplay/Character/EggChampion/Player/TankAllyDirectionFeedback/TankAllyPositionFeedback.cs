@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Eggacy.Gameplay.Character.EggChampion
@@ -10,10 +8,14 @@ namespace Eggacy.Gameplay.Character.EggChampion
 
         private ChickenTank.ChickenTank m_allyChickenTank;
 
-        public void SetAllyChickenTank(ChickenTank.ChickenTank a_allyChickenTank)
+        [SerializeField]
+        private SpriteRenderer m_spriteRenderer;
+
+        public void Setup(ChickenTank.ChickenTank a_allyChickenTank, Color a_teamColor)
         {
             m_allyChickenTank = a_allyChickenTank;
             m_target = m_allyChickenTank.transform;
+            m_spriteRenderer.color = a_teamColor;
         }
 
         private void LateUpdate()

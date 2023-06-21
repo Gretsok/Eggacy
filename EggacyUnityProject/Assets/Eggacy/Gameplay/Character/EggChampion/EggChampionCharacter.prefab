@@ -1856,6 +1856,7 @@ Transform:
   - {fileID: 7148154066817202800}
   - {fileID: 3738234812163387630}
   - {fileID: 2529063206633350439}
+  - {fileID: 2978148480692967036}
   m_Father: {fileID: 6998616399491864064}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1918,6 +1919,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 1914728201340874693}
   _weaponController: {fileID: 4374407149508956467}
   _lifeController: {fileID: 2526454341629484489}
+  m_tankAllyPositionFeedback: {fileID: 5838228240798427615}
   _modelRoot: {fileID: 6998616398714877229}
   _collidersGO: {fileID: 2202288067268596008}
   _jumpVelocity: 4
@@ -2413,3 +2415,90 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _networkObject: {fileID: 6998616399491864077}
+--- !u!1001 &4148368008283382563
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6998616398714877229}
+    m_Modifications:
+    - target: {fileID: 1208500695653791071, guid: 3dab313ff0dab1342913e7b2c2c62d33,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208500695653791071, guid: 3dab313ff0dab1342913e7b2c2c62d33,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208500695653791071, guid: 3dab313ff0dab1342913e7b2c2c62d33,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.176
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208500695653791071, guid: 3dab313ff0dab1342913e7b2c2c62d33,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208500695653791071, guid: 3dab313ff0dab1342913e7b2c2c62d33,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208500695653791071, guid: 3dab313ff0dab1342913e7b2c2c62d33,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208500695653791071, guid: 3dab313ff0dab1342913e7b2c2c62d33,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208500695653791071, guid: 3dab313ff0dab1342913e7b2c2c62d33,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208500695653791071, guid: 3dab313ff0dab1342913e7b2c2c62d33,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208500695653791071, guid: 3dab313ff0dab1342913e7b2c2c62d33,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1208500695653791071, guid: 3dab313ff0dab1342913e7b2c2c62d33,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6659392555043252168, guid: 3dab313ff0dab1342913e7b2c2c62d33,
+        type: 3}
+      propertyPath: m_Name
+      value: AllyTankDirection_Feedback
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3dab313ff0dab1342913e7b2c2c62d33, type: 3}
+--- !u!4 &2978148480692967036 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1208500695653791071, guid: 3dab313ff0dab1342913e7b2c2c62d33,
+    type: 3}
+  m_PrefabInstance: {fileID: 4148368008283382563}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5838228240798427615 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7535783446906587900, guid: 3dab313ff0dab1342913e7b2c2c62d33,
+    type: 3}
+  m_PrefabInstance: {fileID: 4148368008283382563}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f9441c6018730941b8f6b250a3fef80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
