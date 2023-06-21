@@ -1050,11 +1050,47 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShotsAwarenessCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5353566029755621039, guid: e99d2dacd5308924da9ab6b305cc5ca6,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5353566029755621039, guid: e99d2dacd5308924da9ab6b305cc5ca6,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5353566029755621039, guid: e99d2dacd5308924da9ab6b305cc5ca6,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5353566029755621039, guid: e99d2dacd5308924da9ab6b305cc5ca6,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5353566029755621039, guid: e99d2dacd5308924da9ab6b305cc5ca6,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5353566029755621039, guid: e99d2dacd5308924da9ab6b305cc5ca6,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8324461216502867555, guid: e99d2dacd5308924da9ab6b305cc5ca6,
         type: 3}
       propertyPath: _controller
       value: 
       objectReference: {fileID: 3253415854844806114}
+    - target: {fileID: 8324461216502867555, guid: e99d2dacd5308924da9ab6b305cc5ca6,
+        type: 3}
+      propertyPath: _widgetPrefab
+      value: 
+      objectReference: {fileID: 1289485512899410950, guid: 795e382fc547c2c4bab432cafa6ed151,
+        type: 3}
     - target: {fileID: 9031455276074049334, guid: e99d2dacd5308924da9ab6b305cc5ca6,
         type: 3}
       propertyPath: m_Pivot.x
