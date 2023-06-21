@@ -3,6 +3,7 @@ using UnityEngine;
 using Fusion;
 using Eggacy.Gameplay.Combat.LifeManagement;
 using System.Collections;
+using System.Linq;
 
 namespace Eggacy.Gameplay.Character.EggChampion
 {
@@ -85,7 +86,7 @@ namespace Eggacy.Gameplay.Character.EggChampion
 
         public bool IsGrounded()
         {
-            var isGrounded = Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, 0.15f, _groundLayerMask);
+            var isGrounded = Physics.OverlapBox(transform.position, new Vector3(0.5f, 0.05f, 0.5f), Quaternion.identity, _groundLayerMask).Length > 0;
             Debug.DrawLine(transform.position + Vector3.up * 0.1f, transform.position + Vector3.down * 0.15f, isGrounded ? Color.red : Color.yellow);
             return isGrounded;
         }

@@ -138,7 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
   _teamController: {fileID: 2055588102314242264}
-  _baseMaxLife: 200
+  _baseMaxLife: 2000
 --- !u!114 &2055588102314242264
 MonoBehaviour:
   m_ObjectHideFlags: 0
