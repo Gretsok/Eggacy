@@ -1,7 +1,4 @@
 using Eggacy.Gameplay.Combat.LifeManagement;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Eggacy.Gameplay.Character.EggChampion
@@ -18,19 +15,23 @@ namespace Eggacy.Gameplay.Character.EggChampion
             _healthBar.SetHealthRatio(1f);
 
             _lifeController.onDamageTaken += OnDamageTaken;
-            Debug.Log("Setup health ratio");
+            _lifeController.onHealed += OnHealed;
         }
 
         private void OnDestroy()
         {
             _lifeController.onDamageTaken -= OnDamageTaken;
+            _lifeController.onHealed -= OnHealed;
+        }
+
+        private void OnHealed(LifeController a_lifeController, int healAMount)
+        {
+            _healthBar.SetHealthRatio((float)a_lifeController.currentLife / (float)a_lifeController.maxLife);
         }
 
         private void OnDamageTaken(LifeController a_lifeController, int arg2)
         {
             _healthBar.SetHealthRatio((float)a_lifeController.currentLife / (float)a_lifeController.maxLife);
-            Debug.Log("Current life : " + a_lifeController.currentLife);
-            Debug.Log("Max life : " + a_lifeController.maxLife);
         }
     }
 }

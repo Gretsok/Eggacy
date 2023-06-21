@@ -2,13 +2,15 @@ using Eggacy.Gameplay.Character.ChickenTank;
 using Eggacy.Gameplay.Character.ChickenTank.Movement;
 using Eggacy.Gameplay.Combat.LifeManagement;
 using Eggacy.Gameplay.Combat.TeamManagement;
+using Eggacy.Gameplay.LevelFlow.TeamManagement;
+using Fusion;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Eggacy.Gameplay.LevelFlow.ChickenTankManagement
 {
-    public class ChickenTankManager : MonoBehaviour
+    public class ChickenTankManager : NetworkBehaviour
     {
         [SerializeField]
         private ChickenWaypointsManager _waypointsManager = null;
@@ -19,12 +21,25 @@ namespace Eggacy.Gameplay.LevelFlow.ChickenTankManagement
         private List<ChickenWaypoint> _startingChickenWaypoints = new List<ChickenWaypoint>();
 
         public Action<ChickenTank> onTankDestroyed = null;
+
+
+        public Action<ChickenTankManager> onInitializedForGameplay = null;
+        public Action<ChickenTankManager> onCleanedUpFromGameplay = null;
+
+
         public void InitializeForGameplay()
         {
             _chickenTanks.ForEach(chickenTank =>
             {
                 chickenTank.lifeController.onDied_ServerOnly += HandleTankDied;
             });
+            Rpc_NotifyInitializedForGameplay();
+        }
+
+        [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+        public void Rpc_NotifyInitializedForGameplay()
+        {
+            onInitializedForGameplay?.Invoke(this);
         }
 
         public void CleanUpFromGameplay()
@@ -33,6 +48,13 @@ namespace Eggacy.Gameplay.LevelFlow.ChickenTankManagement
             {
                 chickenTank.lifeController.onDied_ServerOnly -= HandleTankDied;
             });
+            Rpc_NotifyCleanedUpFromGameplay();
+        }
+
+        [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+        public void Rpc_NotifyCleanedUpFromGameplay()
+        {
+            onCleanedUpFromGameplay?.Invoke(this);
         }
 
         private void HandleTankDied(LifeController lifeController)
@@ -59,5 +81,14 @@ namespace Eggacy.Gameplay.LevelFlow.ChickenTankManagement
             _chickenTanks[teamIndex].GetComponent<TeamController>().ChangeTeamData(teamData);
         }
 
+        public ChickenTank GetTankAt(int index)
+        {
+            return _chickenTanks[index];
+        }
+
+        public ChickenTank GetTankForTeam(TeamData teamData)
+        {
+            return _chickenTanks.Find(tank => tank.lifeController.teamController.teamData.instanceIndex == teamData.instanceIndex);
+        }
     }
 }

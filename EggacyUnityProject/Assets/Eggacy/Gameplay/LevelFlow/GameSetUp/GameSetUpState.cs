@@ -27,6 +27,15 @@ namespace Eggacy.Gameplay.LevelFlow.GameSetUp
 
             _chickenTankManger.SetUp();
 
+            yield return null;
+
+            for (int i = 0; i < _chickenTankManger.tanksCount; ++i)
+            {
+                _chickenTankManger.SetTeamForTank(i, _teamManager.GetTeamDataByIndex(i));
+            }
+
+            yield return null;
+
             int numberOfPlayerCreated = 0;
             foreach (var player in Runner.ActivePlayers)
             {
@@ -47,10 +56,7 @@ namespace Eggacy.Gameplay.LevelFlow.GameSetUp
                 ++numberOfPlayerCreated;
             }
             yield return null;
-            for(int i = 0; i < _chickenTankManger.tanksCount; ++i)
-            {
-                _chickenTankManger.SetTeamForTank(i, _teamManager.GetTeamDataByIndex(i));
-            }
+
 
             onStateEnded?.Invoke(this);
         }

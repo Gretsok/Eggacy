@@ -48,3 +48,4 @@ MonoBehaviour:
     type: 3}
   RegisteredSoundEventData:
   - {fileID: 11400000, guid: 3d55874d6b3feb944b3843a2a3d6b278, type: 2}
+  - {fileID: 11400000, guid: 92cc46229adc9de40be8c461322b7fcf, type: 2}

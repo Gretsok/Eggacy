@@ -3,6 +3,7 @@ using UnityEngine;
 using Fusion;
 using Eggacy.Gameplay.Combat.LifeManagement;
 using System.Collections;
+using System.Linq;
 
 namespace Eggacy.Gameplay.Character.EggChampion
 {
@@ -90,7 +91,7 @@ namespace Eggacy.Gameplay.Character.EggChampion
 
         public bool IsGrounded()
         {
-            var isGrounded = Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down, 0.15f, _groundLayerMask);
+            var isGrounded = Physics.OverlapBox(transform.position, new Vector3(0.5f, 0.05f, 0.5f), Quaternion.identity, _groundLayerMask).Length > 0;
             Debug.DrawLine(transform.position + Vector3.up * 0.1f, transform.position + Vector3.down * 0.15f, isGrounded ? Color.red : Color.yellow);
             return isGrounded;
         }
@@ -210,12 +211,20 @@ namespace Eggacy.Gameplay.Character.EggChampion
         #endregion
 
         #region Death Behaviour
+        public void SetRespawnPoint(Transform respawnPoint)
+        {
+            if (!Runner.IsServer) return;
+
+            _respawnPoint = respawnPoint;
+        }
+
         public void SetToAlive()
         {
             if (!Runner.IsServer) return;
 
             _isAlive = true;
             _lifeController.ResetLife();
+            GetComponent<NetworkTransform>().TeleportToPositionRotation(_respawnPoint.position, _respawnPoint.rotation);
         }
 
         private void HandleDied_ServerOnly(LifeController controller)
@@ -233,7 +242,7 @@ namespace Eggacy.Gameplay.Character.EggChampion
         private IEnumerator DeathRoutine()
         {
             _isAlive = false;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(respawnDuration);
             SetToAlive();
         }
 

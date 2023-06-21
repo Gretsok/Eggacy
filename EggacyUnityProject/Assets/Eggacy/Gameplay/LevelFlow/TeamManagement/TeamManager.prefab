@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6389100960819820878}
   - component: {fileID: 4668853474501546360}
+  - component: {fileID: 7069047065618890278}
   m_Layer: 0
   m_Name: TeamManager
   m_TagString: Untagged
@@ -44,7 +45,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a280ec694e2264a44aa7e5990c86d2f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   _teamDataPool:
   - {fileID: 11400000, guid: 0f50fb82485c6f844a95c9204dd80240, type: 2}
   - {fileID: 11400000, guid: bd672cac8545caa4e9ce4bf54f85788c, type: 2}
   _numberOfTeams: 2
+--- !u!114 &7069047065618890278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8477128233363845342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2305
+  NetworkGuid:
+    RawGuidValue: e39b5692c2e04c848bcaf6c41c3d2dc5
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 4668853474501546360}
+  SimulationBehaviours: []

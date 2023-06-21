@@ -25,6 +25,7 @@ namespace Eggacy.Sound
         {
             var audioSource = Instantiate(m_audioSource, transform.position, Quaternion.identity, this.transform);
             audioSource.clip = soundEventData.AudioClip;
+            audioSource.spatialBlend = 1f;
             audioSource.Play();
         }
 
@@ -32,6 +33,7 @@ namespace Eggacy.Sound
         {
             var audioSource = Instantiate(m_audioSource, this.transform);
             audioSource.clip = soundEventData.AudioClip;
+            audioSource.spatialBlend = 0f;
             audioSource.Play();
         }
     }
