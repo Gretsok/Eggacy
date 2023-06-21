@@ -17,7 +17,7 @@ namespace Eggacy.Gameplay.Character.EggChampion.Player.DeathDisplay
         private void Start()
         {
             _container.gameObject.SetActive(false);
-            _controller.Character.lifeController.onDied += HandleDied;
+            _controller.character.lifeController.onDied += HandleDied;
         }
 
         private void HandleDied(LifeController obj)
@@ -29,9 +29,9 @@ namespace Eggacy.Gameplay.Character.EggChampion.Player.DeathDisplay
         {
             float startTime = Time.time;
             _container.gameObject.SetActive(true);
-            while(Time.time - startTime < _controller.Character.respawnDuration)
+            while(Time.time - startTime < _controller.character.respawnDuration)
             {
-                _deathCooldownText.text = (_controller.Character.respawnDuration - (Time.time - startTime)).ToString("0.0");
+                _deathCooldownText.text = (_controller.character.respawnDuration - (Time.time - startTime)).ToString("0.0");
                 yield return null;
             }
             _container.gameObject.SetActive(false);

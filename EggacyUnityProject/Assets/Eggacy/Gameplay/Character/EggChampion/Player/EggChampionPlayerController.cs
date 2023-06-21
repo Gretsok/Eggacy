@@ -12,7 +12,7 @@ namespace Eggacy.Gameplay.Character.EggChampion.Player
 
 
         private EggChampionCharacter _character = null;
-        public EggChampionCharacter Character => _character; 
+        public EggChampionCharacter character => _character; 
 
         private EggChampionControls _controls = null;
 

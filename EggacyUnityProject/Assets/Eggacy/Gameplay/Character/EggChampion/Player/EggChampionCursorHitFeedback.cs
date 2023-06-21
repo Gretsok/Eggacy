@@ -16,12 +16,12 @@ namespace Eggacy.Gameplay.Character.EggChampion.Player
 
         private void Start()
         {
-            m_playerController.Character.lifeController.onDamageDealt += OnDamageDealt;
+            m_playerController.character.lifeController.onDamageDealt += OnDamageDealt;
         }
 
         private void OnDestroy()
         {
-            m_playerController.Character.lifeController.onDamageDealt -= OnDamageDealt;
+            m_playerController.character.lifeController.onDamageDealt -= OnDamageDealt;
         }
 
         private void OnDamageDealt(LifeController lifeController, int damage)

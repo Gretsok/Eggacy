@@ -36,7 +36,9 @@ namespace Eggacy.Gameplay.Combat.LifeManagement
         {
             if (!Runner.IsServer) return;
 
+            var delta = maxLife - _currentLife;
             _currentLife = maxLife;
+            NotifyHealed(delta);
         }
 
         public void TakeDamage(Damage.Damage damage)
