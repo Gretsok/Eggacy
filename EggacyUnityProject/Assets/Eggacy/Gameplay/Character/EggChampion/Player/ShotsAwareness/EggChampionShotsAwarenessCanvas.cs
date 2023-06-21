@@ -22,6 +22,7 @@ namespace Eggacy.Gameplay.Character.EggChampion.Player.ShotsAwareness
         {
             var widget = Instantiate(_widgetPrefab, _container);
             widget.SetSourcePosition(sourcePosition);
+            widget.SetPlayerController(_controller);
         }
     }
 }
