@@ -19,6 +19,7 @@ namespace Eggacy.Gameplay.Combat.LifeManagement
 
         public Action<LifeController> onDied = null;
         public Action<LifeController, int> onDamageTaken = null;
+        public Action<LifeController, Vector3> onDamageTakenFromPosition = null;
         public Action<LifeController, int> onHealed = null;
         public Action<LifeController> onDied_ServerOnly = null;
         public Action<LifeController, int> onDamageTaken_ServerOnly = null;
@@ -64,13 +65,13 @@ namespace Eggacy.Gameplay.Combat.LifeManagement
             {
                 var realAmountOfDamage = rawLifeAfterDamage - _currentLife;
                 _currentLife = 0;
-                NotifyDamageTaken(realAmountOfDamage);
+                NotifyDamageTaken(realAmountOfDamage, damage.source);
                 NotifyDied();
             }
             else // If the life controller survives after the damage
             {
                 _currentLife -= damage.amountToRetreat;
-                NotifyDamageTaken(damage.amountToRetreat);
+                NotifyDamageTaken(damage.amountToRetreat, damage.source);
             }
 
             if(damage.source is GameObject)
@@ -108,16 +109,27 @@ namespace Eggacy.Gameplay.Combat.LifeManagement
             onDamageDealt?.Invoke(this, amountToRetreat);
         }
 
-        private void NotifyDamageTaken(int damageTaken)
+        private void NotifyDamageTaken(int damageTaken, UnityEngine.Object source)
         {
             onDamageTaken_ServerOnly?.Invoke(this, damageTaken);
             Rpc_NotifyDamageTaken(damageTaken);
+            if(source 
+                && source is GameObject)
+            {
+                Rpc_NotifyDamageTakenFromPosition((source as GameObject).transform.position);
+            }
         }
 
         [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
         private void Rpc_NotifyDamageTaken(int damageTaken)
         {
             onDamageTaken?.Invoke(this, damageTaken);
+        }
+
+        [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+        private void Rpc_NotifyDamageTakenFromPosition(Vector3 position)
+        {
+            onDamageTakenFromPosition?.Invoke(this, position);
         }
 
         private void NotifyDied()
