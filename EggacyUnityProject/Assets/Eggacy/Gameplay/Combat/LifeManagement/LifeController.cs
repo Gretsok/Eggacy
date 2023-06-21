@@ -46,7 +46,7 @@ namespace Eggacy.Gameplay.Combat.LifeManagement
             // If it doesn't do damage, we completely ignore it
             if (damage.amountToRetreat == 0) return;
             // No friendly fire
-            if (_teamController.teamData.team == damage.teamSource) return;
+            if (damage.teamSource != null && _teamController.teamData.team == damage.teamSource) return;
             // Even if we have friendly fire, we cannot shoot ourselves
             if (damage.source == gameObject) return;
 
@@ -58,7 +58,7 @@ namespace Eggacy.Gameplay.Combat.LifeManagement
 
             var rawLifeAfterDamage = _currentLife - damage.amountToRetreat;
 
-            if(rawLifeAfterDamage < 0) // If the life controller dies after the damage
+            if(rawLifeAfterDamage <= 0) // If the life controller dies after the damage
             {
                 var realAmountOfDamage = rawLifeAfterDamage - _currentLife;
                 _currentLife = 0;
