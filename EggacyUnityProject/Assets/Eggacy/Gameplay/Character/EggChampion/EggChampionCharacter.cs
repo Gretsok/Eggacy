@@ -20,6 +20,10 @@ namespace Eggacy.Gameplay.Character.EggChampion
         public LifeController lifeController => _lifeController;
 
         [SerializeField]
+        private TankAllyPositionFeedback m_tankAllyPositionFeedback;
+        public TankAllyPositionFeedback TankAllyPositionFeedback => m_tankAllyPositionFeedback;
+
+        [SerializeField]
         private Transform _modelRoot = null;
         public Transform modelRoot => _modelRoot;
         [SerializeField]
@@ -51,6 +55,7 @@ namespace Eggacy.Gameplay.Character.EggChampion
         [SerializeField]
         private float _respawnDuration = 7f;
         public float respawnDuration => _respawnDuration;
+
 
         private void Start()
         {
