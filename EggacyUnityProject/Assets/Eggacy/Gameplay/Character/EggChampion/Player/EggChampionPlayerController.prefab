@@ -407,6 +407,7 @@ MonoBehaviour:
   - {fileID: 7854394305485539402}
   - {fileID: 6243919198945746483}
   - {fileID: 3966930224918946629}
+  - {fileID: 6584267959082026610}
 --- !u!114 &711114278105476335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -740,13 +741,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3391689448675376833, guid: 5bff59096d20caa409b5c8d9ef0071df,
         type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391689448675376833, guid: 5bff59096d20caa409b5c8d9ef0071df,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391689448675376833, guid: 5bff59096d20caa409b5c8d9ef0071df,
+        type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 350
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3391689448675376833, guid: 5bff59096d20caa409b5c8d9ef0071df,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 60
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3845113519656929739, guid: 5bff59096d20caa409b5c8d9ef0071df,
         type: 3}
@@ -1201,6 +1212,12 @@ PrefabInstance:
 --- !u!224 &1671417529446947226 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9031455276074049334, guid: e99d2dacd5308924da9ab6b305cc5ca6,
+    type: 3}
+  m_PrefabInstance: {fileID: 7666320473230362284}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6584267959082026610 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3532010717947445470, guid: e99d2dacd5308924da9ab6b305cc5ca6,
     type: 3}
   m_PrefabInstance: {fileID: 7666320473230362284}
   m_PrefabAsset: {fileID: 0}

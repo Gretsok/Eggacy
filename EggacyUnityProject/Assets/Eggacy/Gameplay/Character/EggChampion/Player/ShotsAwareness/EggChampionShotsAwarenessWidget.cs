@@ -35,9 +35,10 @@ namespace Eggacy.Gameplay.Character.EggChampion.Player.ShotsAwareness
                 Destroy(gameObject);
             }
 
-            var relativeDirection = _playerController.character.
-                transform.InverseTransformDirection(_sourcePosition - _playerController.character.transform.position);
-            transform.rotation = Quaternion.Euler(0f, 0f, relativeDirection.y);
+
+            var angle = Vector3.SignedAngle(transform.forward, (_sourcePosition - _playerController.character.transform.position).normalized, Vector3.up);
+
+            transform.rotation = Quaternion.Euler(0f, 0f, angle);
         }
     }
 };
