@@ -2,6 +2,8 @@ using Eggacy.Gameplay.Combat.TeamManagement;
 using Eggacy.Gameplay.LevelFlow.ChickenTankManagement;
 using Eggacy.Gameplay.LevelFlow.TeamManagement;
 using Eggacy.Gameplay.LevelFlow.WorldReferences;
+using Fusion;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -49,6 +51,7 @@ namespace Eggacy.Gameplay.LevelFlow.GameSetUp
                 var teamTank = _chickenTankManger.GetTankForTeam(team);
                 
                 character.SetRespawnPoint(teamTank.respawnPointsHandler.GetAndLockRespawnPoint());
+                Rpc_SetAllyChickenTankPositionFeedbackForCharacter(character, teamTank, team.team.teamColor);
 
                 character.SetToAlive();
 
@@ -58,6 +61,12 @@ namespace Eggacy.Gameplay.LevelFlow.GameSetUp
 
 
             onStateEnded?.Invoke(this);
+        }
+
+        [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+        private void Rpc_SetAllyChickenTankPositionFeedbackForCharacter(Character.EggChampion.EggChampionCharacter character, Character.ChickenTank.ChickenTank teamTank, Color teamColor)
+        {
+            character.TankAllyPositionFeedback.Setup(teamTank, teamColor);
         }
     }
 }
