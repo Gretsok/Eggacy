@@ -18,6 +18,7 @@ namespace Eggacy.Gameplay.Character.ChickenTank.SelfHealing
 
         private void Update()
         {
+            if (!Runner) return;
             if(!Runner.IsServer) return;
 
             if(Time.time - _lastTimeOfHealing > _healingCooldown)

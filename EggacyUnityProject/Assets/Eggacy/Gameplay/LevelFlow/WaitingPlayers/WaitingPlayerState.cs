@@ -46,7 +46,7 @@ namespace Eggacy.Gameplay.LevelFlow.WaitingPlayers
 
         private void HandleNewPlayerJoined(PlayerRef obj)
         {
-            TryToStartGameIfConditionsFullfilled();
+            // TryToStartGameIfConditionsFullfilled();
         }
 
         private void TryToStartGameIfConditionsFullfilled()

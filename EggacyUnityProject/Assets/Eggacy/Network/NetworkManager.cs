@@ -112,7 +112,8 @@ namespace Eggacy.Network
                 GameMode = GameMode.AutoHostOrClient,
                 SessionName = roomName,
                 Scene = 1,
-                SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
+                SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>(),
+                PlayerCount = 10
             });
         }
 
