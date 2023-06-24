@@ -36,6 +36,8 @@ namespace Eggacy.Gameplay.Character.EggChampion
         [SerializeField]
         private float _movementSmoothness = 8f;
         [SerializeField]
+        private float _movementInAirSmoothness = 4f;
+        [SerializeField]
         private LayerMask _groundLayerMask = default;
         private Vector3 _directionToMove { get; set; }
         [Networked]
@@ -79,6 +81,12 @@ namespace Eggacy.Gameplay.Character.EggChampion
             {
                 float gravity = _rigidbody.Rigidbody.velocity.y;
                 _currentPlannedVelocity = Vector3.Lerp(_currentPlannedVelocity, _directionToMove * _movementSpeed, Runner.DeltaTime * _movementSmoothness);
+                _rigidbody.Rigidbody.velocity = _currentPlannedVelocity + gravity * Vector3.up;
+            }
+            else
+            {
+                float gravity = _rigidbody.Rigidbody.velocity.y;
+                _currentPlannedVelocity = Vector3.Lerp(_currentPlannedVelocity, _directionToMove * _movementSpeed, Runner.DeltaTime * _movementInAirSmoothness);
                 _rigidbody.Rigidbody.velocity = _currentPlannedVelocity + gravity * Vector3.up;
             }
         }
