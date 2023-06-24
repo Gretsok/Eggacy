@@ -4,6 +4,7 @@ using Fusion;
 using System.Collections.Generic;
 using UnityEngine;
 using Eggacy.Gameplay.Combat.TeamManagement;
+using System.Collections;
 
 namespace Eggacy.Gameplay.LevelFlow.PlayerManagement
 {
@@ -37,15 +38,28 @@ namespace Eggacy.Gameplay.LevelFlow.PlayerManagement
 
             networkedPlayerController.SetCharacter(networkedCharacter);
 
-            Rpc_NotifyNewCharacterCreated(networkedCharacter);
+            Rpc_NotifyNewCharacterCreated(networkedCharacter.Object.Id);
         }
 
         [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
-        public void Rpc_NotifyNewCharacterCreated(EggChampionCharacter newCreatedCharacter)
+        public void Rpc_NotifyNewCharacterCreated(NetworkId newCreatedCharacterIndex)
         {
-            if (newCreatedCharacter.HasInputAuthority)
+            StartCoroutine(HandleLocalCharacterSetUp(newCreatedCharacterIndex));
+        }
+
+        private IEnumerator HandleLocalCharacterSetUp(NetworkId newCreatedCharacterIndex)
+        {
+            NetworkObject characterObject = Runner.FindObject(newCreatedCharacterIndex);
+
+            while(characterObject == null)
             {
-                _localChampionCharacter = newCreatedCharacter;
+                yield return null;
+                characterObject = Runner.FindObject(newCreatedCharacterIndex);
+            }
+
+            if (characterObject.HasInputAuthority)
+            {
+                _localChampionCharacter = characterObject.GetComponent<EggChampionCharacter>();
             }
         }
 
