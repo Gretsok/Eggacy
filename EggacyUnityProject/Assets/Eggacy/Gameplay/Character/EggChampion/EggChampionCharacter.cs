@@ -38,6 +38,8 @@ namespace Eggacy.Gameplay.Character.EggChampion
         [SerializeField]
         private float _movementInAirSmoothness = 4f;
         [SerializeField]
+        private float _gravity = 9.81f;
+        [SerializeField]
         private LayerMask _groundLayerMask = default;
         private Vector3 _directionToMove { get; set; }
         [Networked]
@@ -76,6 +78,8 @@ namespace Eggacy.Gameplay.Character.EggChampion
             _rigidbody.Rigidbody.rotation = Quaternion.LookRotation(_orientation, Vector3.up);
 
             _isGrounded = IsGrounded();
+
+            _rigidbody.Rigidbody.AddForce(Vector3.down * _gravity, ForceMode.Acceleration);
 
             if(_isGrounded)
             {

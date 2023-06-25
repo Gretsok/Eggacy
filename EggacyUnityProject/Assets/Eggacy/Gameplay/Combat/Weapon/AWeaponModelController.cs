@@ -11,6 +11,11 @@ namespace Eggacy.Gameplay.Combat.Weapon
         {
 
         }
+
+        public virtual void Update()
+        {
+
+        }
     }
 
     public abstract class AWeaponModelController<W, M> : AWeaponModelController where W : AWeapon where M : AWeaponModel
