@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 1375127471626928515, guid: 46df2cf62ce19034fb855a1aeb71eb69,
         type: 3}
       propertyPath: _registeredSoundEventData.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1375127471626928515, guid: 46df2cf62ce19034fb855a1aeb71eb69,
         type: 3}
@@ -29,6 +29,12 @@ PrefabInstance:
       propertyPath: _registeredSoundEventData.Array.data[2]
       value: 
       objectReference: {fileID: 11400000, guid: c5c460d4aa2a8844c8d04eec0b2dffdb,
+        type: 2}
+    - target: {fileID: 1375127471626928515, guid: 46df2cf62ce19034fb855a1aeb71eb69,
+        type: 3}
+      propertyPath: _registeredSoundEventData.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: a073145c0099d76488c5f766d9ec8558,
         type: 2}
     - target: {fileID: 5515261120213081522, guid: 46df2cf62ce19034fb855a1aeb71eb69,
         type: 3}

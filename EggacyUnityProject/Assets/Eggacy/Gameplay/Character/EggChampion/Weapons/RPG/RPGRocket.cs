@@ -1,7 +1,7 @@
 using Eggacy.Gameplay.Combat.Damage;
 using Eggacy.Gameplay.Combat.LifeManagement;
-using Eggacy.Gameplay.Combat.Weapon;
 using Fusion;
+using System;
 using UnityEngine;
 
 namespace Eggacy.Gameplay.Character.EggChampion.Weapons.RPG
@@ -35,6 +35,8 @@ namespace Eggacy.Gameplay.Character.EggChampion.Weapons.RPG
         private int _maxDamageToDeal = 80;
 
         private EggChampionReferencesForWeaponContainer _referencesForWeaponContainer = null;
+
+        public Action onExploded = null;
 
         public void SetReferencesForWeaponContainer(EggChampionReferencesForWeaponContainer referencesForWeaponContainer)
         {
@@ -114,6 +116,12 @@ namespace Eggacy.Gameplay.Character.EggChampion.Weapons.RPG
             }
 
             Runner.Despawn(Object);
+        }
+
+        public override void Despawned(NetworkRunner runner, bool hasState)
+        {
+            base.Despawned(runner, hasState);
+            onExploded?.Invoke();
         }
     }
 }

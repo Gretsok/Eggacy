@@ -13,7 +13,7 @@ namespace Eggacy.Sound
 
         [SerializeField]
         private float _maxDistanceToHear = 300f;
-        public float maxDistanceToHear => maxDistanceToHear;
+        public float maxDistanceToHear => _maxDistanceToHear;
 
         public Action<WorldSoundEventData, Transform> onPlayRequested;
 

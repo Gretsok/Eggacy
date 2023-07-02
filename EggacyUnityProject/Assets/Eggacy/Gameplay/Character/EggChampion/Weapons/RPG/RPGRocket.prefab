@@ -57,10 +57,10 @@ MonoBehaviour:
   _maxLifeDuration: 8
   _collisionToTriggerExplosion:
     serializedVersion: 2
-    m_Bits: 769
+    m_Bits: 897
   _explosionSource: {fileID: 6054311923338663863}
   _explosionRadius: 5
-  _maxPropulsionForce: 8
+  _maxPropulsionForce: 26.666666
   _maxHeightPropulsionForceMultiplier: 2
   _maxDamageToDeal: 80
 --- !u!54 &7603290888678507324
@@ -160,6 +160,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rocket: {fileID: 5953323609306950855}
   _travelingSound: {fileID: 11400000, guid: 4a1849c7800bce849a13ece6fe404954, type: 2}
+  _explosionFeedbackPrefab: {fileID: 3125629124793735815, guid: 2f372ab30f268b84987c9db801d75d42,
+    type: 3}
 --- !u!1 &1130653628655880376
 GameObject:
   m_ObjectHideFlags: 0
