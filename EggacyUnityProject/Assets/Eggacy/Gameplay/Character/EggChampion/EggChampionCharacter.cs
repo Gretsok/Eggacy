@@ -77,6 +77,8 @@ namespace Eggacy.Gameplay.Character.EggChampion
              
             _rigidbody.Rigidbody.rotation = Quaternion.LookRotation(_orientation, Vector3.up);
 
+            if (!_isAlive) return;
+
             _isGrounded = IsGrounded();
 
             _rigidbody.Rigidbody.AddForce(Vector3.down * _gravity, ForceMode.Acceleration);
@@ -234,9 +236,9 @@ namespace Eggacy.Gameplay.Character.EggChampion
         {
             if (!Runner.IsServer) return;
 
+            GetComponent<NetworkTransform>().TeleportToPositionRotation(_respawnPoint.position, _respawnPoint.rotation);
             _isAlive = true;
             _lifeController.ResetLife();
-            GetComponent<NetworkTransform>().TeleportToPositionRotation(_respawnPoint.position, _respawnPoint.rotation);
         }
 
         private void HandleDied_ServerOnly(LifeController controller)
@@ -254,7 +256,11 @@ namespace Eggacy.Gameplay.Character.EggChampion
         private IEnumerator DeathRoutine()
         {
             _isAlive = false;
+            _rigidbody.Rigidbody.velocity = Vector3.zero;
+            _rigidbody.Rigidbody.angularVelocity = Vector3.zero;
+            _rigidbody.Rigidbody.isKinematic = true;
             yield return new WaitForSeconds(respawnDuration);
+            _rigidbody.Rigidbody.isKinematic = false;
             SetToAlive();
         }
 

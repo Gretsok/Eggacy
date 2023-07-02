@@ -41,9 +41,9 @@ namespace Eggacy
             m_damageReceivedPositionTween.Stop();
         }
 
-        public override void SetHealthRatio(float a_healthRatio)
+        protected override void HandleDamageTakenFeedback(float oldHealthRatio, float newHealthRatio)
         {
-            base.SetHealthRatio(a_healthRatio);
+            base.HandleDamageTakenFeedback(oldHealthRatio, newHealthRatio);
             PlayDamageReceivedFeedback();
         }
 

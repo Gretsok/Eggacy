@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,9 +13,7 @@ namespace Eggacy
         protected Slider m_healthSliderBG;
 
         [SerializeField]
-        protected float m_updateSliderBGSpeed = 3f;
-        [SerializeField]
-        protected float m_timeBeforeUpdateSlider = 0.2f;
+        protected float _healthSliderBGMovementSharpness = 4f;
 
         protected Color m_healBarContainerColor;
         protected Color m_healthSliderColor;
@@ -36,22 +33,32 @@ namespace Eggacy
         {
             a_healthRatio = Mathf.Clamp(a_healthRatio, 0f, 1f);
 
-            m_healthSlider.value = a_healthRatio;
+            if(a_healthRatio < m_healthSlider.value)
+            {
+                HandleDamageTakenFeedback(m_healthSlider.value, a_healthRatio);
+            }
+            else
+            {
+                HandleHealedFeedback(m_healthSlider.value, a_healthRatio);
+            }
 
-            StopAllCoroutines();
-            StartCoroutine(UpdateHealthSliderBG_Routine());
+            m_healthSlider.value = a_healthRatio;
+        }
+
+        protected virtual void HandleHealedFeedback(float oldHealthRatio, float newHealthRatio)
+        {
+            m_healthSliderBG.value = newHealthRatio;
+        }
+
+        protected virtual void HandleDamageTakenFeedback(float oldHealthRatio, float newHealthRatio)
+        {
+
         }
 
 
-        private IEnumerator UpdateHealthSliderBG_Routine()
+        protected virtual void Update()
         {
-            yield return new WaitForSeconds(m_timeBeforeUpdateSlider);
-
-            while(m_healthSliderBG.value > m_healthSlider.value)
-            {
-                m_healthSliderBG.value -= 0.01f * m_updateSliderBGSpeed;
-                yield return new WaitForEndOfFrame();
-            }
+            m_healthSliderBG.value = Mathf.Lerp(m_healthSliderBG.value, m_healthSlider.value, _healthSliderBGMovementSharpness * Time.deltaTime);
         }
     }
 }

@@ -24,6 +24,7 @@ namespace Eggacy.Gameplay.Character.EggChampion.Weapons.RPG
         [Header("Explosion")]
         [SerializeField]
         private Transform _explosionSource = null;
+        public Transform explosionSource => _explosionSource;
         [SerializeField]
         private float _explosionRadius = 5f;
         [SerializeField]

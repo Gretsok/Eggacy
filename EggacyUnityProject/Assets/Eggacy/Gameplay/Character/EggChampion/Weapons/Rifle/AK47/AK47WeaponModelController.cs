@@ -1,5 +1,4 @@
 using Eggacy.Gameplay.Combat.Weapon;
-using UnityEngine;
 
 namespace Eggacy.Gameplay.Character.EggChampion.Weapons.Rifle.AK47
 {

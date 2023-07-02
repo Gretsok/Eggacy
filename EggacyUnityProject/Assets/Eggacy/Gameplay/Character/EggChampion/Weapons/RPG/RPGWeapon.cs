@@ -1,4 +1,6 @@
 using Eggacy.Gameplay.Combat.Weapon;
+using Fusion;
+using System;
 using UnityEngine;
 
 namespace Eggacy.Gameplay.Character.EggChampion.Weapons.RPG
@@ -7,19 +9,30 @@ namespace Eggacy.Gameplay.Character.EggChampion.Weapons.RPG
     {
         [SerializeField]
         private float _cooldown = 5f;
-        private float _lastTimeOfShoot = float.MinValue;
+        [Networked]
+        private float _lastTimeOfShoot { get; set; } = float.MinValue;
         [SerializeField]
         private RPGRocket _rocketPrefab = null;
 
-        public bool canShoot => Time.time - _lastTimeOfShoot >= _cooldown;
+        public bool canShoot => Runner.InterpolationRenderTime - _lastTimeOfShoot >= _cooldown;
+
+        public Action onShoot = null;
+        public Action onShoot_serverOnly = null;
+
+
+        public override void Spawned()
+        {
+            base.Spawned();
+            _lastTimeOfShoot = float.MinValue;
+        }
 
         protected override void HandlePrimaryAttackStarted(Vector3 aimSource, Vector3 aimDirection)
         {
             base.HandlePrimaryAttackStarted(aimSource, aimDirection);
 
-            if (Time.time - _lastTimeOfShoot < _cooldown) return;
+            if (Runner.InterpolationRenderTime - _lastTimeOfShoot < _cooldown) return;
 
-            _lastTimeOfShoot = Time.time;
+            _lastTimeOfShoot = Runner.InterpolationRenderTime;
             Shoot(aimSource, aimDirection);
         }
 
@@ -27,6 +40,21 @@ namespace Eggacy.Gameplay.Character.EggChampion.Weapons.RPG
         {
             var rocket = Runner.Spawn(_rocketPrefab, aimSource, Quaternion.LookRotation(aimDirection, Vector3.up));
             rocket.SetReferencesForWeaponContainer(referencesForWeaponContainer as EggChampionReferencesForWeaponContainer);
+            NotifyOnShoot();
         }
+
+        private void NotifyOnShoot()
+        {
+            onShoot_serverOnly?.Invoke();
+            Rpc_NotifyOnShoot();
+        }
+
+        [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+        private void Rpc_NotifyOnShoot()
+        {
+            onShoot?.Invoke();
+        }
+
+
     }
 }

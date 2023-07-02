@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shootFX: {fileID: 2825279288318058237}
-  _shootSFX: {fileID: 11400000, guid: 3d55874d6b3feb944b3843a2a3d6b278, type: 2}
+  _shootSFX: {fileID: 11400000, guid: c5c460d4aa2a8844c8d04eec0b2dffdb, type: 2}
   a_positionTween: {fileID: 8215899899820742645}
 --- !u!1 &776578067212064432
 GameObject:

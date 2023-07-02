@@ -1,4 +1,5 @@
 using Eggacy.Gameplay.Combat.Weapon;
+using Eggacy.Sound;
 using UnityEngine;
 
 namespace Eggacy.Gameplay.Character.EggChampion.Weapons.RPG
@@ -7,6 +8,12 @@ namespace Eggacy.Gameplay.Character.EggChampion.Weapons.RPG
     {
         [SerializeField]
         private GameObject _rocketModel = null;
+
+        [SerializeField]
+        protected WorldSoundEventData _shootSFX = null;
+
+        [SerializeField]
+        private Transform _shootSource = null;
 
         public bool IsRocketModelActive => _rocketModel.activeSelf;
 
@@ -18,6 +25,12 @@ namespace Eggacy.Gameplay.Character.EggChampion.Weapons.RPG
         public void DeactivateRocketModel()
         {
             _rocketModel.SetActive(false);
+        }
+
+        public void PlayShootFeedback()
+        {
+            if (_shootSFX)
+                _shootSFX.RequestWorldSoundPlay(_shootSource);
         }
     }
 }

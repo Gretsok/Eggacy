@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Eggacy.Sound
@@ -7,7 +5,7 @@ namespace Eggacy.Sound
     public class EggChampionDieSoundPlayer : MonoBehaviour
     {
         [SerializeField]
-        private SoundEventData m_diedSound;
+        private GlobalSoundEventData m_diedSound;
 
         private void Start()
         {
@@ -16,7 +14,7 @@ namespace Eggacy.Sound
 
         public void PlayDiedSound()
         {
-            m_diedSound.Request2DPlay();
+            m_diedSound.RequestPlay();
         }
     }
 }
