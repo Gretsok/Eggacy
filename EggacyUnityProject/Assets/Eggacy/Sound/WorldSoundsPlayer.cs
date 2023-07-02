@@ -37,6 +37,7 @@ namespace Eggacy.Sound
             var soundController = Instantiate(_worldSoundControllerPrefab, target.position, Quaternion.identity, transform);
             soundController.audioSource.clip = soundEventData.AudioClip;
             soundController.SetLifeDuration(soundEventData.maxLifeTime);
+            soundController.SetMaxDistanceToHearSound(soundEventData.maxDistanceToHear);
 
             if(soundEventData.attachToTarget)
             {

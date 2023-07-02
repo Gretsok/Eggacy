@@ -20,6 +20,11 @@ namespace Eggacy.Sound
             }
         }
 
+        public void SetMaxDistanceToHearSound(float maxDistanceToHear)
+        {
+            _audioSource.maxDistance = maxDistanceToHear;
+        }
+
         protected override void Update()
         {
             base.Update();

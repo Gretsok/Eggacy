@@ -11,6 +11,10 @@ namespace Eggacy.Sound
         private bool _attachToTarget = false;
         public bool attachToTarget => _attachToTarget;
 
+        [SerializeField]
+        private float _maxDistanceToHear = 300f;
+        public float maxDistanceToHear => maxDistanceToHear;
+
         public Action<WorldSoundEventData, Transform> onPlayRequested;
 
         public void RequestWorldSoundPlay(Transform target)
