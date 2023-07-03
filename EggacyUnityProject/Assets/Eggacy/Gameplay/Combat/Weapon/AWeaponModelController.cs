@@ -38,7 +38,8 @@ namespace Eggacy.Gameplay.Combat.Weapon
         private void OnDestroy()
         {
             CleanUp();
-            Destroy(weaponModel.gameObject);
+            if(weaponModel)
+                Destroy(weaponModel.gameObject);
         }
 
         protected virtual void SetUp()
