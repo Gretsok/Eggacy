@@ -10,6 +10,9 @@ namespace Eggacy.Gameplay.Character.EggChampion.Weapons.RPG
         private GameObject _rocketModel = null;
 
         [SerializeField]
+        private GameObject _flashModel = null;
+
+        [SerializeField]
         protected WorldSoundEventData _shootSFX = null;
 
         [SerializeField]
@@ -20,11 +23,13 @@ namespace Eggacy.Gameplay.Character.EggChampion.Weapons.RPG
         public void ActivateRocketModel()
         {
             _rocketModel.SetActive(true);
+            _flashModel.SetActive(false);
         }
 
         public void DeactivateRocketModel()
         {
             _rocketModel.SetActive(false);
+            _flashModel.SetActive(true);
         }
 
         public void PlayShootFeedback()
