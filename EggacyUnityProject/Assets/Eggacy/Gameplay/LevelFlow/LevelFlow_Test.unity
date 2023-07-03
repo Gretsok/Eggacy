@@ -871,6 +871,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06ae3234f8ba14844898e7a5eb244ebf, type: 3}
+--- !u!1001 &1603183893686648172
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2893029233706108533, guid: ed174cfaa3c094c4eb8dd80a1b431e7b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2893029233706108533, guid: ed174cfaa3c094c4eb8dd80a1b431e7b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 2893029233706108533, guid: ed174cfaa3c094c4eb8dd80a1b431e7b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2893029233706108533, guid: ed174cfaa3c094c4eb8dd80a1b431e7b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 12.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2893029233706108533, guid: ed174cfaa3c094c4eb8dd80a1b431e7b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2893029233706108533, guid: ed174cfaa3c094c4eb8dd80a1b431e7b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2893029233706108533, guid: ed174cfaa3c094c4eb8dd80a1b431e7b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2893029233706108533, guid: ed174cfaa3c094c4eb8dd80a1b431e7b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2893029233706108533, guid: ed174cfaa3c094c4eb8dd80a1b431e7b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2893029233706108533, guid: ed174cfaa3c094c4eb8dd80a1b431e7b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2893029233706108533, guid: ed174cfaa3c094c4eb8dd80a1b431e7b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585211289237821009, guid: ed174cfaa3c094c4eb8dd80a1b431e7b,
+        type: 3}
+      propertyPath: m_Name
+      value: RPG Spawner
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ed174cfaa3c094c4eb8dd80a1b431e7b, type: 3}
 --- !u!1001 &3379873451094989173
 PrefabInstance:
   m_ObjectHideFlags: 0
