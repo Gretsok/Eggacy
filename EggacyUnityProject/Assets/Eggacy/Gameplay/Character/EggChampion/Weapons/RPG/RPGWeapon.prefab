@@ -69035,7 +69035,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
-  _cooldown: 1
+  _cooldown: 2
   _rocketPrefab: {fileID: 5953323609306950855, guid: 87eed1b412a93dd409e269005e07445d,
     type: 3}
 --- !u!114 &7469179650146646095
