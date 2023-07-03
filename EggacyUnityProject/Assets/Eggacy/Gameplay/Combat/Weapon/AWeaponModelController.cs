@@ -7,6 +7,13 @@ namespace Eggacy.Gameplay.Combat.Weapon
     /// </summary>
     public abstract class AWeaponModelController : MonoBehaviour
     {
+        [SerializeField]
+        private AWeapon _weapon = null;
+        [SerializeField]
+        private AWeaponModel _weaponModel = null;
+        public AWeapon notCastedWeapon => _weapon;
+        public AWeaponModel notCastedWeaponModel => _weaponModel;
+
         public virtual void SetModelParent(Transform modelParent)
         {
 
@@ -20,12 +27,8 @@ namespace Eggacy.Gameplay.Combat.Weapon
 
     public abstract class AWeaponModelController<W, M> : AWeaponModelController where W : AWeapon where M : AWeaponModel
     {
-        [SerializeField]
-        private W _weapon = null;
-        [SerializeField]
-        private M _weaponModel = null;
-        protected W weapon => _weapon;
-        protected M weaponModel => _weaponModel;
+        protected W weapon => notCastedWeapon as W;
+        protected M weaponModel => notCastedWeaponModel as M;
 
         private void Start()
         {
@@ -50,9 +53,9 @@ namespace Eggacy.Gameplay.Combat.Weapon
 
         public override void SetModelParent(Transform modelParent)
         {
-            _weaponModel.transform.SetParent(modelParent);
-            _weaponModel.transform.localPosition = Vector3.zero;
-            _weaponModel.transform.localRotation = Quaternion.identity;
+            weaponModel.transform.SetParent(modelParent);
+            weaponModel.transform.localPosition = Vector3.zero;
+            weaponModel.transform.localRotation = Quaternion.identity;
         }
     }
 }

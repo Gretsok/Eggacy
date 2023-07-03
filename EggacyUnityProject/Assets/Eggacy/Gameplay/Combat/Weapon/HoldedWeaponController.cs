@@ -30,6 +30,9 @@ namespace Eggacy.Gameplay.Combat.Weapon
         {
             if (!Runner.IsServer) return;
 
+            if (_currentWeapon)
+                Runner.Despawn(_currentWeapon.Object);
+
             _currentWeapon = Runner.Spawn(weaponControllerPrefab, _weaponContainer.position, _weaponContainer.rotation, inputAuthority: Runner.LocalPlayer, predictionKey: null);
             _currentWeaponIndexEquipped = _currentWeapon.Id;
         }

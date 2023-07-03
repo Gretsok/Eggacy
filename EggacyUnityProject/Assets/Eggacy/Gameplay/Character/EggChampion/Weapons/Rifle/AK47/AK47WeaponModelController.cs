@@ -4,13 +4,15 @@ namespace Eggacy.Gameplay.Character.EggChampion.Weapons.Rifle.AK47
 {
     public class AK47WeaponModelController : AWeaponModelController<AK47Weapon, AK47WeaponModel>
     {
-        private void Start()
+        protected override void SetUp()
         {
+            base.SetUp();
             weapon.onShoot += HandleShoot;
         }
 
-        private void OnDestroy()
+        protected override void CleanUp()
         {
+            base.CleanUp();
             weapon.onShoot -= HandleShoot;
         }
 

@@ -4,14 +4,15 @@ namespace Eggacy.Gameplay.Character.EggChampion.Weapons.RPG
 {
     public class RPGWeaponModelController : AWeaponModelController<RPGWeapon, RPGWeaponModel>
     {
-
-        private void Start()
+        protected override void SetUp()
         {
+            base.SetUp();
             weapon.onShoot += HandleShoot;
         }
 
-        private void OnDestroy()
+        protected override void CleanUp()
         {
+            base.CleanUp();
             weapon.onShoot -= HandleShoot;
         }
 
