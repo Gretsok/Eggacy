@@ -31,6 +31,7 @@ namespace Eggacy.Gameplay.Character.EggChampion.Mutations
 
         [Networked(OnChanged = nameof(HandleExperienceChanged))]
         private int _currentExperience { get; set; }
+        public int currentExperience => _currentExperience;
 
         public Action<AMutation<T>> onExperienceUpdated = null;
 
@@ -40,15 +41,15 @@ namespace Eggacy.Gameplay.Character.EggChampion.Mutations
             if (level >= _levelData.Count) return; // Level Max reached, so we cannot earn more experience
 
             var newExperience = amountOfExperience + _currentExperience;
-            while(newExperience > _levelData[_level].xpRequiredToLevelUp
-                && level + 1 < _levelData.Count)
+            while(level < _levelData.Count && newExperience > _levelData[_level].xpRequiredToLevelUp)
             {
-                IncreaseLevel();
                 newExperience -= _levelData[_level].xpRequiredToLevelUp;
+                IncreaseLevel();
             }
 
 
             _currentExperience = newExperience;
+            HandleExperienceEarned(); 
         }
 
         public void ResetLevelsAndExperience()
@@ -57,11 +58,13 @@ namespace Eggacy.Gameplay.Character.EggChampion.Mutations
 
             _level = 0;
             _currentExperience = 0;
+            HandleReset();
         }
 
         private void IncreaseLevel()
         {
             _level += 1;
+            handleLevelIncreased();
         }
 
         #region Network Changes Callbacks

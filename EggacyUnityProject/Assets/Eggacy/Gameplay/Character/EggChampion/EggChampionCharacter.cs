@@ -25,7 +25,7 @@ namespace Eggacy.Gameplay.Character.EggChampion
 
         [SerializeField]
         private Mutations.MutationsController m_mutationsController;
-        public MutationsController MutationsController => m_mutationsController;
+        public MutationsController mutationsController => m_mutationsController;
 
         [SerializeField]
         private Transform _modelRoot = null;
