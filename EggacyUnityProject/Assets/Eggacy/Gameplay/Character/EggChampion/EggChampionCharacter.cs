@@ -3,6 +3,7 @@ using UnityEngine;
 using Fusion;
 using Eggacy.Gameplay.Combat.LifeManagement;
 using System.Collections;
+using Eggacy.Gameplay.Character.EggChampion.Mutations;
 
 namespace Eggacy.Gameplay.Character.EggChampion
 {
@@ -21,6 +22,10 @@ namespace Eggacy.Gameplay.Character.EggChampion
         [SerializeField]
         private TankAllyPositionFeedback m_tankAllyPositionFeedback;
         public TankAllyPositionFeedback TankAllyPositionFeedback => m_tankAllyPositionFeedback;
+
+        [SerializeField]
+        private Mutations.MutationsController m_mutationsController;
+        public MutationsController MutationsController => m_mutationsController;
 
         [SerializeField]
         private Transform _modelRoot = null;

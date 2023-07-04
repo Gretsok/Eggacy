@@ -2250,6 +2250,7 @@ MonoBehaviour:
   _weaponController: {fileID: 4374407149508956467}
   _lifeController: {fileID: 2526454341629484489}
   m_tankAllyPositionFeedback: {fileID: 5838228240798427615}
+  m_mutationsController: {fileID: 3499975643017541705}
   _modelRoot: {fileID: 6998616398714877229}
   _collidersGO: {fileID: 2202288067268596008}
   _jumpVelocity: 12
