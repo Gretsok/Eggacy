@@ -227,8 +227,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
   _lifeController: {fileID: 2587740757161551470}
-  _healingAmount: 1
+  _healingAmount: 4
   _healingCooldown: 0.2
+  _timeToWaitToHealAfterLeavingBattle: 1
+  _damageReceivedToGoInBattle: 40
+  _damageReceivedDescreasingSpeed: 20
 --- !u!1 &1984449292451445111
 GameObject:
   m_ObjectHideFlags: 0
