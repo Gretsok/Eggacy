@@ -18,25 +18,35 @@ namespace Eggacy.Gameplay.Character.ChickenTank.SelfHealing
         private float _lastTimeOfHealing = float.MinValue;
 
         [SerializeField]
+        private float _timeToWaitToHealAfterLeavingBattle = 1f;
+        private float _timeOfLastHit = float.MinValue;
+        [SerializeField]
         private int _damageReceivedToGoInBattle = 40;
         [SerializeField]
         private int _damageReceivedDescreasingSpeed = 20;
         private float _damageReceived = 0;
 
+        private bool _isInBattle = false;
+
         private void Start()
         {
-            _lifeController.onDamageDealt_ServerOnly += HandleDamageDealt;
+            _lifeController.onDamageTaken_ServerOnly += HandleDamageReceived;
         }
 
-        private void HandleDamageDealt(LifeController arg1, int arg2, LifeController arg3)
+        private void HandleDamageReceived(LifeController arg1, int arg2)
         {
             _damageReceived += arg2;
+            _timeOfLastHit = Runner.InterpolationRenderTime;
+            if(_damageReceived >= _damageReceivedToGoInBattle)
+            {
+                _isInBattle = true;
+            }
         }
 
         private void OnDestroy()
         {
             if(_lifeController)
-                _lifeController.onDamageDealt_ServerOnly += HandleDamageDealt;
+                _lifeController.onDamageTaken_ServerOnly -= HandleDamageReceived;
         }
 
         private void Update()
@@ -44,17 +54,28 @@ namespace Eggacy.Gameplay.Character.ChickenTank.SelfHealing
             if (!Runner) return;
             if(!Runner.IsServer) return;
 
-            _damageReceived -= _damageReceivedDescreasingSpeed * Time.deltaTime;
-            if(_damageReceived < 0)
+
+            if (_isInBattle && Runner.InterpolationRenderTime - _timeOfLastHit > _timeToWaitToHealAfterLeavingBattle)
             {
                 _damageReceived = 0;
+                _isInBattle = false;
+            }
 
-                if (Time.time - _lastTimeOfHealing > _healingCooldown)
+
+            _damageReceived -= _damageReceivedDescreasingSpeed * Time.deltaTime;
+            if (_damageReceived < 0)
+            {
+                _damageReceived = 0;
+            }
+
+            if (!_isInBattle)
+            {
+                if (Runner.InterpolationRenderTime - _lastTimeOfHealing > _healingCooldown)
                 {
                     _lifeController.Heal(_healingAmount);
-                    _lastTimeOfHealing = Time.time;
+                    _lastTimeOfHealing = Runner.InterpolationRenderTime;
                 }
-            }   
+            }
         }
     }
 }
