@@ -18,7 +18,7 @@ namespace Eggacy.Gameplay.Character.EggChampion.Mutations
         protected override void handleLevelIncreased()
         {
             base.handleLevelIncreased();
-            _lifeController.SetBonusMaxLife(GetLevelData(level).bonusMaxLife);
+            _lifeController.SetBonusMaxLife(GetLevelData(level - 1).bonusMaxLife);
         }
     }
 

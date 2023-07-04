@@ -187,7 +187,7 @@ namespace Eggacy.Gameplay.Combat.LifeManagement
         {
             if (!Runner.IsServer) return;
 
-            if(bonusMaxLife > 0)
+            if(bonusMaxLife < 0)
             {
                 Debug.LogError("Bonus max life cannot be negative");
                 _bonusMaxLife = 0;

@@ -21,7 +21,7 @@ namespace Eggacy.Gameplay.Character.EggChampion.Mutations
         protected override void handleLevelIncreased()
         {
             base.handleLevelIncreased();
-            var levelData = GetLevelData(level);
+            var levelData = GetLevelData(level - 1);
             _globalMutatorsHandler.SetAttackSpeedMultiplier(levelData.attackSpeedMultiplier);
             _globalMutatorsHandler.SetDamageMultiplier(levelData.damageMutliplier);
         }

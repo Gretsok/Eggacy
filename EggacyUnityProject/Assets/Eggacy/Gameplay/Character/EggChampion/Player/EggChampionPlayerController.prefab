@@ -1142,6 +1142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 674a3487a6a7f9e4989f68a3f34c46c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerController: {fileID: 3253415854844806114}
   m_mutationWidgetAssaillant: {fileID: 3184610844106229898}
   m_mutationWidgetAssassin: {fileID: 3184610844106229898}
   m_mutationWidgetDefender: {fileID: 6370763135392340453}

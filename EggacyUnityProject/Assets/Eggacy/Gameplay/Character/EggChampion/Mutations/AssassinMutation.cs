@@ -17,7 +17,7 @@ namespace Eggacy.Gameplay.Character.EggChampion.Mutations
         protected override void handleLevelIncreased()
         {
             base.handleLevelIncreased();
-            _character.SetSpeedMultiplier(GetLevelData(level).movementSpeedMultiplier);
+            _character.SetSpeedMultiplier(GetLevelData(level - 1).movementSpeedMultiplier);
         }
     }
 
