@@ -401,7 +401,7 @@ MonoBehaviour:
   _interpolationDataSource: 0
   _cameraControllerPrefab: {fileID: 7478266177250570299, guid: 4504da6ded217d641bbe8576f93ef942,
     type: 3}
-  _orientationSensitivity: {x: 30, y: 30}
+  _orientationSensitivity: {x: 10, y: 10}
   _localGameObjects:
   - {fileID: 8837806305953117386}
   - {fileID: 7854394305485539402}
