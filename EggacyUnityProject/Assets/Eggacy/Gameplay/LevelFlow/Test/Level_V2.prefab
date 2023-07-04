@@ -5689,12 +5689,12 @@ PrefabInstance:
         type: 3}
       propertyPath: _startingChickenWaypoints.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8522538191906189761}
     - target: {fileID: 5672225035069440965, guid: 34615ffaa4fcb434784cee6840c86440,
         type: 3}
       propertyPath: _startingChickenWaypoints.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5336116787903354097}
     - target: {fileID: 6398608987235904584, guid: 34615ffaa4fcb434784cee6840c86440,
         type: 3}
       propertyPath: m_RootOrder
@@ -5890,5 +5890,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b075e2616cec6e4fb768bf6989dce14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5336116787903354097 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4092984481264833754, guid: 39a3212777218804588d9f1f3974633f,
+    type: 3}
+  m_PrefabInstance: {fileID: 8268752133315117099}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3503bc61fd103d48a7725aa025b6681, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8522538191906189761 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 326125137336529386, guid: 39a3212777218804588d9f1f3974633f,
+    type: 3}
+  m_PrefabInstance: {fileID: 8268752133315117099}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3503bc61fd103d48a7725aa025b6681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
