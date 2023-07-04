@@ -60,6 +60,7 @@ MonoBehaviour:
   _movementController: {fileID: 3731622601174210523}
   _lifeController: {fileID: 2587740757161551470}
   _respawnPointsHandler: {fileID: 7322262515503538017}
+  _teamController: {fileID: 2055588102314242264}
 --- !u!114 &3731622601174210523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,6 +453,7 @@ GameObject:
   - component: {fileID: 3311343730257646340}
   - component: {fileID: 2398936437606155520}
   - component: {fileID: 5791840119732681710}
+  - component: {fileID: 5800069990360908003}
   m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
@@ -500,6 +502,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lifeController: {fileID: 2587740757161551470}
+--- !u!114 &5800069990360908003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6880989959845753428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8a54f693ec14f40b0d6ab98826fe85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _chickenTank: {fileID: 1124029711333230019}
 --- !u!1 &6907249250074119281
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,6 +526,7 @@ GameObject:
   - component: {fileID: 2147419966424614670}
   - component: {fileID: 1503484718637642228}
   - component: {fileID: 3552010365911316058}
+  - component: {fileID: 4753430059776522878}
   m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -559,6 +575,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lifeController: {fileID: 2587740757161551470}
+--- !u!114 &4753430059776522878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6907249250074119281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8a54f693ec14f40b0d6ab98826fe85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _chickenTank: {fileID: 1124029711333230019}
 --- !u!1 &7027463697988950339
 GameObject:
   m_ObjectHideFlags: 0

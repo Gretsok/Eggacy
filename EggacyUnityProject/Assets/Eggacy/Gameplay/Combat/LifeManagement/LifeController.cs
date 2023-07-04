@@ -12,7 +12,11 @@ namespace Eggacy.Gameplay.Combat.LifeManagement
 
         [SerializeField]
         private int _baseMaxLife = 100;
-        public int maxLife => _baseMaxLife;
+        public int maxLife => _baseMaxLife + _bonusMaxLife;
+
+        [Networked]
+        private int _bonusMaxLife { get; set; }
+
         [Networked]
         private int _currentLife { get; set; }
         public int currentLife => _currentLife;
@@ -25,12 +29,21 @@ namespace Eggacy.Gameplay.Combat.LifeManagement
         public Action<LifeController, int> onDamageTaken_ServerOnly = null;
         public Action<LifeController, int> onHealed_ServerOnly = null;
         public Action<LifeController, int> onDamageDealt = null;
-        public Action<LifeController, int> onDamageDealt_ServerOnly = null;
+        public Action<LifeController, int, LifeController> onDamageDealt_ServerOnly = null;
+        public Action<LifeController> onKilled = null;
+        public Action<LifeController, LifeController> onKilled_ServerOnly = null;
 
         public override void Spawned()
         {
             base.Spawned();
             ResetLife();
+        }
+
+        public void ResetBonus()
+        {
+            if (!Runner.IsServer) return;
+
+            _bonusMaxLife = 0;
         }
 
         public void ResetLife()
@@ -78,7 +91,9 @@ namespace Eggacy.Gameplay.Combat.LifeManagement
             {
                 if((damage.source as GameObject).TryGetComponent(out LifeController sourceLifeController))
                 {
-                    sourceLifeController.NotifyDamageDealt(damage.amountToRetreat);
+                    sourceLifeController.NotifyDamageDealt(damage.amountToRetreat, this);
+                    if (rawLifeAfterDamage <= 0)
+                        sourceLifeController.NotifyKilled(this);
                 }
             }
         }
@@ -97,9 +112,9 @@ namespace Eggacy.Gameplay.Combat.LifeManagement
             NotifyHealed(amountToHeal);
         }
 
-        private void NotifyDamageDealt(int amountToRetreat)
+        private void NotifyDamageDealt(int amountToRetreat, LifeController victim)
         {
-            onDamageDealt_ServerOnly?.Invoke(this, amountToRetreat);
+            onDamageDealt_ServerOnly?.Invoke(this, amountToRetreat, victim);
             Rpc_NotifyDamageDealt(amountToRetreat);
         }
 
@@ -144,6 +159,18 @@ namespace Eggacy.Gameplay.Combat.LifeManagement
             onDied?.Invoke(this);
         }
 
+        private void NotifyKilled(LifeController victim)
+        {
+            onKilled_ServerOnly?.Invoke(this, victim);
+            Rpc_NotifyKilled();
+        }
+
+        [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
+        private void Rpc_NotifyKilled()
+        {
+            onKilled?.Invoke(this);
+        }
+
         private void NotifyHealed(int amountHealed)
         {
             onHealed_ServerOnly?.Invoke(this, amountHealed);
@@ -154,6 +181,20 @@ namespace Eggacy.Gameplay.Combat.LifeManagement
         private void Rpc_NotifyHealed(int amountHealed)
         {
             onHealed?.Invoke(this, amountHealed);
+        }
+
+        public void SetBonusMaxLife(int bonusMaxLife)
+        {
+            if (!Runner.IsServer) return;
+
+            if(bonusMaxLife > 0)
+            {
+                Debug.LogError("Bonus max life cannot be negative");
+                _bonusMaxLife = 0;
+                return;
+            }
+
+            _bonusMaxLife = bonusMaxLife;
         }
     }
 }

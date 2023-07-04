@@ -3,7 +3,6 @@ using UnityEngine;
 using Fusion;
 using Eggacy.Gameplay.Combat.LifeManagement;
 using System.Collections;
-using System.Linq;
 
 namespace Eggacy.Gameplay.Character.EggChampion
 {
@@ -33,6 +32,9 @@ namespace Eggacy.Gameplay.Character.EggChampion
         private float _jumpVelocity = 8f;
         [SerializeField]
         private float _movementSpeed = 5f;
+        [Networked]
+        private float _movementSpeedMultiplier { get; set; }
+        public float movementSpeed => _movementSpeed * _movementSpeedMultiplier;
         [SerializeField]
         private float _movementSmoothness = 8f;
         [SerializeField]
@@ -71,6 +73,12 @@ namespace Eggacy.Gameplay.Character.EggChampion
             _lifeController.onDied_ServerOnly -= HandleDied_ServerOnly;
         }
 
+        public override void Spawned()
+        {
+            base.Spawned();
+            _movementSpeedMultiplier = 1;
+        }
+
         public override void FixedUpdateNetwork()
         {
             base.FixedUpdateNetwork();
@@ -86,13 +94,13 @@ namespace Eggacy.Gameplay.Character.EggChampion
             if(_isGrounded)
             {
                 float gravity = _rigidbody.Rigidbody.velocity.y;
-                _currentPlannedVelocity = Vector3.Lerp(_currentPlannedVelocity, _directionToMove * _movementSpeed, Runner.DeltaTime * _movementSmoothness);
+                _currentPlannedVelocity = Vector3.Lerp(_currentPlannedVelocity, _directionToMove * movementSpeed, Runner.DeltaTime * _movementSmoothness);
                 _rigidbody.Rigidbody.velocity = _currentPlannedVelocity + gravity * Vector3.up;
             }
             else
             {
                 float gravity = _rigidbody.Rigidbody.velocity.y;
-                _currentPlannedVelocity = Vector3.Lerp(_currentPlannedVelocity, _directionToMove * _movementSpeed, Runner.DeltaTime * _movementInAirSmoothness);
+                _currentPlannedVelocity = Vector3.Lerp(_currentPlannedVelocity, _directionToMove * movementSpeed, Runner.DeltaTime * _movementInAirSmoothness);
                 _rigidbody.Rigidbody.velocity = _currentPlannedVelocity + gravity * Vector3.up;
             }
         }
@@ -108,6 +116,11 @@ namespace Eggacy.Gameplay.Character.EggChampion
             var isGrounded = Physics.OverlapBox(transform.position, new Vector3(0.5f, 0.05f, 0.5f), Quaternion.identity, _groundLayerMask).Length > 0;
             Debug.DrawLine(transform.position + Vector3.up * 0.1f, transform.position + Vector3.down * 0.15f, isGrounded ? Color.red : Color.yellow);
             return isGrounded;
+        }
+
+        public void SetSpeedMultiplier(float speedMultiplier)
+        {
+            _movementSpeedMultiplier = speedMultiplier;
         }
         #endregion
 

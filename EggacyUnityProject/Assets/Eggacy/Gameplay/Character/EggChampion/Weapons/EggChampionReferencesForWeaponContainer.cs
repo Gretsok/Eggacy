@@ -9,5 +9,9 @@ namespace Eggacy.Gameplay.Character.EggChampion.Weapons
         [SerializeField]
         private TeamController _teamController = null;
         public TeamController teamController => _teamController;
+
+        [SerializeField]
+        private EggChampionGlobalMutatorsHandler _globalMutatorsHandler = null;
+        public EggChampionGlobalMutatorsHandler globalMutatorsHandler => _globalMutatorsHandler;
     }
 }

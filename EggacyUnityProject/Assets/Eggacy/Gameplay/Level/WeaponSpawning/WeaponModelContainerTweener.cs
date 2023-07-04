@@ -20,12 +20,14 @@ namespace Eggacy.Gameplay.Level.WeaponSpawner
 
         public void StartMoveYTweenUp()
         {
-            transform.DOLocalMoveY(_heightAmplitude, _heightPeriod / 2f).SetEase(Ease.InOutQuad).OnComplete(StartMoveYTweenDown);
+            if(transform)
+                transform.DOLocalMoveY(_heightAmplitude, _heightPeriod / 2f).SetEase(Ease.InOutQuad).OnComplete(StartMoveYTweenDown);
         }
 
         public void StartMoveYTweenDown()
         {
-            transform.DOLocalMoveY(0, _heightPeriod / 2f).SetEase(Ease.InOutQuad).OnComplete(StartMoveYTweenUp);
+            if (transform)
+                transform.DOLocalMoveY(0, _heightPeriod / 2f).SetEase(Ease.InOutQuad).OnComplete(StartMoveYTweenUp);
         }
     }
 }
