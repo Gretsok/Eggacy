@@ -47,7 +47,7 @@ namespace Eggacy.Gameplay.Character.EggChampion.Weapons.Rifle
 
         private void TryToShoot()
         {
-            if (Time.time - _lastTimeOfShoot > cooldown)
+            if (Time.time - _lastTimeOfShoot > cooldown / (referencesForWeaponContainer as EggChampionReferencesForWeaponContainer).globalMutatorsHandler.attackSpeedMultiplier)
             {
                 Shoot();
                 NotifyOnShoot();

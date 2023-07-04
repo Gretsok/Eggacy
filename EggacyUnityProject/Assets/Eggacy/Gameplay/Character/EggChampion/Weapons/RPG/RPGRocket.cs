@@ -108,7 +108,7 @@ namespace Eggacy.Gameplay.Character.EggChampion.Weapons.RPG
                         character.networkRigidbody.Rigidbody.AddExplosionForce(_maxPropulsionForce, _explosionSource.position, _explosionRadius, _maxHeightPropulsionForceMultiplier, ForceMode.Impulse);
                     }
                     Damage damageToDeal = new Damage();
-                    damageToDeal.amountToRetreat = (int)(_maxDamageToDeal * distanceRatio);
+                    damageToDeal.amountToRetreat = (int)(_maxDamageToDeal * distanceRatio * _referencesForWeaponContainer.globalMutatorsHandler.damageMultiplier);
                     damageToDeal.teamSource = _referencesForWeaponContainer.teamController.teamData.team;
                     damageToDeal.source = _referencesForWeaponContainer.teamController.gameObject;
                     lifeControllerCollider.lifeController.TakeDamage(damageToDeal);

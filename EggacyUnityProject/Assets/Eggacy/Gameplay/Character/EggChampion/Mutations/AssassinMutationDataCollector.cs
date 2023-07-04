@@ -16,16 +16,16 @@ namespace Eggacy.Gameplay.Character.EggChampion.Mutations
 
         private void Start()
         {
-            _lifeController.onKilled_ServerOnly += HandleDamageDealt;
+            _lifeController.onKilled_ServerOnly += HandleKilled;
         }
 
         private void OnDestroy()
         {
             if (_lifeController)
-                _lifeController.onKilled_ServerOnly -= HandleDamageDealt;
+                _lifeController.onKilled_ServerOnly -= HandleKilled;
         }
 
-        private void HandleDamageDealt(LifeController source, LifeController victim)
+        private void HandleKilled(LifeController source, LifeController victim)
         {
             if (victim.TryGetComponent(out ChickenTank.ChickenTank tank))
             {

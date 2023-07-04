@@ -30,7 +30,7 @@ namespace Eggacy.Gameplay.Character.EggChampion.Weapons.RPG
         {
             base.HandlePrimaryAttackStarted(aimSource, aimDirection);
 
-            if (Runner.InterpolationRenderTime - _lastTimeOfShoot < _cooldown) return;
+            if (Runner.InterpolationRenderTime - _lastTimeOfShoot < _cooldown / (referencesForWeaponContainer as EggChampionReferencesForWeaponContainer).globalMutatorsHandler.attackSpeedMultiplier) return;
 
             _lastTimeOfShoot = Runner.InterpolationRenderTime;
             Shoot(aimSource, aimDirection);

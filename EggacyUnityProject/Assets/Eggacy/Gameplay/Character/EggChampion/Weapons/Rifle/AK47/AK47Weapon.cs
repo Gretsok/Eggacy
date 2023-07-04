@@ -19,7 +19,7 @@ namespace Eggacy.Gameplay.Character.EggChampion.Weapons.Rifle.AK47
                 if (hitInfo.collider.TryGetComponent(out LifeControllerCollider lifeControllerCollider))
                 {
                     Damage damageToDeal = new Damage();
-                    damageToDeal.amountToRetreat = damageAmount;
+                    damageToDeal.amountToRetreat = (int)(damageAmount * (referencesForWeaponContainer as EggChampionReferencesForWeaponContainer).globalMutatorsHandler.damageMultiplier);
                     damageToDeal.teamSource = (referencesForWeaponContainer as EggChampionReferencesForWeaponContainer).teamController.teamData.team;
                     damageToDeal.source = (referencesForWeaponContainer as EggChampionReferencesForWeaponContainer).teamController.gameObject;
                     lifeControllerCollider.lifeController.TakeDamage(damageToDeal);
