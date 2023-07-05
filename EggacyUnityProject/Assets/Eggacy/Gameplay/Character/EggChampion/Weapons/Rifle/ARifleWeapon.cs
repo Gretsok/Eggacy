@@ -58,6 +58,7 @@ namespace Eggacy.Gameplay.Character.EggChampion.Weapons.Rifle
         private void NotifyOnShoot()
         {
             onShoot_serverOnly?.Invoke();
+            onAttack_ServerOnly?.Invoke();
             Rpc_NotifyOnShoot();
         }
 
@@ -65,6 +66,7 @@ namespace Eggacy.Gameplay.Character.EggChampion.Weapons.Rifle
         private void Rpc_NotifyOnShoot()
         {
             onShoot?.Invoke();
+            onAttack?.Invoke();
         }
 
         protected virtual void Shoot()
