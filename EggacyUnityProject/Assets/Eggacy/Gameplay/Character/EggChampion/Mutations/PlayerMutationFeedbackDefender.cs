@@ -18,6 +18,11 @@ namespace Eggacy.Gameplay.Character.EggChampion.Mutations
             m_mutation.onLevelUpdated += OnLevelUpdated;
         }
 
+        private void OnDestroy()
+        {
+            m_mutation.onLevelUpdated -= OnLevelUpdated;
+        }
+
         private void Awake()
         {
             foreach (var feedback in m_feedbacks)
@@ -26,11 +31,11 @@ namespace Eggacy.Gameplay.Character.EggChampion.Mutations
             }
         }
 
-        private void OnLevelUpdated(AMutation<DefenderMutationLevelData> obj)
+        private void OnLevelUpdated(AMutation<DefenderMutationLevelData> mutation)
         {
             foreach (var feedback in m_feedbacks)
             {
-                feedback.SetActive(true);
+                feedback.SetActive(mutation.level >= 1);
             }
         }
     }
