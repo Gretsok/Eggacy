@@ -6,10 +6,13 @@ using UnityEngine;
 
 namespace Eggacy.Gameplay.Character.EggChampion.Player
 {
-    public class EggChampionCursorHitFeedback : MonoBehaviour
+    public class EggChampionCursorFeedback : MonoBehaviour
     {
         [SerializeField]
-        private Tween.ColorTween m_colorTween;
+        private Tween.ColorTween m_colorTweenHit;
+
+        [SerializeField]
+        private Tween.ColorTween m_colorTweenKill;
 
         [SerializeField]
         private EggChampionPlayerController m_playerController;
@@ -17,11 +20,25 @@ namespace Eggacy.Gameplay.Character.EggChampion.Player
         private void Start()
         {
             m_playerController.character.lifeController.onDamageDealt += OnDamageDealt;
+            m_playerController.character.lifeController.onKilled += OnKilled;
         }
 
         private void OnDestroy()
         {
             m_playerController.character.lifeController.onDamageDealt -= OnDamageDealt;
+            m_playerController.character.lifeController.onKilled -= OnKilled;
+        }
+
+        private void OnKilled(LifeController obj)
+        {
+            PlayCursorKillFeedback();
+        }
+
+        private void PlayCursorKillFeedback()
+        {
+            m_colorTweenKill.Stop();
+            m_colorTweenKill.ShowFinalValues();
+            m_colorTweenKill.StartTween();
         }
 
         private void OnDamageDealt(LifeController lifeController, int damage)
@@ -31,9 +48,9 @@ namespace Eggacy.Gameplay.Character.EggChampion.Player
 
         public void PlayCursorHitFeedback()
         {
-            m_colorTween.Stop();
-            m_colorTween.ShowFinalValues();
-            m_colorTween.StartTween();
+            m_colorTweenHit.Stop();
+            m_colorTweenHit.ShowFinalValues();
+            m_colorTweenHit.StartTween();
         }
     }
 }
