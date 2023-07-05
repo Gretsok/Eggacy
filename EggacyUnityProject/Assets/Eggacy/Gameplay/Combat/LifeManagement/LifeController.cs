@@ -21,6 +21,10 @@ namespace Eggacy.Gameplay.Combat.LifeManagement
         private int _currentLife { get; set; }
         public int currentLife => _currentLife;
 
+        [Networked]
+        private bool _canTakeDamage { get; set; }
+        public bool canTakeDamage => _canTakeDamage;
+
         public Action<LifeController> onDied = null;
         public Action<LifeController, int> onDamageTaken = null;
         public Action<LifeController, Vector3> onDamageTakenFromPosition = null;
@@ -37,6 +41,7 @@ namespace Eggacy.Gameplay.Combat.LifeManagement
         {
             base.Spawned();
             ResetLife();
+            _canTakeDamage = true;
         }
 
         public void ResetBonus()
@@ -59,6 +64,7 @@ namespace Eggacy.Gameplay.Combat.LifeManagement
         {
             if(!Runner.IsServer) return;
 
+            if (!_canTakeDamage) return;
             // If it doesn't do damage, we completely ignore it
             if (damage.amountToRetreat == 0) return;
             // No friendly fire
@@ -195,6 +201,13 @@ namespace Eggacy.Gameplay.Combat.LifeManagement
             }
 
             _bonusMaxLife = bonusMaxLife;
+        }
+
+        public void SetCanTakeDamage(bool canTakeDamage)
+        {
+            if(!Runner.IsServer) return;
+
+            _canTakeDamage = canTakeDamage;
         }
     }
 }

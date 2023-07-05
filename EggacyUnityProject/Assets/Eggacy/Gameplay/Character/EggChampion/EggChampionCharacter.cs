@@ -4,6 +4,7 @@ using Fusion;
 using Eggacy.Gameplay.Combat.LifeManagement;
 using System.Collections;
 using Eggacy.Gameplay.Character.EggChampion.Mutations;
+using System;
 
 namespace Eggacy.Gameplay.Character.EggChampion
 {
@@ -66,6 +67,7 @@ namespace Eggacy.Gameplay.Character.EggChampion
         [SerializeField]
         private float _respawnDuration = 7f;
         public float respawnDuration => _respawnDuration;
+        public Action<EggChampionCharacter> onRespawned = null;
 
 
         private void Start()
@@ -282,6 +284,7 @@ namespace Eggacy.Gameplay.Character.EggChampion
             yield return new WaitForSeconds(respawnDuration);
             _rigidbody.Rigidbody.isKinematic = false;
             SetToAlive();
+            onRespawned?.Invoke(this);
         }
 
         public static void HandleIsAliveChanged(Changed<EggChampionCharacter> changesHandler)
