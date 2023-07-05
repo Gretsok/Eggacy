@@ -13,7 +13,8 @@ namespace Tween
         protected override void SetStartingValues()
         {
             base.SetStartingValues();
-            m_target.localScale = m_initialLocalScale;
+            if(m_target != null)
+                m_target.localScale = m_initialLocalScale;
         }
 
         protected override void SetFinalValues()
