@@ -7,25 +7,11 @@ namespace Eggacy.Gameplay.Character.EggChampion.Mutations
 {
     public class AMutation : NetworkBehaviour
     {
-
-    }
-    public class AMutation<T> : AMutation where T : MutationLevelData
-    {
-        public override void Spawned()
-        {
-            base.Spawned();
-            ResetLevelsAndExperience();
-        }
-
         #region Level Management
-
-        [SerializeField]
-        private List<T> _levelData = new List<T>();
-
         [Networked(OnChanged = nameof(HandleLevelChanged))]
         private int _level { get; set; }
 
-        public Action<AMutation<T>> onLevelUpdated = null;
+        public Action<AMutation> onLevelUpdated = null;
 
         public int level => _level;
 
@@ -33,23 +19,21 @@ namespace Eggacy.Gameplay.Character.EggChampion.Mutations
         private int _currentExperience { get; set; }
         public int currentExperience => _currentExperience;
 
-        public Action<AMutation<T>> onExperienceUpdated = null;
+        public Action<AMutation> onExperienceUpdated = null;
 
         public void EarnExperience(int amountOfExperience)
         {
             if (!Runner.IsServer) return;
-            if (level >= _levelData.Count) return; // Level Max reached, so we cannot earn more experience
 
             var newExperience = amountOfExperience + _currentExperience;
-            while(level < _levelData.Count && newExperience > _levelData[_level].xpRequiredToLevelUp)
-            {
-                newExperience -= _levelData[_level].xpRequiredToLevelUp;
-                IncreaseLevel();
-            }
 
+            _currentExperience = ProcessExperience(newExperience);
+            HandleExperienceEarned();
+        }
 
-            _currentExperience = newExperience;
-            HandleExperienceEarned(); 
+        protected virtual int ProcessExperience(int newExperience)
+        {
+            return newExperience;
         }
 
         public void ResetLevelsAndExperience()
@@ -61,7 +45,7 @@ namespace Eggacy.Gameplay.Character.EggChampion.Mutations
             HandleReset();
         }
 
-        private void IncreaseLevel()
+        public void IncreaseLevel()
         {
             _level += 1;
             handleLevelIncreased();
@@ -70,12 +54,22 @@ namespace Eggacy.Gameplay.Character.EggChampion.Mutations
         #region Network Changes Callbacks
         public static void HandleLevelChanged(Changed<AMutation> changesHandler)
         {
-            (changesHandler.Behaviour as AMutation<T>).onLevelUpdated?.Invoke((changesHandler.Behaviour as AMutation<T>));
+            changesHandler.Behaviour.HandleLevelChangedNetworkCallback();
+        }
+
+        protected virtual void HandleLevelChangedNetworkCallback()
+        {
+
         }
 
         public static void HandleExperienceChanged(Changed<AMutation> changesHandler)
         {
-            (changesHandler.Behaviour as AMutation<T>).onExperienceUpdated?.Invoke((changesHandler.Behaviour as AMutation<T>));
+            changesHandler.Behaviour.HandleExperienceChangedNetworkCallback();
+        }
+
+        protected virtual void HandleExperienceChangedNetworkCallback()
+        {
+
         }
         #endregion
         #endregion
@@ -96,6 +90,17 @@ namespace Eggacy.Gameplay.Character.EggChampion.Mutations
 
         }
         #endregion
+    }
+    public class AMutation<T> : AMutation where T : MutationLevelData
+    {
+        [SerializeField]
+        private List<T> _levelData = new List<T>();
+
+        public override void Spawned()
+        {
+            base.Spawned();
+            ResetLevelsAndExperience();
+        }
 
         public T GetLevelData(int level)
         {
@@ -103,6 +108,32 @@ namespace Eggacy.Gameplay.Character.EggChampion.Mutations
         }
 
         public int levelDataCount => _levelData.Count;
+
+        protected override int ProcessExperience(int newExperience)
+        {
+            if (level >= _levelData.Count) return newExperience; // Level Max reached, so we cannot earn more experience
+
+
+            while (level < _levelData.Count && newExperience >= _levelData[level].xpRequiredToLevelUp)
+            {
+                newExperience -= _levelData[level].xpRequiredToLevelUp;
+                IncreaseLevel();
+            }
+
+            return newExperience;
+        }
+
+        protected override void HandleLevelChangedNetworkCallback()
+        {
+            base.HandleLevelChangedNetworkCallback();
+            onLevelUpdated?.Invoke(this);
+        }
+
+        protected override void HandleExperienceChangedNetworkCallback()
+        {
+            base.HandleExperienceChangedNetworkCallback();
+            onExperienceUpdated?.Invoke(this);
+        }
     }
 
     [Serializable]

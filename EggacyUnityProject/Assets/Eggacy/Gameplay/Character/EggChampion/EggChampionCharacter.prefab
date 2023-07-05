@@ -1760,8 +1760,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
   _levelData:
-  - xpRequiredToLevelUp: 100
-    bonusMaxLife: 50
+  - xpRequiredToLevelUp: 350
+    bonusMaxLife: 130
   _lifeController: {fileID: 2526454341629484489}
 --- !u!114 &801335341469459812
 MonoBehaviour:
@@ -1780,8 +1780,8 @@ MonoBehaviour:
   _teamController: {fileID: 7974776616204183428}
   _detectionSource: {fileID: 6998616398714877229}
   _detectionRadius: 5
-  _sensingCooldown: 0.5
-  _experienceToEarnWhenCloseToAlliedChickenTank: 5
+  _sensingCooldown: 0.25
+  _experienceToEarnWhenCloseToAlliedChickenTank: 3
   _drawGizmos: 1
 --- !u!114 &3584093111744259226
 MonoBehaviour:

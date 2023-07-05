@@ -1124,6 +1124,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9cf237846fe704fb357ce5c781c26b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6779884766641597642 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8085980280921066885, guid: 1770001da7854654d962231b2f5457d9,
+    type: 3}
+  m_PrefabInstance: {fileID: 3324168345461989711}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d9cf237846fe704fb357ce5c781c26b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7814008354891845743 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4778669183097336096, guid: 1770001da7854654d962231b2f5457d9,
@@ -1144,7 +1156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerController: {fileID: 3253415854844806114}
   m_mutationWidgetAssaillant: {fileID: 3184610844106229898}
-  m_mutationWidgetAssassin: {fileID: 3184610844106229898}
+  m_mutationWidgetAssassin: {fileID: 6779884766641597642}
   m_mutationWidgetDefender: {fileID: 6370763135392340453}
 --- !u!1001 &6845226325684761500
 PrefabInstance:
