@@ -277,6 +277,8 @@ namespace Eggacy.Gameplay.Character.EggChampion
             _rigidbody.Rigidbody.velocity = Vector3.zero;
             _rigidbody.Rigidbody.angularVelocity = Vector3.zero;
             _rigidbody.Rigidbody.isKinematic = true;
+            _weaponController.StopPrimaryAttack();
+            _weaponController.StopSecondaryAttack();
             yield return new WaitForSeconds(respawnDuration);
             _rigidbody.Rigidbody.isKinematic = false;
             SetToAlive();
