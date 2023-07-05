@@ -27,7 +27,6 @@ namespace Eggacy.Gameplay.Character.EggChampion.Player
         private void OnDamageDealt(LifeController lifeController, int damage)
         {
             PlayCursorHitFeedback();
-            Debug.Log("CIBLE TOUCHEE");
         }
 
         public void PlayCursorHitFeedback()

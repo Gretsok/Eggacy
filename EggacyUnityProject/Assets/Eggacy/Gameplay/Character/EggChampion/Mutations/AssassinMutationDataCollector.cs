@@ -27,10 +27,7 @@ namespace Eggacy.Gameplay.Character.EggChampion.Mutations
 
         private void HandleKilled(LifeController source, LifeController victim)
         {
-            if (victim.TryGetComponent(out ChickenTank.ChickenTank tank))
-            {
-                _mutation.EarnExperience(_experiencePerKill);
-            }
+            _mutation.EarnExperience(_experiencePerKill);
         }
 
     }

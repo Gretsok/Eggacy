@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,7 +24,7 @@ namespace Eggacy.Gameplay.Character.EggChampion.Mutations
             }
         }
 
-        private void OnLevelUpdated(AMutation<DefenderMutationLevelData> obj)
+        private void OnLevelUpdated(AMutation obj)
         {
             foreach (var feedback in m_feedbacks)
             {
