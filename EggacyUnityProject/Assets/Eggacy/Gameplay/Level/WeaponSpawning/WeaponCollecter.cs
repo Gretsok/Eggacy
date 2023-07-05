@@ -16,7 +16,7 @@ namespace Eggacy.Gameplay.Level.WeaponSpawner
 
                 if(weapon)
                 {
-                    _weaponInventoryController.HoldAWeaponFor(weapon.notCastedWeapon, 20f);
+                    _weaponInventoryController.HoldAWeaponForALimitedNumberOfAttack(weapon.notCastedWeapon, 3);
                 }
             }
         }

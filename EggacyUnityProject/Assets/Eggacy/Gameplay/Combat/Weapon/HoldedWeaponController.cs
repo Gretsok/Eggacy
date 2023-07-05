@@ -11,6 +11,7 @@ namespace Eggacy.Gameplay.Combat.Weapon
         [Networked(OnChanged = nameof(HandleCurrentWeaponIndexEquippedChanged))]
         private NetworkBehaviourId _currentWeaponIndexEquipped { get; set; }
         private AWeapon _currentWeapon = null;
+        public AWeapon currentWeapon => _currentWeapon;
 
         [SerializeField]
         private Transform _weaponContainer = null;

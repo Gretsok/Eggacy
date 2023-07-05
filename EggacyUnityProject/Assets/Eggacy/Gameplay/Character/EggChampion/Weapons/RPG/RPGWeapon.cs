@@ -46,13 +46,16 @@ namespace Eggacy.Gameplay.Character.EggChampion.Weapons.RPG
         private void NotifyOnShoot()
         {
             onShoot_serverOnly?.Invoke();
-            Rpc_NotifyOnShoot();
+            onAttack_ServerOnly?.Invoke();
+            if(Object)
+                Rpc_NotifyOnShoot();
         }
 
         [Rpc(RpcSources.StateAuthority, RpcTargets.All)]
         private void Rpc_NotifyOnShoot()
         {
             onShoot?.Invoke();
+            onAttack?.Invoke();
         }
 
 

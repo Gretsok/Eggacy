@@ -17,6 +17,8 @@ namespace Eggacy.Gameplay.Combat.Weapon
         public Action onSecondaryAttackStarted = null;
         public Action onPrimaryAttackStopped = null;
         public Action onSecondaryAttackStopped = null;
+        public Action onAttack_ServerOnly = null;
+        public Action onAttack = null;
 
         public void SetReferencesContainer(IReferencesForWeaponContainer referencesContainer)
         {
