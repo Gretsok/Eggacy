@@ -14,7 +14,9 @@ namespace Eggacy.Gameplay.Character.EggChampion.Weapons.RPG
         [SerializeField]
         private RPGRocket _rocketPrefab = null;
 
-        public bool canShoot => Runner.InterpolationRenderTime - _lastTimeOfShoot >= _cooldown;
+        public bool canShoot => Runner.InterpolationRenderTime - _lastTimeOfShoot 
+            >= _cooldown / (referencesForWeaponContainer as EggChampionReferencesForWeaponContainer).
+            globalMutatorsHandler.attackSpeedMultiplier;
 
         public Action onShoot = null;
         public Action onShoot_serverOnly = null;
@@ -30,7 +32,7 @@ namespace Eggacy.Gameplay.Character.EggChampion.Weapons.RPG
         {
             base.HandlePrimaryAttackStarted(aimSource, aimDirection);
 
-            if (Runner.InterpolationRenderTime - _lastTimeOfShoot < _cooldown / (referencesForWeaponContainer as EggChampionReferencesForWeaponContainer).globalMutatorsHandler.attackSpeedMultiplier) return;
+            if (!canShoot) return;
 
             _lastTimeOfShoot = Runner.InterpolationRenderTime;
             Shoot(aimSource, aimDirection);
