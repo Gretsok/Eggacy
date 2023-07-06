@@ -1154,11 +1154,6 @@ PrefabInstance:
       propertyPath: _chickenTanks.Array.data[1]
       value: 
       objectReference: {fileID: 1182858216}
-    - target: {fileID: 5801112265028107208, guid: 3948e0edb33ac7148adefaaa08721ea6,
-        type: 3}
-      propertyPath: _startingChickenWaypoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 1726491115}
     - target: {fileID: 5836383123427274529, guid: 3948e0edb33ac7148adefaaa08721ea6,
         type: 3}
       propertyPath: m_Material
@@ -1201,18 +1196,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ffda07f244953584b94bfa2f73714e51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1726491115 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4525336626675540568, guid: 3948e0edb33ac7148adefaaa08721ea6,
-    type: 3}
-  m_PrefabInstance: {fileID: 1726491113}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3503bc61fd103d48a7725aa025b6681, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1934827450
@@ -1974,7 +1957,7 @@ PrefabInstance:
     - target: {fileID: 3126259521419732235, guid: 32d35dd9ec188af4698b0c147ce0b994,
         type: 3}
       propertyPath: _playerCount
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5302317411635600364, guid: 32d35dd9ec188af4698b0c147ce0b994,
         type: 3}
